@@ -4,7 +4,7 @@
   "description": "## Introduction to Amazon Web Service (AWS)",
   "main": "index.js",
   "scripts": {
-    "start": "sudo node index"
+    "start": "sudo node index &"
   },
   "keywords": [],
   "author": "",
