@@ -1,5 +1,7 @@
 # FOCK SPACE
 
+## title : week_0_part_1
+### description : [add] revise README.md 
 >### This is first _in-person course_ assignment in the **appwroks school**
 
 [my project link](https://github.com/fockspaces/Back-End-Class-Batch19/tree/main/students/fock)
