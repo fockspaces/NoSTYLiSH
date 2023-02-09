@@ -8,5 +8,6 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
-  console.log(`Process id: ${process.pid}`);
+  console.log(`you can access the server with the link: http://54.148.100.118`);
+  console.log(`kill this process with: $kill ${process.pid}`);
 });
