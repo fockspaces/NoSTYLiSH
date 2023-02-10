@@ -1,0 +1,45 @@
+CREATE TABLE products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  texture VARCHAR(255) NOT NULL,
+  wash VARCHAR(255) NOT NULL,
+  place VARCHAR(255) NOT NULL,
+  note TEXT NOT NULL,
+  story TEXT NOT NULL,
+  main_image VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE colors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  color VARCHAR(255) NOT NULL,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE sizes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  size VARCHAR(255) NOT NULL,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE variants (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  color VARCHAR(255) NOT NULL,
+  size VARCHAR(255) NOT NULL,
+  stock INT NOT NULL,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE images (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);

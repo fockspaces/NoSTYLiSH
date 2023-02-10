@@ -1,27 +1,117 @@
 extends ../layouts/boilerplates.pug
 
+
+
 block content
+
+    - let page = 0;
     .row 
         h2.text-center Create Product
         .col-6.offset-3
-            form#login.validated-form(action='/products/create' method='POST')
-                // category
-                .mb-3
-                    label.form-label(for='category') category
-                    input#email.form-control(type='text' name='product[category]' autofocus='' required='')
-                // title
-                .mb-3
-                    label.form-label(for='title') title
-                    input#email.form-control(type='text' name='product[title]' autofocus='' required='')
-                // description
-                .mb-3
-                    label.form-label(for='description') description
-                    input#email.form-control(type='text' name='product[description]' autofocus='' required='')
+            form#create-form(action='/products/create' method='POST')
+                .form-Page#page-0
+                    .form-group.mb-3 
+                        label(for='id') Product ID
+                        input#id.form-control(type='number' name='product[id]' required)
 
-                // price
-                .mb-3
-                    label.form-label(for='price') price
-                    input#password.form-control(type='number' name='product[price]' required='')
+                    .form-group.mb-3 
+                        label(for='category') Category
+                        input#category.form-control(type='text' name='product[category]' required)
 
-                    button.btn.btn-success.col-12.mt-2 submit
-                a.btn.btn-primary(href=`/`) Return  
+                    .form-group.mb-3 
+                        label(for='title') Title
+                        input#title.form-control(type='text' name='product[title]' required)
+
+                    .form-group.mb-3 
+                        label(for='description') Description
+                        input#description.form-control(type='text' name='product[description]' required)
+                .form-Page#page-1
+                    .form-group.mb-3 
+                        label(for='price') Price
+                        input#price.form-control(type='number' name='product[price]' required)
+
+                    .form-group.mb-3 
+                        label(for='texture') Texture
+                        input#texture.form-control(type='text' name='product[texture]' required)
+
+                    .form-group.mb-3 
+                        label(for='wash') Wash
+                        input#wash.form-control(type='text' name='product[wash]' required)
+
+                    .form-group.mb-3 
+                        label(for='place') Place of Production
+                        input#place.form-control(type='text' name='product[place]' required)
+
+                .form-Page#page-2
+                    .form-group.mb-3 
+                        label(for='note') Note
+                        input#note.form-control(type='text' name='product[note]' required)
+
+                    .form-group.mb-3 
+                        label(for='story') Story
+                        textarea#story.form-control(name='product[story]' required)
+
+                    .form-group.mb-3 
+                        label(for='colors') Colors
+                        select#colors.form-control(name='product[colors]' required)
+                            each color in product.colors
+                                option(value=color) #{color}
+
+                    .form-group.mb-3 
+                        label(for='sizes') Sizes
+                        select#sizes.form-control(name='product[sizes]' required)
+                            each size in product.sizes
+                                option(value=size) #{size}
+                .form-Page#page-3
+                    .form-group.mb-3 
+                        label(for='variants') Variants
+                        select#variants.form-control(name='product[variants]' required)
+                            each variant in product.variants
+                                option(value=variant.stock) #{variant.name} - Stock: #{variant.stock}
+
+                    .form-group.mb-3 
+                        label(for='main_image') Main Image
+                        input#main_image.form-control(type='text' name='product[main_image]' required)
+
+                    .form-group.mb-3 
+                        label(for='images') Images
+                        select#images.form-control(name='product[images]' required)
+                            each image in product.images
+                                option(value=image) #{image}
+
+
+                .mt-2 
+                    button.btn.btn-primary#submit-button(type='submit') Submit
+                .mt-2    
+                    .btn.btn-primary#next-button next  
+
+
+    //- script(src='../../utils/nextPageForm.js')
+    script.
+        const formPages = document.querySelectorAll('.form-Page');
+        const submitbtn = document.querySelector("#submit-button");
+        submitbtn.style.display = 'none';
+
+        formPages.forEach((formPage, i) => {
+            if(i !== 0) {
+                formPage.style.display = 'none';
+            }
+        });
+
+        let page = 0;
+        const changPage = () => {
+            if(page >= formPages.length - 1) {
+                return;
+            }
+            if(page >= formPages.length - 2) {
+                nextBtn.style.display = 'none';
+                submitbtn.style.display = 'block';
+            }
+            const prevFormPageDiv = document.getElementById(`page-${page}`);
+            prevFormPageDiv.style.display = 'none';
+            page++;
+            const currentFormPageDiv = document.getElementById(`page-${page}`);
+            currentFormPageDiv.style.display = 'block';
+        }
+        const nextBtn = document.querySelector("#next-button");
+        nextBtn.addEventListener("click", changPage);
