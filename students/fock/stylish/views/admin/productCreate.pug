@@ -1,0 +1,27 @@
+extends ../layouts/boilerplates.pug
+
+block content
+    .row 
+        h2.text-center Create Product
+        .col-6.offset-3
+            form#login.validated-form(action='/products/create' method='POST')
+                // category
+                .mb-3
+                    label.form-label(for='category') category
+                    input#email.form-control(type='text' name='product[category]' autofocus='' required='')
+                // title
+                .mb-3
+                    label.form-label(for='title') title
+                    input#email.form-control(type='text' name='product[title]' autofocus='' required='')
+                // description
+                .mb-3
+                    label.form-label(for='description') description
+                    input#email.form-control(type='text' name='product[description]' autofocus='' required='')
+
+                // price
+                .mb-3
+                    label.form-label(for='price') price
+                    input#password.form-control(type='number' name='product[price]' required='')
+
+                    button.btn.btn-success.col-12.mt-2 submit
+                a.btn.btn-primary(href=`/`) Return  
