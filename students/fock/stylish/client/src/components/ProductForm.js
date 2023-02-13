@@ -11,7 +11,7 @@ const ProductForm = () => {
   const [page, setPage] = useState(0);
 
   const [product, setProduct] = useState({
-    category: "men",
+    category: "",
     title: "",
     description: "",
     main_image: {},
@@ -67,6 +67,7 @@ const ProductForm = () => {
   };
 
   const handleSubmit = async () => {
+    console.log({ product, category, items });
     if (
       checkValidity(product) &&
       checkValidity(category) &&

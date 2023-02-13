@@ -40,6 +40,7 @@ const Product = ({ product, productChange, imageChange }) => {
           onChange={productChange}
           required
         >
+          <option value="">select a category</option>
           <option value="men">Men</option>
           <option value="women">Women</option>
           <option value="accessories">Accessories</option>
@@ -57,7 +58,7 @@ const Product = ({ product, productChange, imageChange }) => {
             accept="image/*"
           />
           <div>
-            {mainImage
+            {mainImage.name
               ? `Selected file: ${mainImage.name}`
               : "No file selected"}
           </div>
