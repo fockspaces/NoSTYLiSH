@@ -2,7 +2,9 @@ const express = require("express");
 const product = express.Router();
 const multer = require("multer");
 
-const upload = multer();
+const upload = multer({ dest: "uploads/" });
+
+const { createProduct } = require("../controllers/products");
 
 product.get("/", (req, res) => {
   res.render("homepage");
@@ -22,8 +24,6 @@ product.get("/accessories", (req, res) => {
   res.send("accessories");
 });
 
-product.post("/create", upload.single(), async(req, res) => {
-  return res.send(req.body);
-});
+product.post("/create", upload.single("main_image"), createProduct);
 
 module.exports = product;

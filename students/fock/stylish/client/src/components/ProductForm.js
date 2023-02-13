@@ -15,6 +15,7 @@ const ProductForm = () => {
     title: "",
     description: "",
     main_image: {},
+    other_images: {},
   });
 
   const [category, setCategory] = useState({
@@ -35,6 +36,10 @@ const ProductForm = () => {
     setProduct({ ...product, main_image: file });
   };
 
+  const otherImagesChange = (files) => {
+    setProduct({ ...product, other_images: files });
+  };
+
   const categoryChange = (e) => {
     setCategory({ ...category, [e.target.name]: e.target.value });
   };
@@ -48,6 +53,7 @@ const ProductForm = () => {
       product={product}
       productChange={productChange}
       imageChange={imageChange}
+      otherImagesChange={otherImagesChange}
     />,
     <Category category={category} categoryChange={categoryChange} />,
     <Items items={items} itemsChange={itemsChange} />,
@@ -73,8 +79,11 @@ const ProductForm = () => {
       checkValidity(items)
     ) {
       setIsValid(true);
-
-      const res = await sentForm({ product, category, items });
+      const res = await sentForm({
+        product,
+        category,
+        items,
+      });
       console.log(res);
     } else {
       setIsValid(false);
