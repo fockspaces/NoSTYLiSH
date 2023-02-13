@@ -4,7 +4,7 @@ CREATE TABLE product (
   sub_category_id INT NOT NULL,
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  main_image VARCHAR(255),
+  main_image TEXT,
   other_images TEXT
 );
 

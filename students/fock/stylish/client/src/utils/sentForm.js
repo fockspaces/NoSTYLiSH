@@ -3,6 +3,7 @@ import axios from "axios";
 const sentForm = async (data) => {
   try {
     const formData = new FormData();
+    console.log(data);
     formData.append("product", JSON.stringify(data.product));
     formData.append("category", JSON.stringify(data.category));
     formData.append("items", JSON.stringify(data.items));
