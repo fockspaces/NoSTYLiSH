@@ -3,6 +3,7 @@ const port = process.env.PORT;
 const domain_name = process.env.DOMAIN_NAME;
 
 const express = require("express");
+
 const path = require("path");
 const cors = require("cors");
 
@@ -25,6 +26,7 @@ const admin = require("./routes/admin");
 
 app.use("/api/products", product);
 app.use("/admin", admin);
+app.use("/images/", express.static("./uploads/"));
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
