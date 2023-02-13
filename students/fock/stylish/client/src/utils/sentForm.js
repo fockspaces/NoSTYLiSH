@@ -9,7 +9,7 @@ const sentForm = async (data) => {
     formData.append("main_image", data.product.main_image);
 
     const res = await axios.post(
-      "http://localhost:8000/api/products/create",
+      `http://${process.env.REACT_APP_DOMAIN_NAME}:8000/api/products/create`,
       formData,
       {
         headers: {

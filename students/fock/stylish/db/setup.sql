@@ -1,3 +1,6 @@
+create database stylish;
+use stylish;
+
 CREATE TABLE product (
   id INT AUTO_INCREMENT PRIMARY KEY,
   category_id INT NOT NULL,
