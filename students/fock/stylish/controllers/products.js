@@ -10,7 +10,7 @@ const createProduct = async (req, res) => {
     main_image: main_path,
     other_images: other_images,
   });
-  return res.redirect("/admin/product");
+  return res.status(200).send("good");
 };
 
 module.exports = { createProduct };
