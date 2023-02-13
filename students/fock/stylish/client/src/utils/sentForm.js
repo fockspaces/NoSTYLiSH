@@ -4,7 +4,7 @@ const sentForm = async (data) => {
   try {
     const formData = new FormData();
     for (const key in data) {
-      formData.append(key, data[key]);
+      formData.append(key, JSON.stringify(data[key]));
     }
 
     const res = await axios.post(
@@ -16,6 +16,7 @@ const sentForm = async (data) => {
         },
       }
     );
+
     return res;
   } catch (err) {
     return err;

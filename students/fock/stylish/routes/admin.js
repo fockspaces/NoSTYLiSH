@@ -4,7 +4,7 @@ const admin = express.Router();
 const product = require("../config/configs.js");
 
 admin.get("/product", (req, res) => {
-  res.render("admin/productCreate", { product });
+  return res.redirect("/");
 });
 
 module.exports = admin;

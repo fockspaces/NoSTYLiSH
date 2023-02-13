@@ -14,7 +14,7 @@ app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  return res.send("welcome to server 8000");
 });
 
 app.set("view engine", "pug");

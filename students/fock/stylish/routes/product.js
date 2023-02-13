@@ -22,8 +22,7 @@ product.get("/accessories", (req, res) => {
   res.send("accessories");
 });
 
-product.post("/create", upload.single(), (req, res) => {
-  console.log(req.body);
+product.post("/create", upload.single(), async(req, res) => {
   return res.send(req.body);
 });
 

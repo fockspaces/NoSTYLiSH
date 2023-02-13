@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app",
-    "dev": "concurrently 'nodemon app' 'cd client && npm start'"
+    "build": "concurrently 'nodemon app' 'cd client && npm start'"
   },
   "keywords": [],
   "author": "",

@@ -67,7 +67,6 @@ const ProductForm = () => {
   };
 
   const handleSubmit = async () => {
-    console.log({ product, category, items });
     if (
       checkValidity(product) &&
       checkValidity(category) &&
