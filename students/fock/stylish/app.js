@@ -20,7 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 const product = require("./routes/product");
 const admin = require("./routes/admin");
 
-app.use("/products", product);
+app.use("/api/products", product);
 app.use('/admin', admin)
 
 app.listen(port, () => {
