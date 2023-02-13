@@ -1,5 +1,8 @@
 const express = require("express");
 const product = express.Router();
+const multer = require("multer");
+
+const upload = multer();
 
 product.get("/", (req, res) => {
   res.render("homepage");
@@ -19,9 +22,9 @@ product.get("/accessories", (req, res) => {
   res.send("accessories");
 });
 
-product.post("/create", (req, res) => {
+product.post("/create", upload.single(), (req, res) => {
   console.log(req.body);
-  return res.redirect("/products");
+  return res.send(req.body);
 });
 
 module.exports = product;

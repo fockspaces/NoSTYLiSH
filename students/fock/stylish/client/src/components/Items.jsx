@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ItemCard from "./ItemCard";
 
 const Items = ({ items, itemsChange }) => {
   const [isValid, setValid] = useState(true);
@@ -13,8 +14,8 @@ const Items = ({ items, itemsChange }) => {
     setItem({ ...item, [e.target.name]: e.target.value });
   };
 
-  const renderItems = items.map((item, i) => {
-    return <div key={i}>{item.price}</div>;
+  const renderItems = items.map((Item, i) => {
+    return <div key={i}>{<ItemCard item={Item} number={i} />}</div>;
   });
 
   const addItem = () => {
@@ -23,7 +24,7 @@ const Items = ({ items, itemsChange }) => {
     );
     if (hasEmpty.length === 0) {
       setValid(true);
-      itemsChange(item);
+      itemsChange({ ...item, SKU: `${item.color}-${item.size}` });
       setItem({
         color: "",
         size: "",
@@ -45,7 +46,6 @@ const Items = ({ items, itemsChange }) => {
       <button className="btn btn-success" onClick={addItem}>
         add
       </button>
-      {renderItems}
       <div className="form-group">
         <label htmlFor="color">color</label>
         <input
@@ -90,6 +90,7 @@ const Items = ({ items, itemsChange }) => {
           required
         />
       </div>
+      {renderItems}
     </div>
   );
 };

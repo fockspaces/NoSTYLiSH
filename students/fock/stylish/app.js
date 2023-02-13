@@ -4,8 +4,11 @@ const domain_name = process.env.DOMAIN_NAME;
 
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
@@ -21,7 +24,7 @@ const product = require("./routes/product");
 const admin = require("./routes/admin");
 
 app.use("/api/products", product);
-app.use('/admin', admin)
+app.use("/admin", admin);
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
