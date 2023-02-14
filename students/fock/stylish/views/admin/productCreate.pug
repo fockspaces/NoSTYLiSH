@@ -1,0 +1,60 @@
+extends ../layouts/boilerplates.pug
+
+
+
+block content
+
+    .row 
+        h2.text-center Create Product
+        .col-6.offset-3
+            form#create-form(action='/api/products/create' method='POST' enctype="multipart/form-data")
+
+                .form-group.mb-3 
+                    label(for='title') title
+                    input#title.form-control(type='text' name='product[title]' required)
+
+                .form-group.mb-3 
+                    label(for='description') description
+                    input#description.form-control(type='text' name='product[description]' required)
+
+                .form-group.mb-3 
+                    label(for='category') Category
+                    select#category.form-control(type='text' name='product[category]' required)
+                        option(value="") select a category
+                        option(value=1) Men
+                        option(value=2) Women 
+                        option(value=3) Accessories 
+
+                .form-group.mb-3 
+                    label(for='main_image') main_Image
+                    input#main_Image.form-control(type='file' name='main_image' accept="image/*"
+)
+                .form-group.mb-3 
+                    label(for='other_images') other_images
+                    input#main_Image.form-control(type='file' name='other_images' accept="image/*" multiple
+                        )
+
+                .form-group.mb-3 
+                    label(for='texture') Texture
+                    input#texture.form-control(type='text' name='category[texture]' required)
+
+                .form-group.mb-3 
+                    label(for='wash') Wash
+                    input#wash.form-control(type='text' name='category[wash]' required)
+
+                .form-group.mb-3 
+                    label(for='place') Place of Production
+                    input#place.form-control(type='text' name='category[place]' required)
+
+
+                .form-group.mb-3 
+                    label(for='note') Note
+                    input#note.form-control(type='text' name='category[note]' required)
+
+                .form-group.mb-3 
+                    label(for='story') Story
+                    textarea#story.form-control(name='category[story]' required)
+
+
+                .mt-2.mb-5 
+                    button.btn.btn-primary#submit-button(type='submit') Submit
