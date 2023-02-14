@@ -21,6 +21,8 @@ const createProductItem = async (req, res) => {
   return res.status(200).redirect("/");
 };
 
+
+
 const renderHomePage = async (req, res) => {
   const products = await getAllProducts();
   return res.render("homepage", { products });

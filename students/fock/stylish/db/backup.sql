@@ -40,6 +40,31 @@ INSERT INTO `category` VALUES (1,'men'),(2,'women'),(3,'accessories');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `color`
+--
+
+DROP TABLE IF EXISTS `color`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `color` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `color_code` varchar(20) NOT NULL,
+  `color_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `color`
+--
+
+LOCK TABLES `color` WRITE;
+/*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'FF0000','Red'),(2,'FFFF00','Yellow'),(3,'0000FF','Blue'),(4,'008000','Green'),(5,'800080','Purple'),(6,'FFA500','Orange'),(7,'000000','Black');
+/*!40000 ALTER TABLE `color` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -140,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-14 17:19:19
+-- Dump completed on 2023-02-14 18:18:54
