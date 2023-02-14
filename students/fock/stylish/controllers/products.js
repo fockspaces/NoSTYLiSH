@@ -1,4 +1,8 @@
-const { insertProduct, insertItem } = require("../models/Product");
+const {
+  insertProduct,
+  insertItem,
+  getAllProducts,
+} = require("../models/Product");
 
 const createProduct = async (req, res) => {
   const data = req.body;
@@ -8,13 +12,18 @@ const createProduct = async (req, res) => {
     main_image,
     other_images,
   });
-  return res.status(200).render("homepage");
+  return res.status(200).redirect("/");
 };
 
 const createProductItem = async (req, res) => {
   const data = req.body;
   await insertItem({ ...data, product_id: req.params.productId });
-  return res.status(200).render("homepage");
+  return res.status(200).redirect("/");
 };
 
-module.exports = { createProduct, createProductItem };
+const renderHomePage = async (req, res) => {
+  const products = await getAllProducts();
+  return res.render("homepage", { products });
+};
+
+module.exports = { createProduct, createProductItem, renderHomePage };

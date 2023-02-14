@@ -1,6 +1,7 @@
 require("dotenv").config();
 const port = process.env.PORT;
 const domain_name = process.env.DOMAIN_NAME;
+const { renderHomePage } = require("./controllers/products");
 
 const express = require("express");
 
@@ -14,9 +15,7 @@ app.use(cors());
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-app.get("/", (req, res) => {
-  return res.send("welcome to server 8000");
-});
+app.get("/", renderHomePage);
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));

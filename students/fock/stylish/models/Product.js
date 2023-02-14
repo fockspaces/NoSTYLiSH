@@ -20,8 +20,10 @@ const insertProduct = async (data) => {
   const { category, title, description } = data.product;
   const { texture, wash, place, note, story } = data.category;
   const { main_image, other_images } = data;
-  const imagesPaths = JSON.stringify(other_images.map((image) => image.path));
-  const imagePath = main_image[0].path;
+  const imagesPaths = other_images
+    ? JSON.stringify(other_images.map((image) => image.path))
+    : "";
+  const imagePath = main_image ? main_image[0].path : "";
 
   // Insert data into the sub_category table
   const insertSubCategory =
@@ -57,7 +59,14 @@ const insertItem = async (item) => {
   await pool.query(insertItem, itemValues);
 };
 
+const getAllProducts = async () => {
+  const selectAllProducts = `SELECT * from product`;
+  const data = await pool.query(selectAllProducts);
+  return data[0];
+};
+
 module.exports = {
   insertProduct,
   insertItem,
+  getAllProducts,
 };
