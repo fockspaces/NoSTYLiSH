@@ -47,25 +47,17 @@ const insertProduct = async (data) => {
   console.log("Data inserted successfully");
 };
 
-const insertItems = async (items) => {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+const insertItem = async (item) => {
+  const { product_id, stock_qty, price, color, size } = item;
+  const SKU = color + "-" + size;
+  const insertItem =
+    "INSERT INTO product_item (product_id, SKU, stock_qty, price, color, size) VALUES (?, ?, ?, ?, ?, ?)";
 
-    const insertItem =
-      "INSERT INTO product_item (product_id, SKU, stock_qty, price, color, size) VALUES (?, ?, ?, ?, ?, ?)";
-
-    const itemValues = [
-      insertId,
-      item.SKU,
-      item.stock_qty,
-      item.price,
-      item.color,
-      item.size,
-    ];
-    await pool.query(insertItem, itemValues);
-  }
+  const itemValues = [product_id, SKU, stock_qty, price, color, size];
+  await pool.query(insertItem, itemValues);
 };
 
 module.exports = {
   insertProduct,
+  insertItem,
 };

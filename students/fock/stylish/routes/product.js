@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/", storage: storage });
 
-const { createProduct } = require("../controllers/products");
+const { createProduct, createProductItem } = require("../controllers/products");
 
 product.get("/", (req, res) => {
   res.render("homepage");
@@ -41,5 +41,7 @@ product.post(
   ]),
   createProduct
 );
+
+product.post("/createItem/:productId", createProductItem);
 
 module.exports = product;
