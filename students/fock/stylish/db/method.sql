@@ -8,27 +8,39 @@ WHERE product_item.id > 0;
 SELECT 
   product.id, 
   category_name,
-  description, 
   title,
+  description,
+  AVG(product_item.price) as price,
   texture,
   wash,
   place,
   note,
   story, 
-  main_image, 
-  other_images, 
   JSON_ARRAYAGG(
     JSON_OBJECT(
-      'SKU', product_item.SKU,
-      'stock_qty', product_item.stock_qty,
-      'price', product_item.price,
-      'color_code', product_item.color,
-      'color_name'
-      'size', product_item.size
+      'color_code', color.color_code,
+      'size', product_item.size,
+      'stock', product_item.stock_qty,
+      'price', product_item.price
     )
-  ) as vairation
+  ) as vairation ,
+  GROUP_CONCAT(
+    DISTINCT JSON_OBJECT(
+      'code', color.color_code,
+      'name', color.color_name
+    )
+  ) as colors,
+  GROUP_CONCAT(
+    DISTINCT (
+     product_item.size
+    )
+  ) as sizes, 
+  main_image, 
+  other_images
+  
 FROM product
 INNER JOIN product_item ON product.id = product_item.product_id
 INNER JOIN category ON category.id = product.category_id
 INNER JOIN sub_category ON sub_category.id = product.sub_category_id
+INNER JOIN color ON product_item.color = color.id
 GROUP BY product.id;

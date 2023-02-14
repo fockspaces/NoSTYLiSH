@@ -23,7 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 const product = require("./routes/product");
 const admin = require("./routes/admin");
 
-app.use("/api/products", product);
+app.use("/api/1.0/products", product);
 app.use("/admin", admin);
 app.use("/images/", express.static("./uploads/"));
 

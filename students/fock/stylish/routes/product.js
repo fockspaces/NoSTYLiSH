@@ -1,6 +1,11 @@
 const express = require("express");
 const product = express.Router();
 const multer = require("multer");
+const {
+  createProduct,
+  createProductItem,
+  handleInfo,
+} = require("../controllers/products");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -13,15 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/", storage: storage });
 
-const { createProduct, createProductItem } = require("../controllers/products");
-
-product.get("/", (req, res) => {
-  res.render("homepage");
-});
-
-product.get("/all", (req, res) => {
-  res.send("all");
-});
+product.get("/all", handleInfo);
 product.get("/women", (req, res) => {
   res.send("women");
 });
