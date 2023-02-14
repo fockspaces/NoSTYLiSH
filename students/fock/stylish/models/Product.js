@@ -17,10 +17,11 @@ if (!pool) {
 }
 
 const insertProduct = async (data) => {
-  const { category, title, description } = JSON.parse(data.product);
-  const { texture, wash, place, note, story } = JSON.parse(data.category);
-  const items = JSON.parse(data.items);
+  const { category, title, description } = data.product;
+  const { texture, wash, place, note, story } = data.category;
   const { main_image, other_images } = data;
+  const imagesPaths = JSON.stringify(other_images.map((image) => image.path));
+  const imagePath = main_image[0].path;
 
   // Insert data into the sub_category table
   const insertSubCategory =
@@ -38,32 +39,31 @@ const insertProduct = async (data) => {
     insertId,
     title,
     description,
-    main_image,
-    other_images,
+    imagePath,
+    imagesPaths,
   ];
   await pool.query(insertProduct, productValues);
 
-  // insert items if any
-  if (items) {
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-
-      const insertItem =
-        "INSERT INTO product_item (product_id, SKU, stock_qty, price, color, size) VALUES (?, ?, ?, ?, ?, ?)";
-
-      const itemValues = [
-        insertId,
-        item.SKU,
-        item.stock_qty,
-        item.price,
-        item.color,
-        item.size,
-      ];
-      await pool.query(insertItem, itemValues);
-    }
-  }
-
   console.log("Data inserted successfully");
+};
+
+const insertItems = async (items) => {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    const insertItem =
+      "INSERT INTO product_item (product_id, SKU, stock_qty, price, color, size) VALUES (?, ?, ?, ?, ?, ?)";
+
+    const itemValues = [
+      insertId,
+      item.SKU,
+      item.stock_qty,
+      item.price,
+      item.color,
+      item.size,
+    ];
+    await pool.query(insertItem, itemValues);
+  }
 };
 
 module.exports = {

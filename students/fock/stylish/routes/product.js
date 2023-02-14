@@ -33,6 +33,13 @@ product.get("/accessories", (req, res) => {
   res.send("accessories");
 });
 
-product.post("/create", upload.single("main_image"), createProduct);
+product.post(
+  "/create",
+  upload.fields([
+    { name: "main_image", maxCount: 1 },
+    { name: "other_images", maxCount: 3 },
+  ]),
+  createProduct
+);
 
 module.exports = product;

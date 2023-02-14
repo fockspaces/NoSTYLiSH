@@ -4,11 +4,10 @@ extends ../layouts/boilerplates.pug
 
 block content
 
-    //- - let page = 0;
     .row 
         h2.text-center Create Product
         .col-6.offset-3
-            form#create-form(action='/api/products/create' method='POST')
+            form#create-form(action='/api/products/create' method='POST' enctype="multipart/form-data")
 
                 .form-group.mb-3 
                     label(for='title') title
@@ -27,8 +26,8 @@ block content
                         option(value=3) Accessories 
 
                 .form-group.mb-3 
-                    label(for='main_Image') main_Image
-                    input#main_Image.form-control(type='file' name='main_Image' accept="image/*"
+                    label(for='main_image') main_Image
+                    input#main_Image.form-control(type='file' name='main_image' accept="image/*"
 )
                 .form-group.mb-3 
                     label(for='other_images') other_images
