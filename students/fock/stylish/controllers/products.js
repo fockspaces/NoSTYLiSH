@@ -27,9 +27,10 @@ const handleInfo = async (req, res) => {
   const filterData = rawData[0].map((raw) => {
     const colors = JSON.parse(`[${raw.colors}]`);
     const sizes = raw.sizes.split(",");
-    console.log(sizes);
-    return { ...raw, colors, sizes };
+    const images = raw.images ? JSON.parse(raw.images) : [];
+    return { ...raw, colors, sizes, images};
   });
+  console.log(filterData);
   return filterData;
 };
 

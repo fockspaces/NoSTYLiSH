@@ -7,7 +7,7 @@ block content
     .row 
         h2.text-center Create Product
         .col-6.offset-3
-            form#create-form(action='/api/products/create' method='POST' enctype="multipart/form-data")
+            form#create-form(action='/api/1.0/products/create' method='POST' enctype="multipart/form-data")
 
                 .form-group.mb-3 
                     label(for='title') title
@@ -30,7 +30,7 @@ block content
                     input#main_Image.form-control(type='file' name='main_image' accept="image/*"
 )
                 .form-group.mb-3 
-                    label(for='other_images') other_images
+                    label(for='other_images') other_images 
                     input#main_Image.form-control(type='file' name='other_images' accept="image/*" multiple
                         )
 

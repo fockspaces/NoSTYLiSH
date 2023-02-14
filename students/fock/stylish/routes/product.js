@@ -34,7 +34,7 @@ product.post(
   "/create",
   upload.fields([
     { name: "main_image", maxCount: 1 },
-    { name: "other_images", maxCount: 3 },
+    { name: "other_images", maxCount: 10 },
   ]),
   createProduct
 );
