@@ -29,7 +29,6 @@ product.get("/women", (req, res) => {
 
 product.get("/men", (req, res) => {
   const category = "men";
-  console.log('men');
   getProductByType(req, res, category);
 });
 product.get("/accessories", (req, res) => {

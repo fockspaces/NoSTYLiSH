@@ -1,5 +1,43 @@
 const pool = require("./pool");
 
+const selectProduct = `SELECT 
+product.id, 
+category_name as category,
+title,
+description,
+AVG(product_item.price) as price,
+texture,
+wash,
+place,
+note,
+story, 
+GROUP_CONCAT(
+  DISTINCT JSON_OBJECT(
+    'code', color.color_code,
+    'name', color.color_name
+  )
+) as colors,
+GROUP_CONCAT(
+  DISTINCT (
+   product_item.size
+  )
+) as sizes, 
+main_image, 
+other_images as images,
+JSON_ARRAYAGG(
+  JSON_OBJECT(
+    'color_code', color.color_code,
+    'size', product_item.size,
+    'stock', product_item.stock_qty,
+    'individual_price', product_item.price
+  )
+) as variants
+FROM product 
+INNER JOIN product_item ON product.id = product_item.product_id
+INNER JOIN category ON category.id = product.category_id
+INNER JOIN sub_category ON sub_category.id = product.sub_category_id
+INNER JOIN color ON product_item.color = color.id`;
+
 const insertProduct = async (data) => {
   const { category, title, description } = data.product;
   const { texture, wash, place, note, story } = data.category;
@@ -52,57 +90,21 @@ const getAllProducts = async () => {
 const getAllInfo = async (category, paging) => {
   const limit = 6;
   const offset = paging * limit;
-  let whereClause = '';
-  if (category !== 'all') {
+  let whereClause = "";
+  if (category !== "all") {
     whereClause = `WHERE category_name = ?`;
   }
-  const getInfo = `SELECT 
-  product.id, 
-  category_name as category,
-  title,
-  description,
-  AVG(product_item.price) as price,
-  texture,
-  wash,
-  place,
-  note,
-  story, 
-  GROUP_CONCAT(
-    DISTINCT JSON_OBJECT(
-      'code', color.color_code,
-      'name', color.color_name
-    )
-  ) as colors,
-  GROUP_CONCAT(
-    DISTINCT (
-     product_item.size
-    )
-  ) as sizes, 
-  main_image, 
-  other_images as images,
-  JSON_ARRAYAGG(
-    JSON_OBJECT(
-      'color_code', color.color_code,
-      'size', product_item.size,
-      'stock', product_item.stock_qty,
-      'individual_price', product_item.price
-    )
-  ) as variants
-FROM product 
-INNER JOIN product_item ON product.id = product_item.product_id
-INNER JOIN category ON category.id = product.category_id
-INNER JOIN sub_category ON sub_category.id = product.sub_category_id
-INNER JOIN color ON product_item.color = color.id
-${whereClause}
-GROUP BY product.id
-LIMIT ? OFFSET ?`;
-  const values = category === 'all' ? [limit, offset] : [category, limit, offset];
+  const groupBy = `GROUP BY product.id`;
+  const limitBy = `LIMIT ? OFFSET ?`;
+  const getInfo = selectProduct + whereClause + groupBy + limitBy;
+
+  const values =
+    category === "all" ? [limit, offset] : [category, limit, offset];
   const rawData = await pool.query(getInfo, values);
   const data = handleInfo(rawData);
   const hasMoreData = data.length === limit;
   return { data, hasMoreData };
 };
-
 
 const handleInfo = (rawData) => {
   const filterData = rawData[0].map((raw) => {
