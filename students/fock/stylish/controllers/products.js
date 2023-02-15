@@ -22,24 +22,19 @@ const createProductItem = async (req, res) => {
   return res.status(200).redirect("/");
 };
 
-const handleInfo = (rawData) => {
-  const filterData = rawData[0].map((raw) => {
-    const colors = JSON.parse(`[${raw.colors}]`);
-    const sizes = raw.sizes.split(",");
-    const images = raw.images ? JSON.parse(raw.images) : [];
-    return { ...raw, colors, sizes, images };
-  });
-  return filterData;
-};
-
 const getProductByType = async (req, res, category) => {
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
   if (isNaN(paging) || paging < 0)
     return res.status(400).send({ err: "invalid paging" });
-  const rawData = await getAllInfo(category, paging);
-  const data = handleInfo(rawData);
-  if (data.length === 0) return res.status(404).send({ err: "page not found" });
-  return res.status(200).send({ data, next_paging: paging + 1 });
+  const filterData = await getAllInfo(category, paging);
+  if (filterData.data.length === 0)
+    return res.status(404).send({ err: "page not found" });
+  const data = filterData.data;
+  return res
+    .status(200)
+    .send(
+      filterData.hasMoreData ? { data, next_paging: paging + 1 } : { data }
+    );
 };
 
 const renderHomePage = async (req, res) => {

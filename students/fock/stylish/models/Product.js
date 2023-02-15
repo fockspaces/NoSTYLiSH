@@ -1,21 +1,4 @@
-const { raw } = require("mysql2/promise");
-const mysql = require("mysql2/promise");
-
-require("dotenv").config();
-// Create a connection pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  connectionLimit: 10,
-});
-
-if (!pool) {
-  console.error("Error connecting to database");
-} else {
-  console.log("Database connection established");
-}
+const pool = require("./pool");
 
 const insertProduct = async (data) => {
   const { category, title, description } = data.product;
@@ -69,6 +52,10 @@ const getAllProducts = async () => {
 const getAllInfo = async (category, paging) => {
   const limit = 6;
   const offset = paging * limit;
+  let whereClause = '';
+  if (category !== 'all') {
+    whereClause = `WHERE category_name = ?`;
+  }
   const getInfo = `SELECT 
   product.id, 
   category_name as category,
@@ -80,7 +67,6 @@ const getAllInfo = async (category, paging) => {
   place,
   note,
   story, 
-  
   GROUP_CONCAT(
     DISTINCT JSON_OBJECT(
       'code', color.color_code,
@@ -102,17 +88,30 @@ const getAllInfo = async (category, paging) => {
       'individual_price', product_item.price
     )
   ) as variants
-  
 FROM product 
 INNER JOIN product_item ON product.id = product_item.product_id
 INNER JOIN category ON category.id = product.category_id
 INNER JOIN sub_category ON sub_category.id = product.sub_category_id
 INNER JOIN color ON product_item.color = color.id
-WHERE category_name = '${category}'
+${whereClause}
 GROUP BY product.id
-LIMIT ${limit} OFFSET ${offset}`;
-  const rawData = await pool.query(getInfo);
-  return rawData;
+LIMIT ? OFFSET ?`;
+  const values = category === 'all' ? [limit, offset] : [category, limit, offset];
+  const rawData = await pool.query(getInfo, values);
+  const data = handleInfo(rawData);
+  const hasMoreData = data.length === limit;
+  return { data, hasMoreData };
+};
+
+
+const handleInfo = (rawData) => {
+  const filterData = rawData[0].map((raw) => {
+    const colors = JSON.parse(`[${raw.colors}]`);
+    const sizes = raw.sizes.split(",");
+    const images = raw.images ? JSON.parse(raw.images) : [];
+    return { ...raw, colors, sizes, images };
+  });
+  return filterData;
 };
 
 module.exports = {
