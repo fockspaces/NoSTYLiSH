@@ -34,9 +34,12 @@ const handleInfo = (rawData) => {
 
 const getProductByType = async (req, res, category) => {
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
+  if (isNaN(paging) || paging < 0)
+    return res.status(400).send({ err: "invalid paging" });
   const rawData = await getAllInfo(category, paging);
   const data = handleInfo(rawData);
-  console.log(data);
+  if (data.length === 0) return res.status(404).send({ err: "page not found" });
+  return res.status(200).send({ data, next_paging: paging + 1 });
 };
 
 const renderHomePage = async (req, res) => {
