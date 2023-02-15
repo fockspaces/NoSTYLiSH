@@ -1,5 +1,10 @@
 # FOCK SPACE
 
+<<<<<<< HEAD
+=======
+## title : week_0_part_1
+### description : [add] revise README.md 
+>>>>>>> b1b16606623345165304157eee15a9863944909c
 >### This is first _in-person course_ assignment in the **appwroks school**
 
 [my project link](https://github.com/fockspaces/Back-End-Class-Batch19/tree/main/students/fock)
@@ -10,7 +15,11 @@
 
 ## - Learn Git and GitHub
 
+<<<<<<< HEAD
     - [GitHub Training & Guides](https://www.youtube.com/watch?v=FyfwLX4HAxM&list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-&index=1) (Video)
+=======
+    - [GitHub Training & Guides](https://www.youtube.com/watch?v=FyfwLX4HAxM&list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-&index=1) (Video)
+>>>>>>> b1b16606623345165304157eee15a9863944909c
     - [Try git](https://try.github.io/)
     - [GitHub Guides](https://guides.github.com/)
 
