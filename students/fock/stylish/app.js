@@ -22,9 +22,12 @@ app.set("views", path.join(__dirname, "views"));
 
 const product = require("./routes/product");
 const admin = require("./routes/admin");
+const user = require("./routes/user");
 
 app.use("/api/1.0/products", product);
-app.use("/admin", admin);
+app.use("/api/1.0/admin", admin);
+app.use("/api/1.0/user", user);
+
 app.use("/images/", express.static("./uploads/"));
 app.use((req, res, next) => {
   res.status(404).send({ err: "The requested resource could not be found" });

@@ -1,4 +1,4 @@
-const { getAllProducts } = require("../../models/Product");
+const { getAllProducts } = require("../../models/Product/Product");
 
 const { createProduct, createProductItem } = require("./productCreate");
 const { searchCategory, searchId, searchKeyword } = require("./productSearch");

@@ -2,7 +2,7 @@ const {
   getAllInfo,
   productSearch,
   productDetails,
-} = require("../../models/Product");
+} = require("../../models/Product/Product");
 
 const searchCategory = async (req, res, category) => {
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;

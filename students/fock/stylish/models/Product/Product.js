@@ -1,6 +1,6 @@
-const pool = require("../utils/pool");
-const { handleInfo } = require("../utils/infofilter");
-const { selectProduct } = require("../utils/sqlStatment");
+const pool = require("../../utils/pool");
+const { handleInfo } = require("../../utils/infofilter");
+const { selectProduct } = require("../../utils/sqlStatment");
 
 const limit = 6;
 const insertProduct = async (data) => {
