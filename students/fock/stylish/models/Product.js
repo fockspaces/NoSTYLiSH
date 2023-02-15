@@ -66,7 +66,9 @@ const getAllProducts = async () => {
   return data[0];
 };
 
-const getAllInfo = async (category) => {
+const getAllInfo = async (category, paging) => {
+  const limit = 6;
+  const offset = paging * limit;
   const getInfo = `SELECT 
   product.id, 
   category_name as category,
@@ -101,12 +103,14 @@ const getAllInfo = async (category) => {
     )
   ) as variants
   
-FROM product
+FROM product 
 INNER JOIN product_item ON product.id = product_item.product_id
 INNER JOIN category ON category.id = product.category_id
 INNER JOIN sub_category ON sub_category.id = product.sub_category_id
 INNER JOIN color ON product_item.color = color.id
-GROUP BY product.id;`;
+WHERE category_name = '${category}'
+GROUP BY product.id
+LIMIT ${limit} OFFSET ${offset}`;
   const rawData = await pool.query(getInfo);
   return rawData;
 };

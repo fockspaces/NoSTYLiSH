@@ -4,7 +4,7 @@ const multer = require("multer");
 const {
   createProduct,
   createProductItem,
-  handleInfo,
+  getProductByType,
 } = require("../controllers/products");
 
 const storage = multer.diskStorage({
@@ -18,16 +18,23 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/", storage: storage });
 
-product.get("/all", handleInfo);
+product.get("/all", (req, res) => {
+  const category = "all";
+  getProductByType(req, res, category);
+});
 product.get("/women", (req, res) => {
-  res.send("women");
+  const category = "women";
+  getProductByType(req, res, category);
 });
 
 product.get("/men", (req, res) => {
-  res.send("men");
+  const category = "men";
+  console.log('men');
+  getProductByType(req, res, category);
 });
 product.get("/accessories", (req, res) => {
-  res.send("accessories");
+  const category = "accessories";
+  getProductByType(req, res, category);
 });
 
 product.post(

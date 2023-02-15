@@ -22,16 +22,21 @@ const createProductItem = async (req, res) => {
   return res.status(200).redirect("/");
 };
 
-const handleInfo = async (req, res) => {
-  const rawData = await getAllInfo();
+const handleInfo = (rawData) => {
   const filterData = rawData[0].map((raw) => {
     const colors = JSON.parse(`[${raw.colors}]`);
     const sizes = raw.sizes.split(",");
     const images = raw.images ? JSON.parse(raw.images) : [];
-    return { ...raw, colors, sizes, images};
+    return { ...raw, colors, sizes, images };
   });
-  console.log(filterData);
   return filterData;
+};
+
+const getProductByType = async (req, res, category) => {
+  const paging = req.query.paging ? parseInt(req.query.paging) : 0;
+  const rawData = await getAllInfo(category, paging);
+  const data = handleInfo(rawData);
+  console.log(data);
 };
 
 const renderHomePage = async (req, res) => {
@@ -43,5 +48,5 @@ module.exports = {
   createProduct,
   createProductItem,
   renderHomePage,
-  handleInfo,
+  getProductByType,
 };
