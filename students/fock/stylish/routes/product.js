@@ -6,6 +6,7 @@ const {
   createProductItem,
   getProductByType,
   handleSearch,
+  handleDetails,
 } = require("../controllers/products");
 
 const storage = multer.diskStorage({
@@ -40,6 +41,7 @@ product.get("/accessories", (req, res) => {
 
 // search by keyword
 product.get("/search", handleSearch);
+product.get("/details", handleDetails);
 
 product.post(
   "/create",
