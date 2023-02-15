@@ -6,19 +6,19 @@ block item
     .row 
         h2.text-center Create Item for Product #{productId}
         .col-6.offset-3
-            form#create-form(action=`/api/products/createItem/${productId}` method='POST')
+            form#create-form(action=`/api/1.0/products/createItem/${productId}` method='POST')
 
                 .form-group.mb-3 
                     label(for='color') color
                     select#color.form-control(type='text' name='color' required)
                         option(value="") select a color
-                        option(value='#FF0000') Red
-                        option(value='#FFFF00') Yellow
-                        option(value='#0000FF') Blue
-                        option(value='#008000') Green
-                        option(value='#800080') Purple
-                        option(value='#FFA500') Orange
-                        option(value='#000000') Black
+                        option(value=1) Red
+                        option(value=2) Yellow
+                        option(value=3) Blue
+                        option(value=4) Green
+                        option(value=5) Purple
+                        option(value=6) Orange
+                        option(value=7) Black
 
                 .form-group.mb-3 
                     label(for='size') size

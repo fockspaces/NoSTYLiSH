@@ -1,6 +1,11 @@
 const express = require("express");
 const product = express.Router();
 const multer = require("multer");
+const {
+  createProduct,
+  createProductItem,
+  getProductByType,
+} = require("../controllers/products");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -13,31 +18,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ dest: "uploads/", storage: storage });
 
-const { createProduct, createProductItem } = require("../controllers/products");
-
-product.get("/", (req, res) => {
-  res.render("homepage");
-});
-
 product.get("/all", (req, res) => {
-  res.send("all");
+  const category = "all";
+  getProductByType(req, res, category);
 });
 product.get("/women", (req, res) => {
-  res.send("women");
+  const category = "women";
+  getProductByType(req, res, category);
 });
 
 product.get("/men", (req, res) => {
-  res.send("men");
+  const category = "men";
+  console.log('men');
+  getProductByType(req, res, category);
 });
 product.get("/accessories", (req, res) => {
-  res.send("accessories");
+  const category = "accessories";
+  getProductByType(req, res, category);
 });
 
 product.post(
   "/create",
   upload.fields([
     { name: "main_image", maxCount: 1 },
-    { name: "other_images", maxCount: 3 },
+    { name: "other_images", maxCount: 10 },
   ]),
   createProduct
 );

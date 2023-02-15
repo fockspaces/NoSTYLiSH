@@ -23,9 +23,12 @@ app.set("views", path.join(__dirname, "views"));
 const product = require("./routes/product");
 const admin = require("./routes/admin");
 
-app.use("/api/products", product);
+app.use("/api/1.0/products", product);
 app.use("/admin", admin);
 app.use("/images/", express.static("./uploads/"));
+app.use((req, res, next) => {
+  res.status(404).send({ err: "The requested resource could not be found" });
+});
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);

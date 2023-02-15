@@ -21,6 +21,14 @@ CREATE TABLE product_item (
   size VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE color (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  color_code VARCHAR(20) NOT NULL,
+  color_name VARCHAR(20) NOT NULL
+);
+
+
+
 CREATE TABLE category (
   id INT AUTO_INCREMENT PRIMARY KEY,
   category_name VARCHAR(255) NOT NULL
@@ -49,3 +57,10 @@ ALTER TABLE product
 -- default category
 INSERT INTO category (category_name)
 VALUES ('men'), ('women'), ('accessories');
+
+-- default category
+INSERT INTO color (color_code, color_name)
+VALUES ('FF0000', 'Red'), ('FFFF00', 'Yellow'),
+('0000FF', 'Blue'),('008000', 'Green'),
+('800080', 'Purple'),('FFA500', 'Orange'),
+('000000', 'Black');
