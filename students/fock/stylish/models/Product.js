@@ -1,4 +1,4 @@
-const pool = require("./pool");
+const pool = require("../utils/pool");
 const { handleInfo } = require("../utils/infofilter");
 const { selectProduct } = require("../utils/sqlStatment");
 

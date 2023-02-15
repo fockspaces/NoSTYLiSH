@@ -1,30 +1,10 @@
 const {
-  insertProduct,
-  insertItem,
-  getAllProducts,
   getAllInfo,
   productSearch,
   productDetails,
-} = require("../models/Product");
+} = require("../../models/Product");
 
-const createProduct = async (req, res) => {
-  const data = req.body;
-  const { main_image, other_images } = req.files;
-  await insertProduct({
-    ...data,
-    main_image,
-    other_images,
-  });
-  return res.status(200).redirect("/");
-};
-
-const createProductItem = async (req, res) => {
-  const data = req.body;
-  await insertItem({ ...data, product_id: req.params.productId });
-  return res.status(200).redirect("/");
-};
-
-const getProductByType = async (req, res, category) => {
+const searchCategory = async (req, res, category) => {
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
   if (isNaN(paging) || paging < 0)
     return res.status(400).send({ err: "invalid paging" });
@@ -39,7 +19,7 @@ const getProductByType = async (req, res, category) => {
     );
 };
 
-const handleSearch = async (req, res) => {
+const searchKeyword = async (req, res) => {
   const { keyword } = req.query;
   if (!keyword)
     return res
@@ -60,7 +40,7 @@ const handleSearch = async (req, res) => {
     );
 };
 
-const handleDetails = async (req, res) => {
+const searchId = async (req, res) => {
   const { id } = req.query;
   if (!id)
     return res.status(400).send({ err: "please provide some id to search" });
@@ -79,16 +59,4 @@ const handleDetails = async (req, res) => {
     );
 };
 
-const renderHomePage = async (req, res) => {
-  const products = await getAllProducts();
-  return res.render("homepage", { products });
-};
-
-module.exports = {
-  createProduct,
-  createProductItem,
-  renderHomePage,
-  getProductByType,
-  handleSearch,
-  handleDetails,
-};
+module.exports = { searchCategory, searchId, searchKeyword };

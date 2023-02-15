@@ -1,7 +1,7 @@
 require("dotenv").config();
 const port = process.env.PORT;
 const domain_name = process.env.DOMAIN_NAME;
-const { renderHomePage } = require("./controllers/products");
+const { renderHomePage } = require("./controllers/products/products");
 
 const express = require("express");
 
