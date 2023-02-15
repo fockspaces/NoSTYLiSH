@@ -1,6 +1,7 @@
 const pool = require("./pool");
+const { handleInfo } = require("../utils/infofilter");
 
-const selectProduct = `SELECT 
+const selectProduct = ` SELECT 
 product.id, 
 category_name as category,
 title,
@@ -36,7 +37,7 @@ FROM product
 INNER JOIN product_item ON product.id = product_item.product_id
 INNER JOIN category ON category.id = product.category_id
 INNER JOIN sub_category ON sub_category.id = product.sub_category_id
-INNER JOIN color ON product_item.color = color.id`;
+INNER JOIN color ON product_item.color = color.id `;
 
 const insertProduct = async (data) => {
   const { category, title, description } = data.product;
@@ -92,10 +93,10 @@ const getAllInfo = async (category, paging) => {
   const offset = paging * limit;
   let whereClause = "";
   if (category !== "all") {
-    whereClause = `WHERE category_name = ?`;
+    whereClause = ` WHERE category_name = ? `;
   }
-  const groupBy = `GROUP BY product.id`;
-  const limitBy = `LIMIT ? OFFSET ?`;
+  const groupBy = ` GROUP BY product.id `;
+  const limitBy = ` LIMIT ? OFFSET ? `;
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
 
   const values =
@@ -104,16 +105,6 @@ const getAllInfo = async (category, paging) => {
   const data = handleInfo(rawData);
   const hasMoreData = data.length === limit;
   return { data, hasMoreData };
-};
-
-const handleInfo = (rawData) => {
-  const filterData = rawData[0].map((raw) => {
-    const colors = JSON.parse(`[${raw.colors}]`);
-    const sizes = raw.sizes.split(",");
-    const images = raw.images ? JSON.parse(raw.images) : [];
-    return { ...raw, colors, sizes, images };
-  });
-  return filterData;
 };
 
 module.exports = {
