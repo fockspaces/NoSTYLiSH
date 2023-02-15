@@ -1,2 +1,7 @@
+aws
 .env
+<<<<<<< HEAD
 node_modules
+=======
+uploads
+>>>>>>> week_0_part_3
