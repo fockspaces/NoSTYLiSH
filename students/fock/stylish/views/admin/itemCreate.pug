@@ -1,0 +1,44 @@
+extends ../layouts/boilerplates.pug
+
+
+
+block item
+    .row 
+        h2.text-center Create Item for Product #{productId}
+        .col-6.offset-3
+            form#create-form(action=`/api/products/createItem/${productId}` method='POST')
+
+                .form-group.mb-3 
+                    label(for='color') color
+                    select#color.form-control(type='text' name='color' required)
+                        option(value="") select a color
+                        option(value='#FF0000') Red
+                        option(value='#FFFF00') Yellow
+                        option(value='#0000FF') Blue
+                        option(value='#008000') Green
+                        option(value='#800080') Purple
+                        option(value='#FFA500') Orange
+                        option(value='#000000') Black
+
+                .form-group.mb-3 
+                    label(for='size') size
+                    select#size.form-control(type='text' name='size' required)
+                        option(value="") select a size
+                        option(value='S') S
+                        option(value='M') M
+                        option(value='L') L 
+                        option(value='XL') XL
+
+                .form-group.mb-3 
+                    label(for='stock_qty') stock_qty
+                    input#stock_qty.form-control(type='number' name='stock_qty' required)
+
+                .form-group.mb-3 
+                    label(for='price') price
+                    input#price.form-control(type='number' step="0.01"
+name='price' required)
+
+
+
+                .mt-2.mb-5 
+                    button.btn.btn-primary#submit-button(type='submit') Submit

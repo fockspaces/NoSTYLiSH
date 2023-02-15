@@ -1,0 +1,24 @@
+{
+  "id": 12345678,
+  "product": {
+    "category": "women",
+    "title": "前開衩扭結洋裝",
+    "description": "厚薄：薄 彈性：無",
+    "main_image": "https://api.appworks-school.tw/assets/201807201824/main.jpg",
+    "other_images": "['https://stylish.com/0.jpg','https://stylish.com/1.jpg','https://stylish.com/2.jpg']",
+    "sub_category": {
+      "texture": "棉 100%",
+      "wash": "手洗，溫水",
+      "place": "中國",
+      "note": "實品顏色依單品照為主",
+      "story": "O.N.S is all about options, which is why we took our staple polo shirt and upgraded it with slubby linen jersey, making it even lighter for those who prefer their summer style extra-breezy."
+    }
+  },
+  "SKU": "DRESS-RED-M",
+  "stock_qty": 11,
+  "price": 799,
+  "variation": {
+    "color_code": "FFFFFF",
+    "size": "S"
+  }
+}
