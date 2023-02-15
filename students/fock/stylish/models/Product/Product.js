@@ -6,11 +6,7 @@ const limit = 6;
 const insertProduct = async (data) => {
   const { category, title, description } = data.product;
   const { texture, wash, place, note, story } = data.category;
-  const { main_image, other_images } = data;
-  const imagesPaths = other_images
-    ? JSON.stringify(other_images.map((image) => image.path))
-    : "";
-  const imagePath = main_image ? main_image[0].path : "";
+  const { main_path, other_paths } = data;
 
   // Insert data into the sub_category table
   const insertSubCategory =
@@ -28,8 +24,8 @@ const insertProduct = async (data) => {
     insertId,
     title,
     description,
-    imagePath,
-    imagesPaths,
+    main_path,
+    other_paths,
   ];
   await pool.query(insertProduct, productValues);
 
