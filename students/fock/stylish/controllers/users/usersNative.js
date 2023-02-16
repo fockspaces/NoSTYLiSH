@@ -21,11 +21,12 @@ const nativeSignUp = async (req, res) => {
   // get JWT token
   const access_expired = process.env.JWT_EXPIRED;
   const access_token = getJwtToken(newUser);
-  console.log(access_token);
+
+  const user = await searchUserByEmail(email);
+  console.log(user);
 
   return res.status(200).send({
-    message: "signup succesfully",
-    data: { access_token, access_expired, user: newUser },
+    data: { access_token, access_expired, user },
   });
 };
 
@@ -47,7 +48,6 @@ const nativeSignIn = async (req, res) => {
   // sending response
   const { id, name } = findUser;
   return res.status(200).send({
-    message: "signin succesfully",
     data: { access_token, access_expired, user: { id, provider, name, email } },
   });
 };
