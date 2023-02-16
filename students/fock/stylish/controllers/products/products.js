@@ -5,7 +5,7 @@ const { searchCategory, searchId, searchKeyword } = require("./productSearch");
 
 const renderHomePage = async (req, res) => {
   const products = await getAllProducts();
-  return res.render("homepage", { products });
+  return res.render("products/homepage", { products });
 };
 
 module.exports = {
