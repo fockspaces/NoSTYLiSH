@@ -10,6 +10,13 @@ const hasRequiredField = (user) => {
   return isValid;
 };
 
+const checkContentType = (req, res) => {
+  const content_type = req.headers["content-type"];
+  if (content_type !== "application/json")
+    return res
+      .status(400)
+      .send({ err: "wrong request content-type", content_type });
+  return true;
+};
 
-
-module.exports = { hasRequiredField };
+module.exports = { hasRequiredField, checkContentType };
