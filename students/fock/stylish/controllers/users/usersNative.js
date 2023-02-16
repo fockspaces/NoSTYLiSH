@@ -2,28 +2,20 @@ const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 
-const handleSignUp = async (req, res) => {
-  // content type validation
-  const content_type = req.headers["content-type"];
-  if (content_type !== "application/json")
-    return res
-      .status(400)
-      .send({ err: "wrong request content-type", content_type });
-
+const nativeSignUp = async (req, res) => {
   // check required fields exists
-  const user = req.body;
-  const requiredMeet = hasRequiredField(user);
+  const { name, email, password } = req.body;
+  const requiredMeet = hasRequiredField({ name, email, password });
   if (!requiredMeet)
     return res.status(400).send({ err: "missing required fields" });
 
   // check email exists
-  const findUser = await searchUserByEmail(user.email);
+  const findUser = await searchUserByEmail(email);
   if (findUser) return res.status(403).send({ err: "user already exsists" });
 
   // signup
-  const userId = await createUser(user);
-  const { name, email } = user;
-  const newUser = { userId, name, email };
+  const userId = await createUser({ name, email, password });
+  const newUser = { id: userId, name, email };
 
   // get JWT token
   const access_expired = "7d";
@@ -36,4 +28,8 @@ const handleSignUp = async (req, res) => {
   });
 };
 
-module.exports = { handleSignUp };
+const nativeSignIn = (req, res) => {
+  const { provider, email, password, access_token } = req.body;
+};
+
+module.exports = { nativeSignUp, nativeSignIn };
