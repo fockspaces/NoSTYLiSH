@@ -20,8 +20,6 @@ const createUser = async (user) => {
   return result.insertId;
 };
 
-
-
 module.exports = {
   searchUserByEmail,
   createUser,
