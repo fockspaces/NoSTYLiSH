@@ -31,7 +31,7 @@ const searchKeyword = async (req, res) => {
   if (filterData.data.length === 0)
     return res
       .status(404)
-      .send({ err: `no matched product with keyword : ${keyword}` });
+      .send({ err: `no matched product or out of page` });
   const data = filterData.data;
   return res
     .status(200)

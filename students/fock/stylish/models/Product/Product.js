@@ -59,10 +59,11 @@ const getAllInfo = async (category, paging) => {
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
 
   const values =
-    category === "all" ? [limit, offset] : [category, limit, offset];
+    category === "all" ? [limit + 1, offset] : [category, limit + 1, offset];
   const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
+  const moreData = handleInfo(rawData);
+  const hasMoreData = moreData.length > limit;
+  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
   return { data, hasMoreData };
 };
 
@@ -73,10 +74,11 @@ const productSearch = async (term, paging) => {
   const limitBy = ` LIMIT ? OFFSET ? `;
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
-  const values = [`%${term}%`, limit, offset];
+  const values = [`%${term}%`, limit + 1, offset];
   const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
+  const moreData = handleInfo(rawData);
+  const hasMoreData = moreData.length > limit;
+  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
   return { data, hasMoreData };
 };
 
@@ -87,10 +89,11 @@ const productDetails = async (id, paging) => {
   const limitBy = ` LIMIT ? OFFSET ? `;
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
-  const values = [id, limit, offset];
+  const values = [id, limit + 1, offset];
   const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
+  const moreData = handleInfo(rawData);
+  const hasMoreData = moreData.length > limit;
+  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
   return { data, hasMoreData };
 };
 
