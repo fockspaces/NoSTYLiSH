@@ -1,11 +1,7 @@
 const pool = require("../../utils/pool");
+const { searchUserByEmail, createUser } = require("./UserNative");
 
-const searchUser = (email) => {
-  const search = `select * from user`;
+module.exports = {
+  searchUserByEmail,
+  createUser,
 };
-
-const createUser = (user) => {
-    const create = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
-    
-
-}

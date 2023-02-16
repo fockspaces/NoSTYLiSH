@@ -1,6 +1,3 @@
-const handleSignUp = (req, res) => {
-  console.log(req.body);
-  return res.send(req.body);
-};
+const { handleSignUp } = require("./usersNative");
 
 module.exports = { handleSignUp };
