@@ -23,7 +23,6 @@ const nativeSignUp = async (req, res) => {
   const access_token = getJwtToken(newUser);
 
   const user = await searchUserByEmail(email);
-  console.log(user);
 
   return res.status(200).send({
     data: { access_token, access_expired, user },
@@ -46,9 +45,18 @@ const nativeSignIn = async (req, res) => {
   const access_token = getJwtToken({ id: findUser.id, email: findUser.email });
 
   // sending response
-  const { id, name } = findUser;
   return res.status(200).send({
-    data: { access_token, access_expired, user: { id, provider, name, email } },
+    data: {
+      access_token,
+      access_expired,
+      user: {
+        id: findUser.id,
+        provider: findUser.provider,
+        name: findUser.name,
+        email: findUser.email,
+        picture: findUser.picture,
+      },
+    },
   });
 };
 
