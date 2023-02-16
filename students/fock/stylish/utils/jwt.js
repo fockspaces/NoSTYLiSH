@@ -7,4 +7,9 @@ const getJwtToken = (user) => {
   return token;
 };
 
-module.exports = { getJwtToken };
+const verifyToken = (token) => {
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+  return decodedToken;
+};
+
+module.exports = { getJwtToken, verifyToken };

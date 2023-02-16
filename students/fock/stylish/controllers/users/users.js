@@ -1,4 +1,6 @@
 const { nativeSignUp, nativeSignIn } = require("./usersNative");
+const { profileHandler } = require("./userProfile");
+
 const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField, checkContentType } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
@@ -18,9 +20,9 @@ const signInHandler = (req, res) => {
   if (provider == "native") return nativeSignIn(req, res);
 
   // todo : OAuth login
-//   if (provider == "facebook") return OAuthSignIn(req, res);
+  //   if (provider == "facebook") return OAuthSignIn(req, res);
 
   return res.status(400).send({ err: "wrong provider name" });
 };
 
-module.exports = { signupHandler, signInHandler };
+module.exports = { signupHandler, signInHandler, profileHandler };
