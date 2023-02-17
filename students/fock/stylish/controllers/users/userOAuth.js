@@ -1,9 +1,11 @@
-const OAuthSignIn = async (req, res) => {
-  return res.status(200).send("sd");
-};
+const catchAsync = require("../../utils/catchAsync");
 
-const renderSignIn = async (req, res) => {
+const OAuthSignIn = catchAsync(async (req, res) => {
+  return res.status(200).send("sd");
+});
+
+const renderSignIn = catchAsync(async (req, res) => {
   return res.render("users/loginPage");
-};
+});
 
 module.exports = { OAuthSignIn, renderSignIn };

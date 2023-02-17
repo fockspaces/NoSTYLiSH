@@ -2,8 +2,9 @@ const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 const { comparePassword } = require("../../utils/bcrypt");
+const catchAsync = require("../../utils/catchAsync");
 
-const nativeSignUp = async (req, res) => {
+const nativeSignUp = catchAsync(async (req, res) => {
   // check required fields exists
   const { name, email, password } = req.body;
   const requiredMeet = hasRequiredField({ name, email, password });
@@ -27,9 +28,9 @@ const nativeSignUp = async (req, res) => {
   return res.status(200).send({
     data: { access_token, access_expired, user },
   });
-};
+});
 
-const nativeSignIn = async (req, res) => {
+const nativeSignIn = catchAsync(async (req, res) => {
   const { email, password, provider } = req.body;
 
   // check user exists
@@ -58,6 +59,6 @@ const nativeSignIn = async (req, res) => {
       },
     },
   });
-};
+});
 
 module.exports = { nativeSignUp, nativeSignIn };

@@ -1,7 +1,8 @@
 const { verifyToken } = require("../../utils/jwt");
 const { searchUserByEmail } = require("../../models/User/UserNative");
+const catchAsync = require("../../utils/catchAsync");
 
-const authToken = async (req, res, next) => {
+const authToken = catchAsync(async (req, res, next) => {
   // get authorization token in headers
   const token = req.headers.authorization.split(" ")[1];
   if (!token) return res.status(403).send({ err: "plese provide a token" });
@@ -23,7 +24,7 @@ const authToken = async (req, res, next) => {
   res.locals.user = user;
 
   // go to next handler
-  next();
-};
+  return next();
+});
 
 module.exports = { authToken };
