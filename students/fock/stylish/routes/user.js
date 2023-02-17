@@ -5,6 +5,7 @@ const {
   signInHandler,
   profileHandler,
 } = require("../controllers/users/users");
+const { renderSignIn } = require("../controllers/users/userOAuth");
 
 const { authToken } = require("../controllers/middleware/auth");
 
@@ -13,5 +14,6 @@ user.post("/signin", signInHandler);
 
 // need to be authorized
 user.get("/profile", authToken, profileHandler);
+user.get("/signin", renderSignIn);
 
 module.exports = user;

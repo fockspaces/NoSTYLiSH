@@ -32,6 +32,7 @@ app.use("/api/1.0/products", product);
 app.use("/api/1.0/admin", admin);
 app.use("/api/1.0/user", user);
 
+app.use(express.static("public"));
 app.use("/images/", express.static("./uploads/"));
 
 // error handling
