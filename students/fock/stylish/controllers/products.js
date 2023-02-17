@@ -3,6 +3,8 @@ const {
   insertItem,
   getAllProducts,
   getAllInfo,
+  productSearch,
+  productDetails,
 } = require("../models/Product");
 
 const createProduct = async (req, res) => {
@@ -37,6 +39,46 @@ const getProductByType = async (req, res, category) => {
     );
 };
 
+const handleSearch = async (req, res) => {
+  const { keyword } = req.query;
+  if (!keyword)
+    return res
+      .status(200)
+      .send({ err: "please provide some keyword to search" });
+  const paging = req.query.paging ? parseInt(req.query.paging) : 0;
+  const filterData = await productSearch(keyword, paging);
+
+  if (filterData.data.length === 0)
+    return res
+      .status(404)
+      .send({ err: `no matched product with keyword : ${keyword}` });
+  const data = filterData.data;
+  return res
+    .status(200)
+    .send(
+      filterData.hasMoreData ? { data, next_paging: paging + 1 } : { data }
+    );
+};
+
+const handleDetails = async (req, res) => {
+  const { id } = req.query;
+  if (!id)
+    return res.status(400).send({ err: "please provide some id to search" });
+  if (isNaN(id) || id < 1)
+    return res.status(400).send({ err: "please provide a valid id to search" });
+  const paging = req.query.paging ? parseInt(req.query.paging) : 0;
+  const filterData = await productDetails(id, paging);
+
+  if (filterData.data.length === 0)
+    return res.status(404).send({ err: `no matched product with id : ${id}` });
+  const data = filterData.data;
+  return res
+    .status(200)
+    .send(
+      filterData.hasMoreData ? { data, next_paging: paging + 1 } : { data }
+    );
+};
+
 const renderHomePage = async (req, res) => {
   const products = await getAllProducts();
   return res.render("homepage", { products });
@@ -47,4 +89,6 @@ module.exports = {
   createProductItem,
   renderHomePage,
   getProductByType,
+  handleSearch,
+  handleDetails,
 };
