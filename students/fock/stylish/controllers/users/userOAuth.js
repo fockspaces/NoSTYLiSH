@@ -53,9 +53,11 @@ const OAuthSignIn = async (req, res) => {
         provider: "facebook",
       });
 
-  return res.status(200).send({
-    data: { access_expired, access_token: JWT_token, user: sendUser },
-  });
+  return res
+    .status(200)
+    .send({
+      data: { access_expired, access_token: JWT_token, user: sendUser },
+    });
 };
 
 const renderSignIn = catchAsync(async (req, res) => {
