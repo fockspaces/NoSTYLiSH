@@ -16,7 +16,12 @@ const nativeSignUp = catchAsync(async (req, res) => {
   if (findUser) return res.status(403).send({ err: "user already exsists" });
 
   // signup
-  const userId = await createUser({ name, email, password });
+  const userId = await createUser({
+    name,
+    email,
+    password,
+    provider: "native",
+  });
   const newUser = { id: userId, email };
 
   // get JWT token
@@ -31,7 +36,7 @@ const nativeSignUp = catchAsync(async (req, res) => {
 });
 
 const nativeSignIn = catchAsync(async (req, res) => {
-  const { email, password, provider } = req.body;
+  const { email, password } = req.body;
 
   // check user exists
   const findUser = await searchUserByEmail(email);

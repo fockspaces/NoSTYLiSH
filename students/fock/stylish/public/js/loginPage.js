@@ -6,19 +6,25 @@ window.fbAsyncInit = function () {
     version: "v12.0",
   });
 };
+document.getElementById("success-message").style.display = "none";
 
 function loginWithFacebook() {
-  FB.login(
-    function (response) {
-      if (response.authResponse) {
-        var accessToken = response.authResponse.accessToken;
-        // Send the accessToken to your server to authenticate the user
-      } else {
-        // User cancelled the login or did not fully authorize your app
-      }
-    },
-    { scope: "public_profile,email" }
-  );
+  FB.login(function (response) {
+    if (response.authResponse) {
+      const accessToken = response.authResponse.accessToken;
+      OAuthLogin(accessToken).then(function (res) {
+        console.log(res);
+        // Hide the login button and show a success message
+        document.getElementById("facebook-login").style.display = "none";
+        document.getElementById("success-message").style.display = "block";
+      }).catch(function (e) {
+        console.log(e.message);
+      });
+    } else {
+      // User cancelled the login or did not fully authorize your app
+      console.log("not valid");
+    }
+  }, { scope: "public_profile,email" });
 }
 
 document
@@ -34,3 +40,16 @@ document
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 })(document, "script", "facebook-jssdk");
+
+const OAuthLogin = function (token) {
+  return new Promise(function (resolve, reject) {
+    axios.post("/api/1.0/user/signin", {
+      provider: "facebook",
+      access_token: token,
+    }).then(function (res) {
+      resolve(res);
+    }).catch(function (e) {
+      reject(new Error(e.message));
+    });
+  });
+};

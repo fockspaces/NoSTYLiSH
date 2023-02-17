@@ -8,7 +8,7 @@ const searchUserByEmail = async (email) => {
   return result[0];
 };
 
-const serachUserById = async (id) => {
+const searchUserById = async (id) => {
   const search = `select * from user WHERE id = ?`;
   const values = [id];
   const [result] = await pool.query(search, values);
@@ -16,15 +16,17 @@ const serachUserById = async (id) => {
 };
 
 const createUser = async (user) => {
-  const { name, email, password, picture } = user;
+  const { name, email, password, picture, provider } = user;
   const pictureCheck = picture || "";
+  const passwordCheck = password ? password : `${name}_${email}_${picture}`;
+  const providerCheck = provider;
   const create =
     "INSERT INTO user (name, email, password, provider, picture) VALUES (?, ?, ?, ?, ?)";
 
   // hash password
-  const hashPassword = await hash(password);
+  const hashPassword = await hash(passwordCheck);
 
-  const values = [name, email, hashPassword, "native", pictureCheck];
+  const values = [name, email, hashPassword, providerCheck, pictureCheck];
   const [result] = await pool.query(create, values);
   return result.insertId;
 };
@@ -32,5 +34,5 @@ const createUser = async (user) => {
 module.exports = {
   searchUserByEmail,
   createUser,
-  serachUserById,
+  searchUserById,
 };

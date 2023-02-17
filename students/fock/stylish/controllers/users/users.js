@@ -16,6 +16,7 @@ const signupHandler = catchAsync(async (req, res) => {
 });
 
 const signInHandler = catchAsync((req, res) => {
+  console.log(req.body);
   // content type validation
   checkContentType(req, res);
 

@@ -1,7 +1,12 @@
 const pool = require("../../utils/pool");
-const { searchUserByEmail, createUser } = require("./UserNative");
+const {
+  searchUserByEmail,
+  createUser,
+  searchUserById,
+} = require("./UserNative");
 
 module.exports = {
   searchUserByEmail,
   createUser,
+  searchUserById,
 };
