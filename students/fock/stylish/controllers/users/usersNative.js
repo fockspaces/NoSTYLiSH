@@ -5,7 +5,7 @@ const { comparePassword } = require("../../utils/bcrypt");
 const catchAsync = require("../../utils/catchAsync");
 const { passwordFilter } = require("../../utils/infofilter");
 
-const nativeSignUp = catchAsync(async (req, res) => {
+const nativeSignUp = async (req, res) => {
   // check required fields exists
   const { name, email, password } = req.body;
   const requiredMeet = hasRequiredField({ name, email, password });
@@ -34,9 +34,9 @@ const nativeSignUp = catchAsync(async (req, res) => {
   return res.status(200).send({
     data: { access_token, access_expired, user },
   });
-});
+};
 
-const nativeSignIn = catchAsync(async (req, res) => {
+const nativeSignIn = async (req, res) => {
   const { email, password } = req.body;
 
   // check user exists
@@ -60,6 +60,6 @@ const nativeSignIn = catchAsync(async (req, res) => {
       user: sendUser,
     },
   });
-});
+};
 
 module.exports = { nativeSignUp, nativeSignIn };

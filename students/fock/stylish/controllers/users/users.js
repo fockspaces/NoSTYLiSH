@@ -8,12 +8,12 @@ const { getJwtToken } = require("../../utils/jwt");
 
 const catchAsync = require("../../utils/catchAsync");
 
-const signupHandler = catchAsync(async (req, res) => {
+const signupHandler = async (req, res) => {
   // content type validation
   checkContentType(req, res);
 
   nativeSignUp(req, res);
-});
+};
 
 const signInHandler = catchAsync((req, res) => {
   console.log(req.body);
