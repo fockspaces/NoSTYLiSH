@@ -75,7 +75,7 @@ const productSearch = async (term, paging) => {
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
   const values = [`%${term}%`, limit + 1, offset];
-  const rawData = await pool.query(getInfo, values);
+  const [rawData] = await pool.query(getInfo, values);
   const moreData = handleInfo(rawData);
   const hasMoreData = moreData.length > limit;
   const data = hasMoreData ? moreData.slice(0, -1) : moreData;
@@ -83,18 +83,17 @@ const productSearch = async (term, paging) => {
 };
 
 const productDetails = async (id, paging) => {
-  const offset = paging * limit;
   const groupBy = ` GROUP BY product.id `;
   const whereClause = ` WHERE product.id = ? `;
-  const limitBy = ` LIMIT ? OFFSET ? `;
+  const limitBy = ` LIMIT ?`;
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
-  const values = [id, limit + 1, offset];
-  const rawData = await pool.query(getInfo, values);
-  const moreData = handleInfo(rawData);
-  const hasMoreData = moreData.length > limit;
-  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
-  return { data, hasMoreData };
+  const values = [id, 1];
+  const [rawData] = await pool.query(getInfo, values);
+  const [product] = handleInfo(rawData);
+  console.log(product);
+  const data = product;
+  return data;
 };
 
 module.exports = {

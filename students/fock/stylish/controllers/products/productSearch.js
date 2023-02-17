@@ -29,9 +29,7 @@ const searchKeyword = async (req, res) => {
   const filterData = await productSearch(keyword, paging);
 
   if (filterData.data.length === 0)
-    return res
-      .status(404)
-      .send({ err: `no matched product or out of page` });
+    return res.status(404).send({ err: `no matched product or out of page` });
   const data = filterData.data;
   return res
     .status(200)
@@ -47,16 +45,11 @@ const searchId = async (req, res) => {
   if (isNaN(id) || id < 1)
     return res.status(400).send({ err: "please provide a valid id to search" });
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
-  const filterData = await productDetails(id, paging);
+  const data = await productDetails(id, paging);
+  console.log(data);
+  if (!data) return res.status(404).send({ err: "not product found" });
 
-  if (filterData.data.length === 0)
-    return res.status(404).send({ err: `no matched product with id : ${id}` });
-  const data = filterData.data;
-  return res
-    .status(200)
-    .send(
-      filterData.hasMoreData ? { data, next_paging: paging + 1 } : { data }
-    );
+  return res.status(200).send({data});
 };
 
 module.exports = { searchCategory, searchId, searchKeyword };
