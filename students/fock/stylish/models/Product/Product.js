@@ -96,6 +96,15 @@ const productDetails = async (id, paging) => {
   return data;
 };
 
+const searchProductById = async (id) => {
+  // query statement
+  const searchProduct = `select id from product where id = ${id}`;
+
+  const [result] = await pool.query(searchProduct);
+  // return data
+  return result[0];
+};
+
 module.exports = {
   insertProduct,
   insertItem,
@@ -103,4 +112,5 @@ module.exports = {
   getAllInfo,
   productSearch,
   productDetails,
+  searchProductById,
 };

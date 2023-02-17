@@ -1,3 +1,11 @@
-const { createCampaignProduct } = require("./campaigns");
+const {
+  createCampaignProduct,
+  renderCampaignPage,
+  fetchCampaignList,
+} = require("./campaigns");
 
-module.exports = { createCampaignProduct };
+module.exports = {
+  createCampaignProduct,
+  renderCampaignPage,
+  fetchCampaignList,
+};

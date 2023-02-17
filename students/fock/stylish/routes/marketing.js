@@ -4,17 +4,15 @@ const upload = require("../utils/multer");
 
 const {
   createCampaignProduct,
+  renderCampaignPage,
+  fetchCampaignList,
 } = require("../controllers/marketing/marketings");
 
-marketing.get("/campaigns", (req, res) => {
-  return res.send("list");
-});
+marketing.get("/campaigns", fetchCampaignList);
 
 marketing
   .route("/createCampaign")
-  .get((req, res) => {
-    return res.render("marketing/campaignCreate");
-  })
+  .get(renderCampaignPage)
   .post(upload.single("picture"), createCampaignProduct);
 
 module.exports = marketing;
