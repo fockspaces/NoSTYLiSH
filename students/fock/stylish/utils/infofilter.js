@@ -1,4 +1,5 @@
 const handleInfo = (rawData) => {
+  console.log(rawData);
   const filterData = rawData.map((raw) => {
     const colors = JSON.parse(`[${raw.colors}]`);
     const sizes = raw.sizes.split(",");

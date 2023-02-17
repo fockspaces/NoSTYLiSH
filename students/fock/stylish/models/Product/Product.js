@@ -60,7 +60,7 @@ const getAllInfo = async (category, paging) => {
 
   const values =
     category === "all" ? [limit + 1, offset] : [category, limit + 1, offset];
-  const rawData = await pool.query(getInfo, values);
+  const [rawData] = await pool.query(getInfo, values);
   const moreData = handleInfo(rawData);
   const hasMoreData = moreData.length > limit;
   const data = hasMoreData ? moreData.slice(0, -1) : moreData;
