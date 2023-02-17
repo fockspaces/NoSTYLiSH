@@ -3,6 +3,7 @@ const { hasRequiredField } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 const { comparePassword } = require("../../utils/bcrypt");
 const catchAsync = require("../../utils/catchAsync");
+const { passwordFilter } = require("../../utils/infofilter");
 
 const nativeSignUp = catchAsync(async (req, res) => {
   // check required fields exists
@@ -51,17 +52,12 @@ const nativeSignIn = catchAsync(async (req, res) => {
   const access_token = getJwtToken({ id: findUser.id, email: findUser.email });
 
   // sending response
+  const sendUser = passwordFilter(findUser);
   return res.status(200).send({
     data: {
       access_token,
       access_expired,
-      user: {
-        id: findUser.id,
-        provider: findUser.provider,
-        name: findUser.name,
-        email: findUser.email,
-        picture: findUser.picture,
-      },
+      user: sendUser,
     },
   });
 });
