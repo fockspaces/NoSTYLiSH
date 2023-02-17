@@ -23,6 +23,8 @@ app.set("views", path.join(__dirname, "views"));
 const product = require("./routes/product");
 const admin = require("./routes/admin");
 const user = require("./routes/user");
+const marketing = require("./routes/marketing");
+
 const {
   errorHandler,
   notFoundHandler,
@@ -31,6 +33,7 @@ const {
 app.use("/api/1.0/products", product);
 app.use("/api/1.0/admin", admin);
 app.use("/api/1.0/user", user);
+app.use("/api/1.0/marketing", marketing);
 
 app.use(express.static("public"));
 app.use("/images/", express.static("./uploads/"));

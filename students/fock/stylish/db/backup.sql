@@ -180,7 +180,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'3','test1','$2b$10$mxMkQZQsGLKJdl9e3xCWqe7OvQu94joS1JU14iTSfnDMVtSq39LMC','native',NULL),(2,'3','test2','$2b$10$B0hrtE6n9q3aqtRb3uGCI.lcibixQHxuxz3Q7vssyYTgf9aBocP3.','native','');
+INSERT INTO `user` VALUES (1,'張峰銘','a86gj387@yahoo.com.tw','$2b$10$lC8idKk6dwAWl9eZz6Hoo.wJreHAb1s.rkXEDsx4r3yfGI6S29UXO','facebook','https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=5957823294307991&height=50&width=50&ext=1679215608&hash=AeRbaWAJPAOZJB6ZGrc'),(2,'323','123','$2b$10$w/yg4jPMnFv/9z4nG9cnlOnonGEWmEw6ikRkhgg86na3km6DKwSGq','native','');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -193,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-16 17:57:59
+-- Dump completed on 2023-02-17 19:27:00

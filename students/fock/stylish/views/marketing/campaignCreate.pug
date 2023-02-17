@@ -1,0 +1,23 @@
+extends ../layouts/boilerplates.pug
+
+block content
+
+  .row.justify-content-center
+    .col-md-6
+      h2.text-center Create Campaign
+      form#campaign-form.mt-3(action='/api/1.0/marketing/createCampaign' method='POST' enctype='multipart/form-data')
+
+        .form-group.mb-3 
+          label(for='product_id') Product ID:
+          input#product_id.form-control(type='number' name='product_id', required)
+
+        .form-group.mb-3 
+          label(for='picture') Picture:
+          input#picture.form-control(type='file' name='picture' accept='image/*', required)
+
+        .form-group.mb-3 
+          label(for='story') Story:
+          textarea#story.form-control(name='story', required)
+
+        .mt-2.mb-5 
+          button.btn.btn-primary#submit-button(type='submit') Create Campaign
