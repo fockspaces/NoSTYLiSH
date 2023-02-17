@@ -8,6 +8,13 @@ const searchUserByEmail = async (email) => {
   return result[0];
 };
 
+const serachUserById = async (id) => {
+  const search = `select * from user WHERE id = ?`;
+  const values = [id];
+  const [result] = await pool.query(search, values);
+  return result[0];
+};
+
 const createUser = async (user) => {
   const { name, email, password, picture } = user;
   const pictureCheck = picture || "";
@@ -25,4 +32,5 @@ const createUser = async (user) => {
 module.exports = {
   searchUserByEmail,
   createUser,
+  serachUserById,
 };

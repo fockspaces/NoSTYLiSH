@@ -8,8 +8,12 @@ const getJwtToken = (user) => {
 };
 
 const verifyToken = (token) => {
-  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  return decodedToken;
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    return decodedToken;
+  } catch (err) {
+    throw new Error("Invalid token");
+  }
 };
 
 module.exports = { getJwtToken, verifyToken };

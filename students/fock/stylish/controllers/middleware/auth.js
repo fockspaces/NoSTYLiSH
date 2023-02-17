@@ -1,5 +1,5 @@
 const { verifyToken } = require("../../utils/jwt");
-const { searchUserByEmail } = require("../../models/User/UserNative");
+const { serachUserById } = require("../../models/User/UserNative");
 const catchAsync = require("../../utils/catchAsync");
 
 const authToken = catchAsync(async (req, res, next) => {
@@ -15,8 +15,8 @@ const authToken = catchAsync(async (req, res, next) => {
   const { id, email } = decodedToken;
 
   // check whether user exists
-  const user = await searchUserByEmail(email);
-  if (!user || id !== user.id)
+  const user = await serachUserById(id);
+  if (!user || email !== user.email)
     return res.status(403).send({ err: "wrong token provided, please check" });
 
   // pass user info to next function
