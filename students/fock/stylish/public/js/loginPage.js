@@ -28,7 +28,7 @@ function loginWithFacebook() {
 
         OAuthLogin(accessToken)
           .then(function (res) {
-            const data = res.data.data
+            const data = res.data.data;
             console.log(data);
             JWT_Token = data.access_token;
 
@@ -102,6 +102,10 @@ profileButton.addEventListener("click", async function () {
     const userInfo = response.data.data;
     console.log(userInfo);
   } catch (error) {
+    console.log("token has expired or incorrect, please login again");
+    localStorage.removeItem("access_token");
+    location.reload();
+
     console.error(error);
   }
 });
