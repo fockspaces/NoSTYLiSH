@@ -1,5 +1,5 @@
 const renderCheckoutPage = (req, res) => {
-    return res.send('eqwe')
-}
+  return res.render("orders/checkout");
+};
 
-module.exports = {renderCheckoutPage}
+module.exports = { renderCheckoutPage };

@@ -15,6 +15,6 @@ admin.get("/item/:productId", renderItemCreate);
 
 admin.get("/campaign", renderCampaignPage);
 
-admin.get("/", renderCheckoutPage);
+admin.get("/checkout", renderCheckoutPage);
 
 module.exports = admin;
