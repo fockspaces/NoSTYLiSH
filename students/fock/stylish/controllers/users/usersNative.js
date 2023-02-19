@@ -2,7 +2,6 @@ const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 const { comparePassword } = require("../../utils/bcrypt");
-const catchAsync = require("../../utils/catchAsync");
 const { passwordFilter } = require("../../utils/infofilter");
 
 const nativeSignUp = async (req, res) => {

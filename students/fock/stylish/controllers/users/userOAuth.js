@@ -1,6 +1,5 @@
 const axios = require("axios");
 
-const catchAsync = require("../../utils/catchAsync");
 const { getJwtToken } = require("../../utils/jwt");
 const { passwordFilter } = require("../../utils/infofilter");
 

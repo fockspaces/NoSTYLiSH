@@ -1,8 +1,7 @@
 const { verifyToken } = require("../../utils/jwt");
 const { searchUserById } = require("../../models/User/UserNative");
-const catchAsync = require("../../utils/catchAsync");
 
-const authToken = catchAsync(async (req, res, next) => {
+const authToken = (async (req, res, next) => {
   // get authorization token in headers
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {

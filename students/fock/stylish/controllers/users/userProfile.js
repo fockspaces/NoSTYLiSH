@@ -1,4 +1,3 @@
-const catchAsync = require("../../utils/catchAsync");
 
 const profileHandler = async (req, res) => {
   //  sending response

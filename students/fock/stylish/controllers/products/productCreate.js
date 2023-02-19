@@ -1,8 +1,7 @@
 const { insertProduct, insertItem } = require("../../models/Product/Product");
-const catchAsync = require("../../utils/catchAsync");
 const { imagePath } = require("../../utils/infofilter");
 
-const createProduct = catchAsync(async (req, res) => {
+const createProduct = async (req, res) => {
   const data = req.body;
   const { main_image, other_images } = req.files;
   const hostname = req.headers.host.split(":")[0];
@@ -22,13 +21,13 @@ const createProduct = catchAsync(async (req, res) => {
     other_paths,
   });
   return res.status(200).redirect("/");
-});
+};
 
-const createProductItem = catchAsync(async (req, res) => {
+const createProductItem = async (req, res) => {
   const data = req.body;
   await insertItem({ ...data, product_id: req.params.productId });
   return res.status(200).redirect("/");
-});
+};
 
 const renderProductCreate = (req, res) => {
   return res.render("admin/productCreate");

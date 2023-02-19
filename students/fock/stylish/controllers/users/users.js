@@ -6,7 +6,6 @@ const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField, checkContentType } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 
-const catchAsync = require("../../utils/catchAsync");
 
 const signupHandler = async (req, res) => {
   // content type validation
@@ -15,7 +14,7 @@ const signupHandler = async (req, res) => {
   nativeSignUp(req, res);
 };
 
-const signInHandler = catchAsync((req, res) => {
+const signInHandler = (req, res) => {
   console.log(req.body);
   // content type validation
   checkContentType(req, res);
@@ -27,6 +26,6 @@ const signInHandler = catchAsync((req, res) => {
   if (provider == "facebook") return OAuthSignIn(req, res);
 
   return res.status(400).send({ err: "wrong provider name" });
-});
+};
 
 module.exports = { signupHandler, signInHandler, profileHandler };

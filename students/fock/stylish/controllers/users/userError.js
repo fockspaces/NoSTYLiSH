@@ -1,4 +1,3 @@
-const catchAsync = require("../../utils/catchAsync");
 
 const hasRequiredField = (user) => {
   const requiredFields = ["name", "email", "password"];
