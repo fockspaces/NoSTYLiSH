@@ -6,6 +6,8 @@ const {
   renderItemCreate,
 } = require("../controllers/products/productCreate");
 
+const { renderSignIn } = require("../controllers/users/userOAuth");
+
 const { renderCheckoutPage } = require("../controllers/order/orders");
 
 const { renderCampaignPage } = require("../controllers/marketing/marketings");
@@ -16,5 +18,7 @@ admin.get("/item/:productId", renderItemCreate);
 admin.get("/campaign", renderCampaignPage);
 
 admin.get("/checkout", renderCheckoutPage);
+
+admin.get("/signin", renderSignIn);
 
 module.exports = admin;
