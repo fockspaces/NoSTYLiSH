@@ -30,7 +30,18 @@ const createProductItem = catchAsync(async (req, res) => {
   return res.status(200).redirect("/");
 });
 
+const renderProductCreate = (req, res) => {
+  return res.render("admin/productCreate");
+};
+
+const renderItemCreate = (req, res) => {
+  const { productId } = req.params;
+  return res.render("admin/itemCreate", { productId });
+};
+
 module.exports = {
   createProduct,
   createProductItem,
+  renderProductCreate,
+  renderItemCreate,
 };

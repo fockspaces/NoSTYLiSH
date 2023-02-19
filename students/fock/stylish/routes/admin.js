@@ -1,13 +1,16 @@
 const express = require("express");
 const admin = express.Router();
 
-admin.get("/product", (req, res) => {
-  return res.render("admin/productCreate");
-});
+const {
+  renderProductCreate,
+  renderItemCreate,
+} = require("../controllers/products/productCreate");
 
-admin.get("/item/:productId", (req, res) => {
-  const { productId } = req.params;
-  return res.render("admin/itemCreate", { productId });
-});
+const { renderCampaignPage } = require("../controllers/marketing/marketings");
+
+admin.get("/product", renderProductCreate);
+admin.get("/item/:productId", renderItemCreate);
+
+admin.get("/campaign", renderCampaignPage);
 
 module.exports = admin;

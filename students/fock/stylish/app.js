@@ -30,8 +30,8 @@ const {
   notFoundHandler,
 } = require("./controllers/middleware/error");
 
+app.use("/admin", admin);
 app.use("/api/1.0/products", product);
-app.use("/api/1.0/admin", admin);
 app.use("/api/1.0/user", user);
 app.use("/api/1.0/marketing", marketing);
 

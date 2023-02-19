@@ -12,7 +12,6 @@ marketing.get("/campaigns", fetchCampaignList);
 
 marketing
   .route("/createCampaign")
-  .get(renderCampaignPage)
   .post(upload.single("picture"), createCampaignProduct);
 
 module.exports = marketing;
