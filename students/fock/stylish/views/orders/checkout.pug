@@ -1,0 +1,29 @@
+extends ../layouts/boilerplates.pug
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/checkout.css")
+
+    body
+        h2 Checkout Page
+        form#payment-form
+            .form-row
+                .col
+                    .form-group
+                        label(for="card-number") Card Number
+                        .tpfield#card-number.form-control
+                .col
+                    .form-group
+                        label(for="card-expiration-date") Expiration Date
+                        .tpfield#card-expiration-date.form-control
+                .col
+                    .form-group
+                        label(for="card-ccv") CCV
+                        .tpfield#card-ccv.form-control
+
+            button.btn.btn-primary#checkout-button(type="submit") Pay
+
+        // Include the TapPay SDK and API libraries
+        script(src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0")
+        script(type="text/javascript" src="/js/checkout/checkoutHandler.js")
+        script(type="text/javascript" src="/js/checkout/checkout.js")
+

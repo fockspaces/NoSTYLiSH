@@ -1,47 +1,37 @@
 const express = require("express");
 const product = express.Router();
-const multer = require("multer");
 const {
   createProduct,
   createProductItem,
-  getProductByType,
-  handleSearch,
-  handleDetails,
-} = require("../controllers/products");
+  searchCategory,
+  searchKeyword,
+  searchId,
+} = require("../controllers/products/products");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + ".jpg");
-  },
-});
-
-const upload = multer({ dest: "uploads/", storage: storage });
+const upload = require("../utils/multer");
 
 // search by category
 product.get("/all", (req, res) => {
   const category = "all";
-  getProductByType(req, res, category);
+  searchCategory(req, res, category);
 });
 product.get("/women", (req, res) => {
   const category = "women";
-  getProductByType(req, res, category);
+  searchCategory(req, res, category);
 });
 
 product.get("/men", (req, res) => {
   const category = "men";
-  getProductByType(req, res, category);
+  searchCategory(req, res, category);
 });
 product.get("/accessories", (req, res) => {
   const category = "accessories";
-  getProductByType(req, res, category);
+  searchCategory(req, res, category);
 });
 
 // search by keyword
-product.get("/search", handleSearch);
-product.get("/details", handleDetails);
+product.get("/search", searchKeyword);
+product.get("/details", searchId);
 
 product.post(
   "/create",

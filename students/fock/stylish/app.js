@@ -1,7 +1,7 @@
 require("dotenv").config();
 const port = process.env.PORT;
 const domain_name = process.env.DOMAIN_NAME;
-const { renderHomePage } = require("./controllers/products");
+const { renderHomePage } = require("./controllers/products/products");
 
 const express = require("express");
 
@@ -22,13 +22,27 @@ app.set("views", path.join(__dirname, "views"));
 
 const product = require("./routes/product");
 const admin = require("./routes/admin");
+const user = require("./routes/user");
+const marketing = require("./routes/marketing");
+const order = require("./routes/order");
 
-app.use("/api/1.0/products", product);
+const {
+  errorHandler,
+  notFoundHandler,
+} = require("./controllers/middleware/error");
+
 app.use("/admin", admin);
+app.use("/api/1.0/products", product);
+app.use("/api/1.0/user", user);
+app.use("/api/1.0/marketing", marketing);
+app.use("/api/1.0/order", order);
+
+app.use(express.static("public"));
 app.use("/images/", express.static("./uploads/"));
-app.use((req, res, next) => {
-  res.status(404).send({ err: "The requested resource could not be found" });
-});
+
+// error handling
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);

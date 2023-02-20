@@ -1,16 +1,12 @@
-const pool = require("./pool");
-const { handleInfo } = require("../utils/infofilter");
-const { selectProduct } = require("../utils/sqlStatment");
+const pool = require("../../utils/pool");
+const { handleInfo } = require("../../utils/infofilter");
+const { selectProduct } = require("../../utils/sqlStatment");
 
 const limit = 6;
 const insertProduct = async (data) => {
   const { category, title, description } = data.product;
   const { texture, wash, place, note, story } = data.category;
-  const { main_image, other_images } = data;
-  const imagesPaths = other_images
-    ? JSON.stringify(other_images.map((image) => image.path))
-    : "";
-  const imagePath = main_image ? main_image[0].path : "";
+  const { main_path, other_paths } = data;
 
   // Insert data into the sub_category table
   const insertSubCategory =
@@ -28,8 +24,8 @@ const insertProduct = async (data) => {
     insertId,
     title,
     description,
-    imagePath,
-    imagesPaths,
+    main_path,
+    other_paths,
   ];
   await pool.query(insertProduct, productValues);
 
@@ -63,10 +59,11 @@ const getAllInfo = async (category, paging) => {
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
 
   const values =
-    category === "all" ? [limit, offset] : [category, limit, offset];
-  const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
+    category === "all" ? [limit + 1, offset] : [category, limit + 1, offset];
+  const [rawData] = await pool.query(getInfo, values);
+  const moreData = handleInfo(rawData);
+  const hasMoreData = moreData.length > limit;
+  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
   return { data, hasMoreData };
 };
 
@@ -77,25 +74,35 @@ const productSearch = async (term, paging) => {
   const limitBy = ` LIMIT ? OFFSET ? `;
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
-  const values = [`%${term}%`, limit, offset];
-  const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
+  const values = [`%${term}%`, limit + 1, offset];
+  const [rawData] = await pool.query(getInfo, values);
+  const moreData = handleInfo(rawData);
+  const hasMoreData = moreData.length > limit;
+  const data = hasMoreData ? moreData.slice(0, -1) : moreData;
   return { data, hasMoreData };
 };
 
 const productDetails = async (id, paging) => {
-  const offset = paging * limit;
   const groupBy = ` GROUP BY product.id `;
   const whereClause = ` WHERE product.id = ? `;
-  const limitBy = ` LIMIT ? OFFSET ? `;
+  const limitBy = ` LIMIT ?`;
 
   const getInfo = selectProduct + whereClause + groupBy + limitBy;
-  const values = [id, limit, offset];
-  const rawData = await pool.query(getInfo, values);
-  const data = handleInfo(rawData);
-  const hasMoreData = data.length === limit;
-  return { data, hasMoreData };
+  const values = [id, 1];
+  const [rawData] = await pool.query(getInfo, values);
+  const [product] = handleInfo(rawData);
+  console.log(product);
+  const data = product;
+  return data;
+};
+
+const searchProductById = async (id) => {
+  // query statement
+  const searchProduct = `select id from product where id = ${id}`;
+
+  const [result] = await pool.query(searchProduct);
+  // return data
+  return result[0];
 };
 
 module.exports = {
@@ -105,4 +112,5 @@ module.exports = {
   getAllInfo,
   productSearch,
   productDetails,
+  searchProductById,
 };

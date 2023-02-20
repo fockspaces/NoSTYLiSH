@@ -1,13 +1,24 @@
 const handleInfo = (rawData) => {
-    const filterData = rawData[0].map((raw) => {
-      const colors = JSON.parse(`[${raw.colors}]`);
-      const sizes = raw.sizes.split(",");
-      const images = raw.images ? JSON.parse(raw.images) : [];
-      return { ...raw, colors, sizes, images };
-    });
-    return filterData;
-  };
+  const filterData = rawData.map((raw) => {
+    const colors = JSON.parse(`[${raw.colors}]`);
+    const sizes = raw.sizes.split(",");
+    const images = raw.images ? JSON.parse(raw.images) : [];
+    return { ...raw, colors, sizes, images };
+  });
+  return filterData;
+};
 
-  module.exports = {
-    handleInfo
-  }
+const passwordFilter = (user) => {
+  const { id, name, email, provider, picture } = user;
+  return { id, name, email, provider, picture };
+};
+
+const imagePath = (origin, filename) => {
+  return filename ? `${origin}/images/${filename}` : "";
+};
+
+module.exports = {
+  handleInfo,
+  passwordFilter,
+  imagePath,
+};

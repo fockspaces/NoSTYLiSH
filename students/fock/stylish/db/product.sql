@@ -64,3 +64,4 @@ VALUES ('FF0000', 'Red'), ('FFFF00', 'Yellow'),
 ('0000FF', 'Blue'),('008000', 'Green'),
 ('800080', 'Purple'),('FFA500', 'Orange'),
 ('000000', 'Black');
+
