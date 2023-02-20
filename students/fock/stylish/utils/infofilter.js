@@ -13,8 +13,8 @@ const passwordFilter = (user) => {
   return { id, name, email, provider, picture };
 };
 
-const imagePath = (hostname, filename) => {
-  return filename ? `http://${hostname}/images/${filename}` : "";
+const imagePath = (origin, filename) => {
+  return filename ? `${origin}/images/${filename}` : "";
 };
 
 module.exports = {
