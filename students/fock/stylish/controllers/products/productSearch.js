@@ -4,6 +4,8 @@ const {
   productDetails,
 } = require("../../models/Product/Product");
 
+const { imagePathConverter } = require("../../utils/infofilter");
+
 const searchCategory = async (req, res, category) => {
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
   if (isNaN(paging) || paging < 0)
@@ -11,7 +13,11 @@ const searchCategory = async (req, res, category) => {
   const filterData = await getAllInfo(category, paging);
   if (filterData.data.length === 0)
     return res.status(404).send({ err: "page not found" });
-  const data = filterData.data;
+
+  // convert image path
+  const { host } = req.headers;
+  const data = imagePathConverter(host, filterData.data);
+  console.log(data);
   return res
     .status(200)
     .send(
