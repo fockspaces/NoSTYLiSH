@@ -14,9 +14,9 @@ const searchCategory = async (req, res, category) => {
   if (filterData.data.length === 0)
     return res.status(404).send({ err: "page not found" });
 
-  // convert image pathc  
+    console.log(filterData.hasMoreData);
+  // convert image pathc
   const data = imagePathConverter(filterData.data);
-  console.log(data);
   return res
     .status(200)
     .send(
@@ -35,7 +35,8 @@ const searchKeyword = async (req, res) => {
 
   if (filterData.data.length === 0)
     return res.status(404).send({ err: `no matched product or out of page` });
-  const data = filterData.data;
+  const data = imagePathConverter(filterData.data);
+
   return res
     .status(200)
     .send(
@@ -50,8 +51,9 @@ const searchId = async (req, res) => {
   if (isNaN(id) || id < 1)
     return res.status(400).send({ err: "please provide a valid id to search" });
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
-  const data = await productDetails(id, paging);
-  console.log(data);
+  const filterData = await productDetails(id, paging);
+  const data = imagePathConverter(filterData.data);
+
   if (!data) return res.status(404).send({ err: "not product found" });
 
   return res.status(200).send({ data });
