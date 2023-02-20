@@ -1,3 +1,7 @@
-const { renderCheckoutPage } = require("./orders");
+const renderCheckoutPage = (req, res) => {
+  return res.render("orders/checkout");
+};
 
-module.exports = { renderCheckoutPage };
+const checkoutHandler = (req, res) => {};
+
+module.exports = { renderCheckoutPage, checkoutHandler };
