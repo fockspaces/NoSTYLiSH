@@ -11,6 +11,8 @@ const checkoutHandler = async (req, res) => {
   const orderId = orderCreate(order);
 
   // prime error handling
+  const {prime } = req.body;
+  if(!prime) return res.status(400).status
   // get prime and send it to TapPay
 
   // if success, create payment with status "processed"
