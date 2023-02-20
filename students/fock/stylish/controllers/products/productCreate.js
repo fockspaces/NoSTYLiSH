@@ -5,6 +5,7 @@ const createProduct = async (req, res) => {
   const data = req.body;
   const { main_image, other_images } = req.files;
   const hostname = req.headers.host.split(":")[0];
+  console.log(hostname);
   const main_path = main_image
     ? imagePath(hostname, main_image[0].filename)
     : "";
