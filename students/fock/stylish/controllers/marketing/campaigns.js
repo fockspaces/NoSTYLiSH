@@ -2,8 +2,8 @@ const {
   addCampaign,
   getAllCampaigns,
 } = require("../../models/Marketing/Marketing");
-const { imagePath } = require("../../utils/infofilter");
 const { searchProductById } = require("../../models/Product/Product");
+const { imagePath } = require("../../utils/infofilter");
 
 const createCampaignProduct = async (req, res) => {
   // get data from req.body
@@ -15,8 +15,7 @@ const createCampaignProduct = async (req, res) => {
 
   // process image file
   const pictureFile = req.file;
-  const hostname = req.headers.host.split(":")[0];
-  const picture = imagePath(hostname, pictureFile.filename);
+  const picture = pictureFile.filename;
   // insert data into db
   const info = await addCampaign({ product_id, picture, story });
 
@@ -27,7 +26,11 @@ const createCampaignProduct = async (req, res) => {
 
 const fetchCampaignList = async (req, res) => {
   const data = await getAllCampaigns();
-  return res.status(200).send({ data });
+  const dataWithPath = data.map((data) => {
+    const picture = imagePath(data.picture);
+    return { ...data, picture };
+  });
+  return res.status(200).send({ data: dataWithPath });
 };
 
 const renderCampaignPage = async (req, res) => {
