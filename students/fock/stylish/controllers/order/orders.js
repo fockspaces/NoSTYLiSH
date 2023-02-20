@@ -1,3 +1,3 @@
-const { renderCheckoutPage } = require("./checkouts");
+const { renderCheckoutPage, checkoutHandler } = require("./checkouts");
 
-module.exports = { renderCheckoutPage };
+module.exports = { renderCheckoutPage, checkoutHandler };
