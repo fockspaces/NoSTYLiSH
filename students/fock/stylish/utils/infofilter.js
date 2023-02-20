@@ -13,17 +13,17 @@ const passwordFilter = (user) => {
   return { id, name, email, provider, picture };
 };
 
-const imagePathConverter = (origin, dataset) => {
+const imagePathConverter = (dataset) => {
   const filterData = dataset.map((data) => {
-    const main_image = imagePath(origin, data.main_image);
-    const images = data.images.map((image) => imagePath(origin, image));
+    const main_image = imagePath(data.main_image);
+    const images = data.images.map((image) => imagePath(image));
     return { ...data, main_image, images };
   });
   return filterData;
 };
 
-const imagePath = (host, filename) => {
-  return filename ? `http://${host}/images/${filename}` : "";
+const imagePath = (filename) => {
+  return filename ? `http://${process.env.DOMAIN_NAME}/images/${filename}` : "";
 };
 
 module.exports = {

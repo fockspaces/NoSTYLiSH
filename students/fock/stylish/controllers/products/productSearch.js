@@ -14,9 +14,8 @@ const searchCategory = async (req, res, category) => {
   if (filterData.data.length === 0)
     return res.status(404).send({ err: "page not found" });
 
-  // convert image path
-  const { host } = req.headers;
-  const data = imagePathConverter(host, filterData.data);
+  // convert image pathc  
+  const data = imagePathConverter(filterData.data);
   console.log(data);
   return res
     .status(200)
