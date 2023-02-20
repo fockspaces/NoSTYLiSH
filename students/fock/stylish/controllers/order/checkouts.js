@@ -4,10 +4,11 @@ const renderCheckoutPage = (req, res) => {
   return res.render("orders/checkout");
 };
 
-const checkoutHandler = (req, res) => {
+const checkoutHandler = async (req, res) => {
   // fetch order from body
-
+  const { order } = req.body;
   // create order
+  const orderId = orderCreate(order);
 
   // prime error handling
   // get prime and send it to TapPay
