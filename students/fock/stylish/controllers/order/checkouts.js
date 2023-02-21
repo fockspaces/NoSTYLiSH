@@ -1,12 +1,11 @@
 const { TapPay } = require("../../utils/tappay");
 const {
-  GetRecipient,
-  CreateRecipient,
   UpdateOrder,
   ItemListCreate,
   AddOrder,
 } = require("../../models/Order/Order");
 const { recipientHandler } = require("./recipients");
+const { itemListHandler } = require("./itemLists");
 
 const renderCheckoutPage = (req, res) => {
   return res.render("orders/checkout");
@@ -26,7 +25,6 @@ const checkoutHandler = async (req, res) => {
   const { order } = req.body;
   const recipient = await recipientHandler(order.recipient);
   const recipientID = recipient.id;
-
   if (!recipient) return res.status(404).send({ err: "recipient not found" });
 
   // create order
@@ -41,9 +39,11 @@ const checkoutHandler = async (req, res) => {
   if (!list || !list.length)
     return res.status(400).send({ err: "lack of items" });
 
-  const listResult = await ItemListCreate(orderId, list);
+  const listResult = await itemListHandler(orderId, list);
   if (!listResult)
-    return res.status(400).send({ err: "items inserting failed" });
+    return res
+      .status(400)
+      .send({ err: "items inserting failed : item not found" });
 
   // prime error handling
   const { prime } = req.body;

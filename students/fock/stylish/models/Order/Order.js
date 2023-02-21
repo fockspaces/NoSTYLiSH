@@ -1,7 +1,7 @@
 const pool = require("../../utils/pool");
 
 const { GetRecipient, CreateRecipient } = require("./Recipient");
-const { ItemListCreate } = require("./ItemList");
+const { ItemListCreate, FetchItemID, GetColorIDByCode } = require("./ItemList");
 
 const AddOrder = async (order) => {
   try {
@@ -32,4 +32,6 @@ module.exports = {
   UpdateOrder,
   ItemListCreate,
   CreateRecipient,
+  FetchItemID,
+  GetColorIDByCode,
 };

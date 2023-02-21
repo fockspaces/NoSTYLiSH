@@ -21,4 +21,21 @@ const ItemListCreate = async (orderId, list) => {
   }
 };
 
-module.exports = { ItemListCreate };
+const FetchItemID = async (id, color, size) => {
+  const fetchItem =
+    "SELECT id FROM product_item WHERE product_id = ? AND color = ? AND size = ?";
+  const values = [id, color, size];
+
+  const [result] = await pool.query(fetchItem, values);
+  // return ID or false
+  return result[0] ? result[0].id : false;
+};
+
+const GetColorIDByCode = async (code) => {
+  const getColorID = "SELECT id FROM color WHERE color_code = ?";
+  const values = [code];
+  const [result] = await pool.query(getColorID, values);
+  return result[0] ? result[0].id : false;
+};
+
+module.exports = { ItemListCreate, FetchItemID, GetColorIDByCode };
