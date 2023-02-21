@@ -1,9 +1,10 @@
-const { orderCreate } = require("./orderCreate");
 const { TapPay } = require("../../utils/tappay");
 const {
   GetRecipient,
-  updateOrder,
-  itemListCreate,
+  CreateRecipient,
+  UpdateOrder,
+  ItemListCreate,
+  AddOrder,
 } = require("../../models/Order/Order");
 
 const renderCheckoutPage = (req, res) => {
@@ -19,26 +20,36 @@ const checkoutHandler = async (req, res) => {
   // update inventory
 
   // fetch order from body and check
+
+  // fetch recipient
   const { order } = req.body;
+  let recipientID;
+  if (typeof order.recipient == "number") {
+    recipientID = order.recipient;
+  }
+
+  if (typeof order.recipient == "object") {
+    recipientID = await CreateRecipient(order.recipient);
+  }
+
+  const recipient = await GetRecipient(recipientID);
+  if (!recipient) return res.status(404).send({ err: "recipient not found" });
 
   // create order
-  const orderId = await orderCreate(order);
+  const orderId = await AddOrder({ ...order, recipient: recipientID });
   if (!orderId)
     return res
       .status(400)
       .send({ err: "missing some values while creating order" });
 
   // create item_lists
-  const { list } = req.body;
-  if (!list.length) return res.status(400).send({ err: "lack of items" });
+  const { list } = order;
+  if (!list || !list.length)
+    return res.status(400).send({ err: "lack of items" });
 
-  const listResult = await itemListCreate(orderId, list);
+  const listResult = await ItemListCreate(orderId, list);
   if (!listResult)
     return res.status(400).send({ err: "items inserting failed" });
-
-  // fetch recipient
-  const recipient = await GetRecipient(order.recipient);
-  if (!recipient) return res.status(404).send({ err: "recipient not found" });
 
   // prime error handling
   const { prime } = req.body;
@@ -55,7 +66,7 @@ const checkoutHandler = async (req, res) => {
   }
 
   // if success, create payment with status "processed"
-  const updateStatus = await updateOrder(orderId);
+  const updateStatus = await UpdateOrder(orderId);
   if (!updateStatus)
     return res.status(400).send({ err: "error on update order" });
 
