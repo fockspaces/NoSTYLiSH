@@ -18,4 +18,20 @@ const validateSignup = (email, password, name) => {
   return errors;
 };
 
-module.exports = { validateSignup };
+const validateOrder = (order) => {
+  const inputs = [
+    "shipping",
+    "payment",
+    "subtotal",
+    "freight",
+    "total",
+    "recipient_id",
+  ];
+
+  const missings = inputs.filter((input) => {
+    return !Object.keys(order).includes(input) || order[input] === "";
+  });
+  return missings;
+};
+
+module.exports = { validateSignup, validateOrder };
