@@ -6,6 +6,7 @@ const {
   ItemListCreate,
   AddOrder,
 } = require("../../models/Order/Order");
+const { recipientHandler } = require("./recipients");
 
 const renderCheckoutPage = (req, res) => {
   return res.render("orders/checkout");
@@ -23,16 +24,9 @@ const checkoutHandler = async (req, res) => {
 
   // fetch recipient
   const { order } = req.body;
-  let recipientID;
-  if (typeof order.recipient == "number") {
-    recipientID = order.recipient;
-  }
+  const recipient = await recipientHandler(order.recipient);
+  const recipientID = recipient.id;
 
-  if (typeof order.recipient == "object") {
-    recipientID = await CreateRecipient(order.recipient);
-  }
-
-  const recipient = await GetRecipient(recipientID);
   if (!recipient) return res.status(404).send({ err: "recipient not found" });
 
   // create order
