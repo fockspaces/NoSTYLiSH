@@ -25,6 +25,7 @@ const admin = require("./routes/admin");
 const user = require("./routes/user");
 const marketing = require("./routes/marketing");
 const order = require("./routes/order");
+const demo = require("./routes/demo");
 
 const {
   errorHandler,
@@ -32,6 +33,7 @@ const {
 } = require("./controllers/middleware/error");
 
 app.use("/admin", admin);
+app.use("/", demo);
 app.use("/api/1.0/products", product);
 app.use("/api/1.0/user", user);
 app.use("/api/1.0/marketing", marketing);

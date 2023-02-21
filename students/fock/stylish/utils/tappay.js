@@ -2,8 +2,7 @@ const tapPay = require("tappay-nodejs");
 
 // Initialize the SDK with your credentials
 tapPay.initialize({
-  partner_key:
-    "partner_PHgswvYEk4QY6oy3n8X3CwiQCVQmv91ZcFoD5VrkGFXo8N7BFiLUxzeG",
+  partner_key: process.env.TAPPAY_PARTNER_KEY,
   merchant_id: "AppWorksSchool_CTBC",
   env: "sandbox",
 });
