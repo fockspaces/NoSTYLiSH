@@ -1,57 +1,81 @@
-// Define the request headers and access token
-const headers = {
-  "Content-Type": "application/json",
-  Authorization: "Bearer [Access Token]", // Replace with your actual access token
-};
-
 // Define the request body with the payment information and order details
 const requestBody = {
-  prime: "[Prime Key from TapPay]",
+  prime: "test_3a2fb2b7e892b914a03c95dd4dd5dc7970c908df67a49527c0a648b2bc9",
   order: {
     shipping: "delivery",
     payment: "credit_card",
-    subtotal: "[Price excluded Freight Fee]",
-    freight: "[Freight Fee]",
-    total: "[Final Price]",
+    subtotal: 1234,
+    freight: 14,
+    total: 1300,
     recipient: {
-      name: "[Name]",
-      phone: "[Phone]",
-      email: "[Email]",
-      address: "[Post Address]",
-      time: "morning" | "afternoon" | "anytime",
+      name: "Luke",
+      phone: "0987654321",
+      email: "luke@gmail.com",
+      address: "市政府站",
+      time: "morning",
     },
     list: [
       {
-        id: "[Product ID]",
-        name: "[Product Name]",
-        price: "[Product Unit Price]",
+        id: "1",
+        name: "活力花紋長筒牛仔褲",
+        price: 1299,
         color: {
-          name: "[Product Variant Color Name]",
-          code: "[Product Variant Color HexCode]",
+          code: "FFFF00",
+          name: "yellow",
         },
-        size: "[Product Variant Size]",
-        qty: " [Quantity]",
+        size: "M",
+        qty: 1,
+      },
+      {
+        id: "25",
+        name: "活力花紋長筒牛仔褲",
+        price: 1299,
+        color: {
+          code: "FFFF00",
+          name: "淺藍",
+        },
+        size: "M",
+        qty: 5,
       },
     ],
   },
 };
 
 // Make the HTTP POST request to the /order/checkout endpoint using Axios
-const sendPayment = async () => {
-  await axios
-    .post("/api/1.0/order/checkout", requestBody, { headers })
-    .then((response) => {
-      // Handle successful response from server-side API
-      console.log(response);
-      // Display success message to user
-      alert("Payment successful! Thank you for your purchase.");
-    })
-    .catch((error) => {
-      // Handle error response from server-side API
-      console.error(error);
-      // Display error message to user
-      alert(
-        "There was an error processing your payment. Please try again or contact customer support."
-      );
+const sendPayment = async (jwtToken) => {
+  // Define the request headers and access token
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${jwtToken}`, // Replace with your actual access token
+  };
+
+  try {
+    const result = await axios.post("/api/1.0/order/checkout", requestBody, {
+      headers,
     });
+    console.log(result.data);
+    alert("Payment successful! Thank you for your purchase.");
+  } catch (e) {
+    console.error(e.message);
+    alert(
+      "There was an error processing your payment. Please check your card info."
+    );
+  }
+
+  // await axios
+  //   .post("/api/1.0/order/checkout", requestBody, { headers })
+  //   .then((response) => {
+  //     // Handle successful response from server-side API
+  //     console.log(response);
+  //     // Display success message to user
+  //     alert("Payment successful! Thank you for your purchase.");
+  //   })
+  //   .catch((error) => {
+  //     // Handle error response from server-side API
+  //     console.error(error);
+  //     // Display error message to user
+  //     alert(
+  //       "There was an error processing your payment. Please try again or contact customer support."
+  //     );
+  //   });
 };
