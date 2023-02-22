@@ -8,7 +8,6 @@ const renderCampaigns = (campaigns) => {
   let html = "";
   let indicatorsHtml = "";
   campaigns.forEach((campaign, index) => {
-    console.log(campaign.picture);
     const activeClass = index === 0 ? "active" : "";
     html += `
       <div class="carousel-item ${activeClass}">
