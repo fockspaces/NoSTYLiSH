@@ -1,14 +1,18 @@
 extends ../layouts/boilerplates.pug
 
 block content
-
-    h1 Welcome to home page
-    a.btn.btn-primary(href=`/admin/product`) Create Product 
     .row
-    each product, i in products
-        .col-md-4
-            .card.mt-2
-                .card-body 
-                    h4.card-title 
-                        a.link-dark(href=`/admin/item/${product.id}`)= product.title
-                        img.product_img(src=`/images/${product.main_image}` alt=`img` width="100" height="100")
+        each product, i in products
+            .col-md-4
+                .card.mt-2
+                    img.card-img-top(src=product.main_image alt=`img` width="50" height="400")
+                    .card-body 
+                        h5.card-title 
+                            a.link-dark(href=`#`)= product.title
+                        .card-text= product.description.slice(0, 50) + '...'
+    
+    script(src="https://unpkg.com/axios/dist/axios.min.js")      
+    script(type="text/javascript" src="/js/navbar/navbar.js")
+    script(type="text/javascript" src="/js/index/index.js")  
+
+
