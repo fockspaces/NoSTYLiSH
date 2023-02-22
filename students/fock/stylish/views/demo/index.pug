@@ -2,15 +2,11 @@ extends ../layouts/boilerplates.pug
 
 block content
     .row
-        each product, i in products
-            .col-md-4
-                .card.mt-2
-                    img.card-img-top(src=product.main_image alt=`img` width="50" height="400")
-                    .card-body 
-                        h5.card-title 
-                            a.link-dark(href=`#`)= product.title
-                        .card-text= product.description.slice(0, 50) + '...'
     
+    //- fetch the query string
+    script.
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
     script(src="https://unpkg.com/axios/dist/axios.min.js")      
     script(type="text/javascript" src="/js/navbar/navbar.js")
     script(type="text/javascript" src="/js/index/index.js")  
