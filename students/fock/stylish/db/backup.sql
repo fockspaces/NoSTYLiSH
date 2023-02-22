@@ -28,7 +28,7 @@ CREATE TABLE `campaign` (
   `picture` text NOT NULL,
   `story` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `campaign` (
 
 LOCK TABLES `campaign` WRITE;
 /*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
-INSERT INTO `campaign` VALUES (1,123,'http://localhost/images/picture-e28dc4ff-6795-4e68-b412-13da55eee2d0.jfif','213'),(2,23,'http://localhost/images/picture-8a0a7f7c-cce1-4ce5-950f-c126addae49b.jfif','213'),(3,1,'http://localhost/images/picture-26bb2c60-4a2f-41e2-aaab-9af343ff5118.jfif','312'),(4,1,'http://localhost/images/picture-a36bf824-39d2-406e-9b61-54525de35118.jfif','312'),(5,1,'http://localhost/images/picture-10013a01-914f-4cf7-8591-680182c38c94.jfif','312'),(6,1,'http://localhost/images/picture-17a699a7-4892-4272-9b9d-cfd370a705fa.jfif','312'),(7,7,'http://localhost/images/picture-41f36e11-630b-49f7-a368-5431e0169b1e.jpg','777'),(8,3,'picture-a55a1ab3-f2a7-4584-9250-ce504f8c0407.png','123');
+INSERT INTO `campaign` VALUES (1,1,'picture-f618e58b-6be1-4464-85db-8c1d2b14c3d8.jpg','haha\r\n'),(2,2,'picture-b76aaac5-9a3b-4580-8257-de343f3a84f6.jpg','haha\r\n'),(4,3,'picture-91f81b16-d19a-4253-b1b2-3a1432cfb7f6.jpg','haha\r\n');
 /*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
-INSERT INTO `color` VALUES (1,'FF0000','Red'),(2,'FFFF00','Yellow'),(3,'0000FF','Blue'),(4,'008000','Green'),(5,'800080','Purple'),(6,'FFA500','Orange'),(7,'000000','Black');
+INSERT INTO `color` VALUES (1,'B30000','Dark_red'),(2,'CCB300','Yellow'),(3,'003399','Blue'),(4,'006600','Green'),(5,'660066','Purple'),(6,'FF8C00','Orange'),(7,'333333','Black');
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22 13:12:38
+-- Dump completed on 2023-02-22 16:28:09
