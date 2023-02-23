@@ -31,9 +31,9 @@ JSON_ARRAYAGG(
   )
 ) as variants
 FROM product 
-INNER JOIN product_item ON product.id = product_item.product_id
+LEFT JOIN product_item ON product.id = product_item.product_id
 INNER JOIN category ON category.id = product.category_id
 INNER JOIN sub_category ON sub_category.id = product.sub_category_id
-INNER JOIN color ON product_item.color = color.id `;
+LEFT JOIN color ON product_item.color = color.id `;
 
 module.exports = { selectProduct };

@@ -3,6 +3,7 @@ const { hasRequiredField } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 const { comparePassword } = require("../../utils/bcrypt");
 const { passwordFilter } = require("../../utils/infofilter");
+const { validateSignup } = require("../../utils/inputValidation");
 
 const nativeSignUp = async (req, res) => {
   // check required fields exists
@@ -10,6 +11,10 @@ const nativeSignUp = async (req, res) => {
   const requiredMeet = hasRequiredField({ name, email, password });
   if (!requiredMeet)
     return res.status(400).send({ err: "missing required fields" });
+
+  const invalids = validateSignup(email, password, name);
+  if (Object.values(invalids).length)
+    return res.status(400).send({ err: invalids });
 
   // check email exists
   const findUser = await searchUserByEmail(email);

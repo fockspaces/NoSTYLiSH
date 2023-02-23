@@ -4,12 +4,9 @@ const { imagePath } = require("../../utils/infofilter");
 const createProduct = async (req, res) => {
   const data = req.body;
   const { main_image, other_images } = req.files;
-  const origin = req.headers.origin;
-  const main_path = main_image ? imagePath(origin, main_image[0].filename) : "";
+  const main_path = main_image ? main_image[0].filename : "";
   const other_paths = other_images
-    ? JSON.stringify(
-        other_images.map((image) => imagePath(origin, image.filename))
-      )
+    ? JSON.stringify(other_images.map((image) => image.filename))
     : "";
   await insertProduct({
     ...data,

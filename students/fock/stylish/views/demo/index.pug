@@ -1,0 +1,19 @@
+extends ../layouts/boilerplates.pug
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/index.css")
+
+    .row
+        //- Campaign carousel
+        include ../partials/carousel.pug
+        //- product lists
+        include ../partials/productlist.pug
+
+
+    //- fetch the query string
+    script(src="https://unpkg.com/axios/dist/axios.min.js")     
+    script( type="module" src="/js/index/index.js")   
+
+
+
+

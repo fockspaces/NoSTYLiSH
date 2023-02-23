@@ -44,6 +44,12 @@ const styles = {
 const onSubmit = (e) => {
   e.preventDefault();
 
+  // Get JWT token value
+  const jwtToken = document.getElementById("jwt-token").value;
+  if (!jwtToken) {
+    alert("please add JWT token");
+    return;
+  }
   // Get TapPay Fields  status
   const tappayStatus = TPDirect.card.getTappayFieldsStatus();
 
@@ -61,6 +67,7 @@ const onSubmit = (e) => {
     }
     alert("get prime success, prime: " + result.card.prime);
 
+    sendPayment(jwtToken, result.card.prime);
     // Send prime and other order information to Order Check Out API
     // Pay By Prime Docs: https://docs.tappaysdk.com/tutorial/zh/back.html#pay-by-prime-api
   });
