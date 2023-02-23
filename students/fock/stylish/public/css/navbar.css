@@ -48,11 +48,11 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   padding: 10px;
-  background-color: white;
+  background-color: black;
 }
 
 .dropdown-menu a {
-  color: #555;
+  color: wheat;
 }
 
 .dropdown-menu a:hover {
@@ -64,4 +64,10 @@
   color: white;
   background-color: black;
   border-color: black;
+}
+
+
+
+nav.navbar {
+  z-index: 1;
 }
