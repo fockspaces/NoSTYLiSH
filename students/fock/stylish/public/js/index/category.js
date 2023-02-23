@@ -12,7 +12,7 @@ const fetchDataBycategory = async (category, paging) => {
 
     return response.data;
   } catch (error) {
-    console.log("category not found");
+    console.log("category not found or out of page");
     return null;
   }
 };

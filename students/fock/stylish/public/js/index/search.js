@@ -15,7 +15,7 @@ const fetchDataByKeyword = async (keyword, paging) => {
     );
     return response.data;
   } catch (error) {
-    console.log("search items not found");
+    console.log("search items not found or out of page");
   }
 };
 

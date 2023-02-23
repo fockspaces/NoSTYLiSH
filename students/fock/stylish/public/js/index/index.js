@@ -24,8 +24,8 @@ const initialize = async () => {
 
   // default
   if (!products) {
-    products = await fetchDataBycategory("all", 0);
-    console.log("out of page");
+    products = await fetchDataBycategory("all", paging);
+    if (!products) products = await fetchDataBycategory("all", 0);
   }
 
   // render products
