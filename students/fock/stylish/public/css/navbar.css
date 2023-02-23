@@ -6,6 +6,7 @@
 
 /* Add some padding to the navbar items */
 .navbar-nav .nav-link {
+  margin-top: 15px;
   padding: 0 20px;
   color: #555;
 }

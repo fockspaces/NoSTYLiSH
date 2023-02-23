@@ -14,11 +14,13 @@ const renderProducts = (products) => {
     html += `
         <div class="col-md-4 mt-5 mb-5">
           <div class="card mt-2 product-card">
-            <img class="card-img-top" src="${product.main_image}" alt="img">
+          <a class="link-dark" href="/product?id=${
+            product.id
+          }"><img class="card-img-top" src="${product.main_image}" alt="img"></a>
             <div class="card-body">
-              <h5 class="card-title"><a class="link-dark" href="#">${
-                product.title
-              }</a></h5>
+              <h5 class="card-title"><a class="link-dark" href="/product?id=${
+                product.id
+              }">${product.title}</a></h5>
               <p class="card-text">${product.description.slice(0, 50)}...</p>
               <div class="color-options">${colorOptionsHtml}</div>
             </div>
