@@ -14,7 +14,6 @@ const searchCategory = async (req, res, category) => {
   if (filterData.data.length === 0)
     return res.status(404).send({ err: "page not found" });
 
-    console.log(filterData.hasMoreData);
   // convert image path
   const data = imagePathConverter(filterData.data);
   return res
@@ -52,9 +51,9 @@ const searchId = async (req, res) => {
     return res.status(400).send({ err: "please provide a valid id to search" });
   const paging = req.query.paging ? parseInt(req.query.paging) : 0;
   const filterData = await productDetails(id, paging);
-  const data = imagePathConverter(filterData.data);
+  if (!filterData) return res.status(404).send({ err: "not product found" });
 
-  if (!data) return res.status(404).send({ err: "not product found" });
+  const data = imagePathConverter([filterData]);
 
   return res.status(200).send({ data });
 };
