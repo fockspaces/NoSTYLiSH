@@ -25,8 +25,10 @@ const initialize = async () => {
   products = products ? products : await fetchDataBycategory("all", paging);
 
   // render products
+  renderProducts(products.data);
 
   // chang url
+  
 };
 
 initialize();
