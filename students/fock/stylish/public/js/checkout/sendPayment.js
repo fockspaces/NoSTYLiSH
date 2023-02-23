@@ -1,6 +1,8 @@
+const prime = localStorage.getItem("prime");
+console.log(prime);
 // Define the request body with the payment information and order details
 const requestBody = {
-  prime: "test_3a2fb2b7e892b914a03c95dd4dd5dc7970c908df67a49527c0a648b2bc9",
+  prime,
   order: {
     shipping: "delivery",
     payment: "credit_card",
