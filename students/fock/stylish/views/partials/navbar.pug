@@ -18,10 +18,27 @@ block navbar
 
                 div(class="navbar-nav ml-auto")
                     //- right side
-                    if(currentUser)
-                        form#post(action=`/user/logout` method='POST')
-                            input.btn.btn-dark(type='submit' value='Logout')
-                    else 
-                        a.btn(class="nav-link" href="/user/signup") Signup
-                        a.btn(class="nav-link" href="/user/login") Login
-    
+                    form(class="d-flex")
+                        input.form-control(type="search" placeholder="Search" aria-label="Search" id="search-input")
+                        button.btn.btn-outline-succes.ml-4(type="submit")
+                            img(src="/images/search-hover.png" alt="Search" height="30px")
+
+                    div.navbar-nav.ml-auto
+                        //- right side
+                        div.dropdown
+                            button.btn.btn-link.dropdown-toggle(id="user-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                img(src="/images/member-mobile.png" alt="User Icon" height="30px")
+                            ul.dropdown-menu.dropdown-menu-end(aria-labelledby="user-menu")
+                                if (currentUser)
+                                    li
+                                        a.dropdown-item(href="/user/profile") My Profile
+                                    li
+                                        form#post(action="/user/logout" method="POST")
+                                            button.btn.btn-link.dropdown-item(type="submit") Logout
+                                else
+                                    li
+                                        a.dropdown-item(href="/user/signup") Signup
+                                    li
+                                        a.dropdown-item(href="/user/login") Login
+
+                                

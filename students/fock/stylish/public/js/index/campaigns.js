@@ -13,7 +13,6 @@ const renderCampaigns = (campaigns) => {
       <div class="carousel-item ${activeClass}">
         <img class="d-block w-100" src="${campaign.picture}" alt="${campaign.story}" height="500px" width:"200px">
         <div class="carousel-caption d-none d-md-block">
-          <h5>${campaign.story}</h5>
         </div>
       </div>
     `;
