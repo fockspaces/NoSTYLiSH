@@ -37,6 +37,8 @@ const fetchDataByKeyword = async (keyword, paging) => {
   }
 };
 
+const searchHandler = async () => {};
+
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // Prevent the form from submitting normally
 
@@ -48,3 +50,5 @@ searchForm.addEventListener("submit", async (event) => {
   // Process the search results
   renderProducts(response.data);
 });
+
+export { fetchDataByKeyword };
