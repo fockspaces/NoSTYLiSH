@@ -66,9 +66,8 @@ const onSubmit = (e) => {
       return;
     }
     alert("get prime success, prime: " + result.card.prime);
-    localStorage.setItem("prime", result.card.prime);
 
-    sendPayment(jwtToken);
+    sendPayment(jwtToken, result.card.prime);
     // Send prime and other order information to Order Check Out API
     // Pay By Prime Docs: https://docs.tappaysdk.com/tutorial/zh/back.html#pay-by-prime-api
   });
