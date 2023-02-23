@@ -66,7 +66,16 @@
   border-color: black;
 }
 
+/* Style the collapsed navbar */
+.navbar-collapse {
+  background-color: #212529;
+}
 
+/* Style the links in the collapsed navbar */
+.navbar-collapse a {
+  color: white;
+  margin-bottom: 10px;
+}
 
 nav.navbar {
   z-index: 1;
