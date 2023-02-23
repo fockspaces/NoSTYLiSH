@@ -23,7 +23,10 @@ const initialize = async () => {
   }
 
   // default
-  products = products ? products : await fetchDataBycategory("all", paging);
+  if (!products) {
+    products = await fetchDataBycategory("all", 0);
+    console.log("out of page");
+  }
 
   // render products
   renderProducts(products.data);
