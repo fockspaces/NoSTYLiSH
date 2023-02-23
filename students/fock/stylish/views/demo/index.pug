@@ -1,14 +1,19 @@
 extends ../layouts/boilerplates.pug
 
 block content
+    link(rel="stylesheet" type="text/css" href="/css/index.css")
 
-    h1 Welcome to home page
-    a.btn.btn-primary(href=`/admin/product`) Create Product 
     .row
-    each product, i in products
-        .col-md-4
-            .card.mt-2
-                .card-body 
-                    h4.card-title 
-                        a.link-dark(href=`/admin/item/${product.id}`)= product.title
-                        img.product_img(src=`/images/${product.main_image}` alt=`img` width="100" height="100")
+        //- Campaign carousel
+        include ../partials/carousel.pug
+        //- product lists
+        include ../partials/productlist.pug
+
+
+    //- fetch the query string
+    script(src="https://unpkg.com/axios/dist/axios.min.js")     
+    script( type="module" src="/js/index/index.js")   
+
+
+
+

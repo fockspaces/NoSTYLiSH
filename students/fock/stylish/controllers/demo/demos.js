@@ -1,10 +1,3 @@
-const renderIndexPage = (req, res) => {
-  // fetch query string
-
-  // fetch products with category and paging (default to all)
-
-  
-  return res.render("./demo/index");
-};
+const {renderIndexPage} = require('./indexs')
 
 module.exports = { renderIndexPage };

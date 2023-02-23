@@ -1,0 +1,44 @@
+
+
+block navbar
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+        .container-fluid
+            a#all-link(class="navbar-brand" href="/index?category=all") Stylish
+            button(class="navbar-toggler" type="button" 
+                data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" 
+                aria-label="Toggle navigation")
+                span(class="navbar-toggler-icon")
+            div(class="collapse navbar-collapse" id="navbarNavAltMarkup")
+                .navbar-nav.me-auto.mb-2.mb-lg-0
+                    //- left side
+                    a#women-link(class="nav-link active" aria-current="page" href="/index?category=women") Women
+                    a#men-link(class="nav-link active" aria-current="page" href="/index?category=men") Men
+                    a#accessories-link(class="nav-link active" aria-current="page" href="/index?category=accessories") Accessories
+
+                div(class="navbar-nav ml-auto")
+                    //- right side
+                    form(class="d-flex")
+                        input.form-control(type="search" placeholder="Search" aria-label="Search" id="search-input")
+                        button.btn.btn-outline-succes.ml-4(type="submit")
+                            img(src="/images/search-hover.png" alt="Search" height="30px")
+
+                    div.navbar-nav.ml-auto
+                        //- right side
+                        div.dropdown
+                            button.btn.btn-link.dropdown-toggle(id="user-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                img(src="/images/member-mobile.png" alt="User Icon" height="30px")
+                            ul.dropdown-menu.dropdown-menu-end(aria-labelledby="user-menu")
+                                if (currentUser)
+                                    li
+                                        a.dropdown-item(href="/user/profile") My Profile
+                                    li
+                                        form#post(action="/user/logout" method="POST")
+                                            button.btn.btn-link.dropdown-item(type="submit") Logout
+                                else
+                                    li
+                                        a.dropdown-item(href="/user/signup") Signup
+                                    li
+                                        a.dropdown-item(href="/user/login") Login
+
+                                

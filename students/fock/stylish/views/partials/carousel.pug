@@ -1,0 +1,15 @@
+block carousel
+    .row#campaign-container
+        .col-md-12
+            #carousel-campaigns.carousel.slide(data-bs-ride="carousel")
+                //- Indicators
+                ol.carousel-indicators
+                //- Wrapper for slides
+                .carousel-inner
+                //- Controls
+                a.carousel-control-prev(href="#carousel-campaigns" role="button" data-bs-slide="prev")
+                    span.carousel-control-prev-icon(aria-hidden="true")
+                    span.visually-hidden Previous
+                a.carousel-control-next(href="#carousel-campaigns" role="button" data-bs-slide="next")
+                    span.carousel-control-next-icon(aria-hidden="true")
+                    span.visually-hidden Next
