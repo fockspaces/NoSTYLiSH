@@ -1,10 +1,22 @@
 const fetchDataBycategory = async (category, paging) => {
-  const endpoint = `http://52.194.142.24/api/1.0/products/${category}${
-    paging ? `?paging=${paging}` : ""
-  }`;
+  // get current URL
+  const currentUrl = window.location.href;
+
+  // create new URL based on current URL
+  const newUrl = currentUrl.replace(/category=[^&]*/, `category=${category}`);
 
   try {
+    // Send an Axios request to your API server with the category
+    const endpoint = `http://52.194.142.24/api/1.0/products/${category}${
+      paging ? `?paging=${paging}` : ""
+    }`;
     const response = await axios.get(endpoint);
+    // Process the search results
+    renderProducts(response.data.data);
+
+    // update the URL without redirecting
+    window.history.pushState(null, null, newUrl);
+
     return {
       data: response.data.data,
       next_paging: response.data.next_paging,
