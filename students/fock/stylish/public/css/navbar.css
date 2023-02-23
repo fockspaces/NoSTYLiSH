@@ -1,0 +1,67 @@
+/* Make the navbar taller */
+.navbar {
+  height: 80px;
+  padding-top: 10px;
+}
+
+/* Add some padding to the navbar items */
+.navbar-nav .nav-link {
+  padding: 0 20px;
+  color: #555;
+}
+.navbar-brand {
+  width: 150px;
+  font-size: 3em;
+}
+
+.navbar-nav {
+  font-size: 1.25em;
+}
+
+/* Style the search input */
+#search-input {
+  border-radius: 20px;
+  border: none;
+  box-shadow: none;
+  background-color: #f5f5f5;
+  padding: 5px 15px;
+  color: #555;
+}
+
+/* Style the search button */
+.btn-outline-success {
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-success:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Style the user menu */
+.dropdown-menu {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: white;
+}
+
+.dropdown-menu a {
+  color: #555;
+}
+
+.dropdown-menu a:hover {
+  color: black;
+}
+
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+  color: white;
+  background-color: black;
+  border-color: black;
+}

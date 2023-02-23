@@ -1,0 +1,183 @@
+/* Style for the main product image */
+#main-image {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Styles for the product title */
+#title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the product price */
+#price {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the color options */
+#color-options {
+  margin-bottom: 20px;
+}
+
+.color-option {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.color-option input {
+  display: none;
+}
+
+.color-option label {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color-option label:hover {
+  opacity: 0.8;
+}
+
+.color-option input:checked + label {
+  border: 2px solid black;
+}
+
+/* Styles for the size options */
+#size-options {
+  margin-bottom: 20px;
+}
+
+.size-option {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.size-option input {
+  display: none;
+}
+
+.size-option label {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.size-option label:hover {
+  opacity: 0.8;
+}
+
+.size-option input:checked + label {
+  background-color: black;
+  color: white;
+}
+
+/* Styles for the quantity input */
+#quantity {
+  margin-bottom: 20px;
+}
+
+.quantity-input {
+  display: inline-block;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+
+.quantity-input button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border: 1px solid black;
+  background-color: white;
+  cursor: pointer;
+}
+
+.quantity-input button:hover {
+  opacity: 0.8;
+}
+
+.quantity-input button:active {
+  outline: none;
+}
+
+.quantity-input button:focus {
+  outline: none;
+}
+
+/* Styles for the add to cart button */
+#add-to-cart {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#add-to-cart:hover {
+  opacity: 0.8;
+}
+
+#add-to-cart:active {
+  outline: none;
+}
+
+#add-to-cart:focus {
+  outline: none;
+}
+
+/* Styles for the other details section */
+#other-details {
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+#other-details h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#other-details ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+#other-details li {
+  margin-bottom: 10px;
+}
+
+#other-details li strong {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  #main-image {
+    margin-bottom: 10px;
+  }
+
+  #color-options,
+  #size-options,
+  #quantity {
+    margin-bottom: 10px;
+  }
+
+  .size-option {
+    margin-right: 5px;
+  }
+
+  .quantity-input {
+    width: 40%;
+  }
+}
