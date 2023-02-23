@@ -10,17 +10,17 @@ const renderCampaigns = (campaigns) => {
   campaigns.forEach((campaign, index) => {
     const activeClass = index === 0 ? "active" : "";
     html += `
-      <div class="carousel-item ${activeClass}">
-        <img class="d-block w-100" src="${campaign.picture}" alt="${campaign.story}" height="500px" width:"200px">
-        <div class="carousel-caption d-none d-md-block">
-        </div>
+    <div class="carousel-item ${activeClass}">
+      <img class="d-block w-100" src="${campaign.picture}" alt="${campaign.story}" height="500px" width:"200px">
+      <div class="carousel-caption d-none d-md-block">
       </div>
-    `;
+    </div>
+  `;
     indicatorsHtml += `
-      <button type="button" data-bs-target="#carousel-campaigns" data-bs-slide-to="${index}" class="${activeClass}" aria-current="${
+    <button type="button" data-bs-target="#carousel-campaigns" data-bs-slide-to="${index}" class="${activeClass}" aria-current="${
       activeClass === "active" ? "true" : "false"
     }" aria-label="Slide ${index + 1}"></button>
-    `;
+  `;
   });
   campaignContainer.innerHTML = html;
   indicatorsContainer.innerHTML = indicatorsHtml;
@@ -44,13 +44,16 @@ const renderCampaigns = (campaigns) => {
   });
 };
 
-// Fetch campaigns data and render carousel
-axios
-  .get("http://52.194.142.24/api/1.0/marketing/campaigns")
-  .then((response) => {
-    const campaigns = response.data.data;
-    renderCampaigns(campaigns);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+const fetchCampaigns = async () => {
+  try {
+    // fetch camaigns
+    const res = await axios.get(
+      "http://52.194.142.24/api/1.0/marketing/campaigns"
+    );
+    return res.data.data;
+  } catch (e) {
+    console.log("server error");
+  }
+};
+
+export { renderCampaigns, fetchCampaigns };

@@ -1,6 +1,7 @@
 import { fetchDataBycategory } from "./category.js";
 import { fetchDataByKeyword } from "./search.js";
 import { renderProducts } from "./products.js";
+import { renderCampaigns, fetchCampaigns } from "./campaigns.js";
 
 const categories = ["all", "women", "men", "accessories"];
 
@@ -16,7 +17,7 @@ const initialize = async () => {
     products = await fetchDataByKeyword(keyword, paging);
   }
 
-  if (category) {
+  if (!keyword && category) {
     // render by category
     products = await fetchDataBycategory(category, paging);
   }
@@ -25,8 +26,10 @@ const initialize = async () => {
   products = products ? products : await fetchDataBycategory("all", paging);
 
   // render products
+  renderProducts(products.data);
 
-  // chang url
+  const campaign = await fetchCampaigns();
+  renderCampaigns(campaign);
 };
 
 initialize();
