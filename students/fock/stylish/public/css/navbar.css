@@ -1,0 +1,80 @@
+/* Navbar */
+.navbar {
+  height: 80px;
+  padding-top: 10px;
+}
+
+.navbar-nav {
+  font-size: 1.25em;
+}
+
+.navbar-brand {
+  width: 150px;
+  font-size: 3em;
+}
+
+.navbar-nav .nav-link {
+  margin-top: 15px;
+  padding: 0 20px;
+  color: #555;
+}
+
+/* Search Bar */
+#search-input {
+  border-radius: 20px;
+  border: none;
+  box-shadow: none;
+  background-color: #f5f5f5;
+  padding: 5px 15px;
+  color: #555;
+}
+
+.btn-outline-success {
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-success:hover {
+  background-color: white;
+  color: black;
+}
+
+/* User Menu */
+.dropdown-menu {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: black;
+}
+
+.dropdown-menu a {
+  color: wheat;
+}
+
+.dropdown-menu a:hover {
+  color: black;
+}
+
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+
+/* Collapsed Navbar */
+.navbar-collapse {
+  background-color: #212529;
+}
+
+.navbar-collapse a {
+  color: white;
+}
+
+nav.navbar {
+  z-index: 1;
+}

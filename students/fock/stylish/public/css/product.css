@@ -1,0 +1,214 @@
+/* Styles for the main product image */
+#main-image {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 20px;
+  height: 70%;
+}
+
+/* Styles for the product details container */
+#product-container {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+/* Styles for the product title and price */
+#title,
+#price {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the color options */
+#color-options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.color-option:last-of-type {
+  margin-right: 0;
+}
+
+.color-option input[type="checkbox"] {
+  display: none;
+}
+
+.color-option label {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.color-option input[type="checkbox"]:checked + label {
+  border: 2px solid black;
+}
+
+.color-option input[type="checkbox"]:checked + label:hover {
+  opacity: 1;
+}
+
+.color-option input[type="checkbox"]:checked + label:after {
+  content: "\2713";
+  display: block;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 25px;
+  transition: opacity 0.2s;
+}
+
+.color-option input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+.color-option label:hover {
+  opacity: 0.8;
+}
+
+.color-option input[type="checkbox"]:focus + label {
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+/* Styles for the size options */
+#size-options {
+  margin-bottom: 20px;
+}
+
+.size-option {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.size-option input {
+  display: none;
+}
+
+.size-option label {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.size-option label:hover {
+  opacity: 0.8;
+}
+
+/* Styles for the quantity input */
+#quantity {
+  margin-bottom: 20px;
+}
+
+.quantity-input {
+  display: inline-block;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+
+.quantity-input button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border: 1px solid black;
+  background-color: white;
+  cursor: pointer;
+}
+
+.quantity-input button:hover {
+  opacity: 0.8;
+}
+
+.quantity-input button:active,
+.quantity-input button:focus {
+  outline: none;
+}
+
+/* Styles for the add to cart button */
+#add-to-cart {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#add-to-cart:hover,
+#add-to-cart:active,
+#add-to-cart:focus {
+  outline: none;
+  opacity: 0.8;
+}
+
+/* Styles for the other details section */
+
+#other-details {
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+#other-details h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#other-details ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+#other-details li {
+  margin-bottom: 10px;
+}
+
+#other-details li strong {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+}
+
+#other-details li code {
+  font-size: 16px;
+  background-color: #f8f8f8;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Media query for smaller screens */
+
+@media (max-width: 767px) {
+  #main-image {
+    margin-bottom: 10px;
+  }
+
+  #color-options,
+  #size-options,
+  #quantity {
+    margin-bottom: 10px;
+  }
+
+  .size-option {
+    margin-right: 5px;
+  }
+
+  .quantity-input {
+    width: 40%;
+  }
+}
