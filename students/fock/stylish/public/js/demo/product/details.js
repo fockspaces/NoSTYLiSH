@@ -1,14 +1,24 @@
 import { activateBtn } from "./acivatebtn.js";
 const renderProductDetails = (product) => {
   const productContainer = document.querySelector("#product-container");
-
+  const mainImage = product.main_image;
+  const otherImages = [mainImage, ...product.images];
+  console.log(mainImage, otherImages);
   // Create the HTML for the product details
   const html = `
       <div class="col-lg-6">
-        <div class="main-image-container m-2" style="background-image: url(${product.main_image})"></div>
+        <div class="main-image-container m-2" style="background-image: url(${mainImage})"></div>
         <div class="other-images-container m-4">
-          ${product.images ? product.images.map((image) => 
-            `<div class="thumbnail-image" style="background-image: url(${image})"></div>`).join("") : ""}
+          ${
+            otherImages
+              ? otherImages
+                  .map(
+                    (image) =>
+                      `<div class="thumbnail-image" style="background-image: url(${image})"></div>`
+                  )
+                  .join("")
+              : ""
+          }
         </div>
       </div>
       <div class="col-lg-6">
