@@ -1,0 +1,24 @@
+extends ../layouts/boilerplates.pug
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/loginPage.css")
+    .row 
+        h2.text-center Login
+        .col-5.offset-4.mx-auto
+            form#login.validated-form(action='/user/login' method='POST')
+                // email
+                .mb-3
+                    label.form-label(for='email') email
+                    input#email.form-control(type='text' name='user[email]' autofocus='' required='')
+                // password
+                .mb-3
+                    label.form-label(for='password') password
+                    input#password.form-control(type='password' name='user[password]' required='')
+                    button.mt-3.btn.btn-outline-success.col-12.mt-2 Submit
+
+            .d-flex.flex-column
+                button.mt-3#facebook-login.btn.btn-outline-info Login with Facebook
+                a.mt-3.btn.btn-outline-danger(href="/signup") Sign Up
+
+
+            script(src="/js/demo/profile/signin.js")
