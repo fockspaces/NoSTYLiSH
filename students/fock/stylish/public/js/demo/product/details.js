@@ -3,7 +3,6 @@ const renderProductDetails = (product) => {
   const productContainer = document.querySelector("#product-container");
   const mainImage = product.main_image;
   const otherImages = [mainImage, ...product.images];
-  console.log(mainImage, otherImages);
   // Create the HTML for the product details
   const html = `
       <div class="col-lg-6">

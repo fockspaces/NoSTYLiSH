@@ -86,7 +86,6 @@ const activateBtn = (product) => {
       quantityInput.value = 1;
       quantityInput.disabled = false;
       quantityInput.max = availableQuantity;
-      console.log(availableQuantity);
       minusBtn.disabled = false;
       plusBtn.disabled = false;
     });
@@ -123,7 +122,7 @@ const activateBtn = (product) => {
       quantityInput.value = value;
     }
   });
-  
+
   const mainImageContainer = document.querySelector(".main-image-container");
   const thumbnailImages = document.querySelectorAll(".thumbnail-image");
 
