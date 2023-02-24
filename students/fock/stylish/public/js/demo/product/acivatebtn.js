@@ -123,6 +123,16 @@ const activateBtn = (product) => {
       quantityInput.value = value;
     }
   });
+  
+  const mainImageContainer = document.querySelector(".main-image-container");
+  const thumbnailImages = document.querySelectorAll(".thumbnail-image");
+
+  thumbnailImages.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      const thumbnailImageUrl = thumbnail.style.backgroundImage.slice(5, -2);
+      mainImageContainer.style.backgroundImage = `url(${thumbnailImageUrl})`;
+    });
+  });
 
   const onCartSubmit = (event) => {
     event.preventDefault();

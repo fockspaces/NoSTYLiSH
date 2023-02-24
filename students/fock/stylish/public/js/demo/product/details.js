@@ -5,25 +5,31 @@ const renderProductDetails = (product) => {
   // Create the HTML for the product details
   const html = `
       <div class="col-lg-6">
-        <img id="main-image" src="${product.main_image}" alt="${
-    product.title
-  }" height="500px">
+        <div class="main-image-container m-2" style="background-image: url(${product.main_image})"></div>
+        <div class="other-images-container m-4">
+          ${product.images ? product.images.map((image) => 
+            `<div class="thumbnail-image" style="background-image: url(${image})"></div>`).join("") : ""}
+        </div>
       </div>
       <div class="col-lg-6">
         <h1 id="title">${product.title}</h1>
         <div id="price">NT$ ${Number(product.price).toFixed(2)}</div>
         <div id="color-options">
           <h3>Color:</h3>
-          ${product.colors.length ? product.colors
-            .map(
-              (color) => `
+          ${
+            product.colors.length
+              ? product.colors
+                  .map(
+                    (color) => `
             <div class="color-option">
               <input type="checkbox" id="${color.name}" value="${color.code}">
               <label for="${color.name}" style="background-color: #${color.code}"></label>
             </div>
           `
-            )
-            .join("") : ""}
+                  )
+                  .join("")
+              : ""
+          }
         </div>
 
         <div id="size-options">
