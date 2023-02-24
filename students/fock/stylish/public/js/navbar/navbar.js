@@ -1,11 +1,10 @@
-// categories.forEach((category) => {
-//   const catLink = document.getElementById(`${category}-link`);
-//   catLink.addEventListener("click", async (e) => {
-//     e.preventDefault();
-//     paging = 0;
-//     const data = await fetchDataBycategory(category, paging);
-//     if (!data) return console.log("out of page");
+const searchForm = document.querySelector("form");
+const searchInput = document.querySelector("#search-input");
 
-//     renderProducts(data.data);
-//   });
-// });
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  const searchQuery = searchInput.value ? searchInput.value.trim() : "";
+  const newUrl = `/index?keyword=${searchQuery}`;
+  window.location.href = newUrl;
+});

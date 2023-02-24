@@ -1,5 +1,3 @@
-const searchForm = document.querySelector("form");
-const searchInput = document.querySelector("#search-input");
 
 const fetchDataByKeyword = async (keyword, paging) => {
   try {
@@ -18,16 +16,5 @@ const fetchDataByKeyword = async (keyword, paging) => {
     console.log("search items not found or out of page");
   }
 };
-
-searchForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent the form from submitting normally
-
-  const searchQuery = searchInput.value ? searchInput.value.trim() : "";
-  const currentUrl = window.location.href;
-  const urlObj = new URL(currentUrl);
-  urlObj.searchParams.set("keyword", searchQuery);
-  const newUrl = urlObj.toString();
-  window.location.href = newUrl;
-});
 
 export { fetchDataByKeyword };

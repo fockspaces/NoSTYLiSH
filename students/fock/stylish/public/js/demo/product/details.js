@@ -14,7 +14,7 @@ const renderProductDetails = (product) => {
         <div id="price">NT$ ${Number(product.price).toFixed(2)}</div>
         <div id="color-options">
           <h3>Color:</h3>
-          ${product.colors
+          ${product.colors.length ? product.colors
             .map(
               (color) => `
             <div class="color-option">
@@ -23,21 +23,25 @@ const renderProductDetails = (product) => {
             </div>
           `
             )
-            .join("")}
+            .join("") : ""}
         </div>
 
         <div id="size-options">
           <h3>Size:</h3>
-          ${product.sizes
-            .map(
-              (size) => `
+          ${
+            product.sizes
+              ? product.sizes
+                  .map(
+                    (size) => `
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="size" id="${size}" value="${size}">
               <label class="form-check-label" for="${size}">${size}</label>
             </div>
           `
-            )
-            .join("")}
+                  )
+                  .join("")
+              : ""
+          }
         </div>
         <div id="quantity">
           <h3>Quantity:</h3>
@@ -65,8 +69,5 @@ const renderProductDetails = (product) => {
   productContainer.innerHTML = html;
   activateBtn(product);
 };
-
-
-
 
 export { renderProductDetails };

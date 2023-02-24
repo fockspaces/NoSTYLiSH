@@ -6,6 +6,12 @@ const id = urlSearchParams.get("id") || "";
 
 const initialize = async () => {
   const product = await fetchItemByID(id);
+  //  default to index page
+  if (!product) {
+    const newUrl = "/index";
+    return (window.location.href = newUrl);
+  }
+
   renderProductDetails(product);
 };
 

@@ -12,7 +12,7 @@ const fetchItemByID = async (id) => {
     return response.data.data[0];
   } catch (error) {
     console.log("item not found");
-    return null;
+    return false;
   }
 };
 
