@@ -11,7 +11,7 @@ const renderCampaigns = (campaigns) => {
     const activeClass = index === 0 ? "active" : "";
     html += `
     <div class="carousel-item ${activeClass}">
-      <img class="d-block w-100" src="${campaign.picture}" alt="${campaign.story}" height="500px" width:"200px">
+      <a href="/product?id=${campaign.product_id}"><img class="d-block w-100" src="${campaign.picture}" alt="${campaign.story}" height="500px" width:"200px"></a>
       <div class="carousel-caption d-none d-md-block">${campaign.story}
       </div>
     </div>

@@ -103,7 +103,7 @@ CREATE TABLE `item_lists` (
   `product_item_id` int NOT NULL,
   `qty` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `item_lists` (
 
 LOCK TABLES `item_lists` WRITE;
 /*!40000 ALTER TABLE `item_lists` DISABLE KEYS */;
-INSERT INTO `item_lists` VALUES (1,1,1,1),(2,1,5,5),(3,2,1,1),(4,2,59,5),(5,3,1,1),(6,3,59,5),(7,4,1,1),(8,4,59,5),(9,5,1,1),(10,5,59,5),(11,7,1,1),(12,7,59,5);
+INSERT INTO `item_lists` VALUES (1,1,1,1),(2,1,5,5),(3,2,1,1),(4,2,59,5),(5,3,1,1),(6,3,59,5),(7,4,1,1),(8,4,59,5),(9,5,1,1),(10,5,59,5),(11,7,1,1),(12,7,59,5),(13,10,77,1),(14,10,78,5),(15,11,77,1),(16,11,78,5),(17,12,77,1),(18,12,78,5),(19,13,77,1),(20,13,78,5),(21,14,77,1),(22,14,78,5),(23,15,77,1),(24,15,78,5),(25,16,77,1),(26,16,78,5),(27,17,77,1),(28,17,78,5);
 /*!40000 ALTER TABLE `item_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +136,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `recipient_id` (`recipient_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`recipient_id`) REFERENCES `recipients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'delivery',1234.00,14.00,1300.00,1,'2023-02-21 08:51:26','credit_card','paid'),(2,'delivery',1234.00,14.00,1300.00,2,'2023-02-21 10:22:02','credit_card','paid'),(3,'delivery',1234.00,14.00,1300.00,3,'2023-02-21 10:23:03','credit_card','paid'),(4,'delivery',1234.00,14.00,1300.00,4,'2023-02-21 10:25:59','credit_card','paid'),(5,'delivery',1234.00,14.00,1300.00,5,'2023-02-21 11:30:25','credit_card','paid'),(6,'delivery',1234.00,14.00,1300.00,6,'2023-02-21 12:07:44','credit_card','unpaid'),(7,'delivery',1234.00,14.00,1300.00,7,'2023-02-21 12:08:02','credit_card','paid'),(8,'delivery',1234.00,14.00,1300.00,8,'2023-02-23 01:21:09','credit_card','unpaid');
+INSERT INTO `orders` VALUES (1,'delivery',1234.00,14.00,1300.00,1,'2023-02-21 08:51:26','credit_card','paid'),(2,'delivery',1234.00,14.00,1300.00,2,'2023-02-21 10:22:02','credit_card','paid'),(3,'delivery',1234.00,14.00,1300.00,3,'2023-02-21 10:23:03','credit_card','paid'),(4,'delivery',1234.00,14.00,1300.00,4,'2023-02-21 10:25:59','credit_card','paid'),(5,'delivery',1234.00,14.00,1300.00,5,'2023-02-21 11:30:25','credit_card','paid'),(6,'delivery',1234.00,14.00,1300.00,6,'2023-02-21 12:07:44','credit_card','unpaid'),(7,'delivery',1234.00,14.00,1300.00,7,'2023-02-21 12:08:02','credit_card','paid'),(8,'delivery',1234.00,14.00,1300.00,8,'2023-02-23 01:21:09','credit_card','unpaid'),(9,'delivery',1234.00,14.00,1300.00,9,'2023-02-23 07:04:51','credit_card','unpaid'),(10,'delivery',1234.00,14.00,1300.00,10,'2023-02-23 07:06:41','credit_card','unpaid'),(11,'delivery',1234.00,14.00,1300.00,11,'2023-02-23 07:07:16','credit_card','paid'),(12,'delivery',1234.00,14.00,1300.00,12,'2023-02-23 07:07:45','credit_card','unpaid'),(13,'delivery',1234.00,14.00,1300.00,13,'2023-02-23 07:08:08','credit_card','paid'),(14,'delivery',1234.00,14.00,1300.00,14,'2023-02-23 07:30:36','credit_card','paid'),(15,'delivery',1234.00,14.00,1300.00,15,'2023-02-23 07:31:03','credit_card','paid'),(16,'delivery',1234.00,14.00,1300.00,16,'2023-02-23 07:31:11','credit_card','paid'),(17,'delivery',1234.00,14.00,1300.00,17,'2023-02-23 07:31:15','credit_card','paid');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `product_item` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `product_item_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (77,1,'1-M',32,130,'1','M'),(78,1,'2-L',32,130,'2','L'),(79,2,'1-M',32,150,'1','M'),(80,2,'4-L',32,150,'4','L'),(81,3,'2-S',132,150,'2','S'),(82,3,'4-XL',132,150,'4','XL'),(83,4,'4-S',41,200,'4','S'),(84,4,'5-L',41,200,'5','L'),(85,11,'1-L',114,500,'1','L'),(86,11,'4-S',114,500,'4','S'),(87,12,'2-M',14,250,'2','M'),(88,12,'5-L',14,250,'5','L'),(89,13,'2-L',14,200,'2','L'),(90,13,'5-S',14,200,'5','S'),(91,14,'5-S',14,124,'5','S'),(92,14,'7-S',14,124,'7','S'),(93,17,'3-M',14,14,'3','M');
+INSERT INTO `product_item` VALUES (77,1,'1-M',32,130,'1','M'),(78,1,'2-L',32,130,'2','L'),(79,2,'1-M',32,150,'1','M'),(80,2,'4-L',32,150,'4','L'),(81,3,'2-S',132,150,'2','S'),(82,3,'4-XL',132,150,'4','XL'),(83,4,'4-S',41,200,'4','S'),(84,4,'5-L',41,200,'5','L'),(85,11,'1-L',114,500,'1','L'),(86,11,'4-S',114,500,'4','S'),(87,12,'2-M',14,250,'2','M'),(88,12,'5-L',14,250,'5','L'),(89,13,'2-L',14,200,'2','L'),(90,13,'5-S',14,200,'5','S'),(91,14,'5-S',14,124,'5','S'),(92,14,'7-S',14,124,'7','S'),(93,17,'3-M',14,14,'3','M'),(94,15,'2-M',123,400,'2','M'),(95,15,'1-M',23,400,'1','M'),(96,18,'2-M',241,500,'2','M'),(97,18,'2-L',241,500,'2','L'),(98,20,'3-M',124,112,'3','M'),(99,20,'5-M',124,112,'5','M'),(100,21,'2-M',13,400,'2','M'),(101,21,'5-M',13,400,'5','M'),(102,21,'7-M',13,400,'7','M'),(103,22,'6-L',13,233,'6','L'),(104,22,'3-L',13,233,'3','L'),(105,45,'4-L',23,411,'4','L'),(106,45,'2-L',23,411,'2','L'),(107,46,'4-M',14,244,'4','M'),(108,46,'2-M',14,244,'2','M'),(109,47,'4-M',124,1440,'4','M'),(110,47,'6-M',124,1440,'6','M'),(111,48,'2-L',14,400,'2','L'),(112,48,'6-L',14,400,'6','L'),(113,49,'3-M',124,214,'3','M'),(114,49,'6-M',124,214,'6','M'),(115,50,'3-L',214,40,'3','L'),(116,50,'2-L',214,40,'2','L'),(117,51,'2-XL',41,440,'2','XL'),(118,51,'4-XL',41,440,'4','XL'),(119,52,'5-M',412,400,'5','M'),(120,52,'3-M',412,400,'3','M'),(121,53,'2-M',52,400,'2','M'),(122,53,'7-S',52,400,'7','S');
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +228,7 @@ CREATE TABLE `recipients` (
   `address` varchar(255) NOT NULL,
   `delivery_time` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +237,7 @@ CREATE TABLE `recipients` (
 
 LOCK TABLES `recipients` WRITE;
 /*!40000 ALTER TABLE `recipients` DISABLE KEYS */;
-INSERT INTO `recipients` VALUES (1,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(2,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(3,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(4,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(5,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(6,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(7,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(8,'Luke','0987654321','luke@gmail.com','市政府站','morning');
+INSERT INTO `recipients` VALUES (1,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(2,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(3,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(4,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(5,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(6,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(7,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(8,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(9,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(10,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(11,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(12,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(13,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(14,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(15,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(16,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(17,'Luke','0987654321','luke@gmail.com','市政府站','morning');
 /*!40000 ALTER TABLE `recipients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-23  9:39:10
+-- Dump completed on 2023-02-24 16:09:40
