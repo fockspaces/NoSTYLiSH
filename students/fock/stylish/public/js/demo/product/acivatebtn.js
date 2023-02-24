@@ -85,9 +85,27 @@ const activateBtn = (product) => {
       }
       quantityInput.value = 1;
       quantityInput.disabled = false;
+      quantityInput.max = availableQuantity;
+      console.log(availableQuantity);
       minusBtn.disabled = false;
       plusBtn.disabled = false;
     });
+  });
+
+  // add keypress event listener to limit input to numbers only
+  quantityInput.addEventListener("keypress", (event) => {
+    const key = event.keyCode;
+    if (key < 48 || key > 57) {
+      event.preventDefault();
+    }
+  });
+
+  // add change event listener to limit maximum value
+  quantityInput.addEventListener("change", () => {
+    const value = parseInt(quantityInput.value);
+    if (value > availableQuantity) {
+      quantityInput.value = availableQuantity;
+    }
   });
 
   minusBtn.addEventListener("click", () => {
