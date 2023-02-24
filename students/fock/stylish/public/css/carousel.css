@@ -13,6 +13,10 @@
   transform: translate(-50%, -50%);
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-caption h3 {
@@ -24,6 +28,11 @@
 .carousel-caption p {
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
 }
 
 .carousel-indicators button {

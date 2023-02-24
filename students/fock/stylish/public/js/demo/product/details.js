@@ -1,3 +1,4 @@
+import { activateBtn } from "./acivatebtn.js";
 const renderProductDetails = (product) => {
   const productContainer = document.querySelector("#product-container");
 
@@ -10,20 +11,21 @@ const renderProductDetails = (product) => {
       </div>
       <div class="col-lg-6">
         <h1 id="title">${product.title}</h1>
-        <div id="price">${product.price}</div>
+        <div id="price">NT$ ${Number(product.price).toFixed(2)}</div>
         <div id="color-options">
           <h3>Color:</h3>
           ${product.colors
             .map(
               (color) => `
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="${color.name}" value="${color.code}">
-              <label class="form-check-label" for="${color.name}">${color.name}</label>
+            <div class="color-option">
+              <input type="checkbox" id="${color.name}" value="${color.code}">
+              <label for="${color.name}" style="background-color: #${color.code}"></label>
             </div>
           `
             )
             .join("")}
         </div>
+
         <div id="size-options">
           <h3>Size:</h3>
           ${product.sizes
@@ -61,6 +63,10 @@ const renderProductDetails = (product) => {
 
   // Add the product details HTML to the container
   productContainer.innerHTML = html;
+  activateBtn(product);
 };
+
+
+
 
 export { renderProductDetails };

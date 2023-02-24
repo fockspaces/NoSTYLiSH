@@ -1,25 +1,25 @@
-/* Make the navbar taller */
+/* Navbar */
 .navbar {
   height: 80px;
   padding-top: 10px;
-}
-
-/* Add some padding to the navbar items */
-.navbar-nav .nav-link {
-  margin-top: 15px;
-  padding: 0 20px;
-  color: #555;
-}
-.navbar-brand {
-  width: 150px;
-  font-size: 3em;
 }
 
 .navbar-nav {
   font-size: 1.25em;
 }
 
-/* Style the search input */
+.navbar-brand {
+  width: 150px;
+  font-size: 3em;
+}
+
+.navbar-nav .nav-link {
+  margin-top: 15px;
+  padding: 0 20px;
+  color: #555;
+}
+
+/* Search Bar */
 #search-input {
   border-radius: 20px;
   border: none;
@@ -29,7 +29,6 @@
   color: #555;
 }
 
-/* Style the search button */
 .btn-outline-success {
   border-radius: 20px;
   border: none;
@@ -44,7 +43,7 @@
   color: black;
 }
 
-/* Style the user menu */
+/* User Menu */
 .dropdown-menu {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -67,12 +66,11 @@
   border-color: black;
 }
 
-/* Style the collapsed navbar */
+/* Collapsed Navbar */
 .navbar-collapse {
   background-color: #212529;
 }
 
-/* Style the links in the collapsed navbar */
 .navbar-collapse a {
   color: white;
 }
