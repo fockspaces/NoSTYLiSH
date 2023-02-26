@@ -10,10 +10,6 @@ const renderProfile = async (req, res) => {
   return res.render("./demo/profile");
 };
 
-const renderLoginOptions = async (req, res) => {
-  return res.render("./demo/loginOptions");
-};
-
 const renderLogin = async (req, res) => {
   return res.render("./demo/signin");
 };
@@ -26,7 +22,6 @@ module.exports = {
   renderIndexPage,
   renderItemPage,
   renderProfile,
-  renderLoginOptions,
   renderLogin,
   renderSignup,
 };

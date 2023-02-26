@@ -21,4 +21,6 @@ block content
                 a.mt-3.btn.btn-outline-danger(href="/signup") Sign Up
 
 
-            script(src="/js/demo/profile/signin.js")
+            script(async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js")
+            script(type="module" src="/js/demo/profile/signin.js")
+            script(type="module" src="/js/demo/profile/OAuthLogin.js")

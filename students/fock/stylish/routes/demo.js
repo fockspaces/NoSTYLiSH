@@ -7,7 +7,6 @@ const {
   renderProfile,
   renderLogin,
   renderSignup,
-  renderLoginOptions,
 } = require("../controllers/demo/demos");
 
 const { authToken } = require("../controllers/middleware/auth");
@@ -15,8 +14,7 @@ const { authToken } = require("../controllers/middleware/auth");
 demo.get("/index", renderIndexPage);
 demo.get("/product", renderItemPage);
 
-demo.get("/profile", authToken, renderProfile);
-demo.get("/loginOptions", renderLoginOptions);
+demo.get("/profile", renderProfile);
 demo.get("/login", renderLogin);
 demo.get("/signup", renderSignup);
 

@@ -4,6 +4,7 @@ const { searchUserById } = require("../../models/User/UserNative");
 const authToken = async (req, res, next) => {
   // get authorization token in headers
   const authHeader = req.headers.authorization;
+  console.log(authHeader);
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ error: "Unauthorized" });
   }
