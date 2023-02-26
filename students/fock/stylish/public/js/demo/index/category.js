@@ -2,7 +2,7 @@ const fetchDataBycategory = async (category, paging) => {
   try {
     // Send an Axios request to your API server with the search query
     const response = await axios.get(
-      `http://52.194.142.24/api/1.0/products/${category}`,
+      `api/1.0/products/${category}`,
       {
         params: {
           paging: paging,

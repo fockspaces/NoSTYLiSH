@@ -49,7 +49,7 @@ const fetchCampaigns = async () => {
   try {
     // fetch camaigns
     const res = await axios.get(
-      "http://52.194.142.24/api/1.0/marketing/campaigns"
+      "api/1.0/marketing/campaigns"
     );
     return res.data.data;
   } catch (e) {

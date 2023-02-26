@@ -284,7 +284,7 @@ CREATE TABLE `user` (
   `provider` varchar(255) NOT NULL,
   `picture` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'張峰銘','a86gj387@yahoo.com.tw','$2b$10$lC8idKk6dwAWl9eZz6Hoo.wJreHAb1s.rkXEDsx4r3yfGI6S29UXO','facebook','https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=5957823294307991&height=50&width=50&ext=1679215608&hash=AeRbaWAJPAOZJB6ZGrc'),(2,'323','123','$2b$10$w/yg4jPMnFv/9z4nG9cnlOnonGEWmEw6ikRkhgg86na3km6DKwSGq','native',''),(3,'323','1233213@gm.com','$2b$10$VoBxpL4WV9p4K/Vw3Mf.BOLNX5hk.Gc7Y7/ygqM1l6YmrrOZ0rjgm','native',''),(4,'asdasda','1233213a@gm.com','$2b$10$9NBC2pDfDsFmGHf826P8JutWTjucb2AZ5lOWxzC0jTX7NkHgi1qOG','native',''),(5,'321sad','1233213gm.com','$2b$10$nMg0VsZDmtqayWwzh9u15ePleNwDbHFy.qMFDNg62ZoomqQtwvHrK','native',''),(6,'321sad','1233213qwem','$2b$10$pSnpuq54krAgguIQO8I/duJT46P8X/6Ye5bCTRSjGUjI5lkiLoWWW','native',''),(7,'321sad','1233213@qwem.com','$2b$10$21VhsLaWPoclb0nwpRWzJe1hbdRPphIF/.cfhP/WTrDYMZSLA1WAy','native',''),(8,'3ddasd','1233@em.com','$2b$10$JvT96DHyxlH8gjme4ieuhuPAmVkx371vn6CRqyHh4ptg3skii0EoG','native','');
+INSERT INTO `user` VALUES (1,'001','001@gmail.com','$2b$10$jj.yzAuqSnEoEhoA2r3xwuBGeF5JxhdS5DdRKsLGNj4ar4GHqsgOS','native',''),(2,'002','002@gmail.com','$2b$10$.Bx5U6H5n3gmTvqj5f0wOO3aAx1dYC4rcG.hYBFt32WH9a5FuagES','native',''),(3,'張峰銘','a86gj387@yahoo.com.tw','$2b$10$wSbX87HlWU/95JGqHocD8.DLbJ5NKLLslPcI32qGlePUIoIcOexjC','facebook','https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=5957823294307991&height=50&width=50&ext=1679976588&hash=AeR4lw-2iUu6VAR6WAc');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -306,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-24 17:05:39
+-- Dump completed on 2023-02-26 12:15:29

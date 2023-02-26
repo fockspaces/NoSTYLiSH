@@ -8,46 +8,53 @@ function renderNavbar(currentUser) {
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav me-auto mb-2 mb-lg-0">
-            <a class="nav-link active" aria-current="page" href="/index?category=women" id="women-link">Women</a>
-            <a class="nav-link active" aria-current="page" href="/index?category=men" id="men-link">Men</a>
-            <a class="nav-link active" aria-current="page" href="/index?category=accessories" id="accessories-link">Accessories</a>
-          </div>
-          <div class="navbar-nav ml-auto">
-            <form class="d-flex">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-input">
-              <button class="btn btn-outline-success ml-4" type="submit">
-                <img src="/images/search-hover.png" alt="Search" height="30px">
-              </button>
-            </form>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+              <a class="nav-link active" aria-current="page" href="/index?category=women" id="women-link">Women</a>
+              <a class="nav-link active" aria-current="page" href="/index?category=men" id="men-link">Men</a>
+              <a class="nav-link active" aria-current="page" href="/index?category=accessories" id="accessories-link">Accessories</a>
+            </div>
             <div class="navbar-nav ml-auto">
-              <div class="dropdown">
-                <button class="btn  dropdown-toggle" type="button" id="user-menu" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/images/member-mobile.png" alt="User Icon" height="30px">
+              <form class="d-flex">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                <button class="btn btn-outline-success ml-4" type="submit">
+                  <img src="/images/search-hover.png" alt="Search" height="30px">
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-menu">
-                  ${
-                    currentUser
-                      ? `
-                    <li>
-                      <a class="dropdown-item" href="/profile">My Profile</a>
-                    </li>
-                    <li>
-                        <a class="btn dropdown-item" type="submit" id="logout-btn">Logout</a>
-                    </li>
-                  `
-                      : `
-                    <li>
-                      <a class="dropdown-item" href="/signup">Signup</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login">Login</a>
-                    </li>
-                  `
-                  }
-                </ul>
-              </div>
+              </form>
+                <a class="btn-outline-success" href="/checkout">
+                    <div class="header__link-icon-cart">                    
+                    <img src="/images/cart-hover.png" alt="Cart" height="30px">
+                      <div class="header__link-icon-cart-number">${
+                        localStorage.getItem("cart_number") || 11
+                      }</div>
+                    </div>
+                </a>
+                <div class="dropdown">
+                  <button class="btn  dropdown-toggle btn-outline-success" type="button" id="user-menu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/images/member-hover.png" alt="User Icon" height="30px">
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-menu">
+                    ${
+                      currentUser
+                        ? `
+                      <li>
+                        <a class="dropdown-item" href="/profile">My Profile</a>
+                      </li>
+                      <li>
+                          <a class="btn dropdown-item" type="submit" id="logout-btn">Logout</a>
+                      </li>
+                    `
+                        : `
+                      <li>
+                        <a class="dropdown-item" href="/signup">Signup</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="/login">Login</a>
+                      </li>
+                    `
+                    }
+                    </ul>
+                </div>
             </div>
           </div>
         </div>
