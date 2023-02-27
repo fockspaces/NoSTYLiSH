@@ -24,10 +24,8 @@ loginForm.addEventListener("submit", async (e) => {
   } catch (error) {
     // handle error
     console.log(error);
+    const message = error.response.data.err;
 
-    const message = JSON.stringify(error.response.data);
     alert(message);
   }
 });
-
-

@@ -23,8 +23,14 @@ signupForm.addEventListener("submit", async (event) => {
   } catch (error) {
     // handle error
     console.log(error);
+    const errors = error.response.data.err;
 
-    const message = JSON.stringify(error.response.data);
+    let message = "";
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        message += `${key}: ${errors[key]}\n`;
+      }
+    }
     alert(message);
   }
 });
