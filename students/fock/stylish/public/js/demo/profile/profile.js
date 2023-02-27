@@ -1,4 +1,3 @@
-
 async function getUserProfile() {
   // check if there's auth_token
   const access_token = localStorage.getItem("access_token");
@@ -20,20 +19,24 @@ async function getUserProfile() {
       console.log(error.message);
     }
     // no, go to signup / login page
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
     window.location.href = "/login";
   }
 }
 getUserProfile();
 
 function renderProfile(user) {
-    const profileContainer = document.querySelector("#profile-container");
-  
-    const profileHtml = `
+  const profileContainer = document.querySelector("#profile-container");
+
+  const profileHtml = `
       <div class="container">
         <div class="row profile-row">
           <div class="col-md-3">
             <div class="profile-img">
-              <img src="${user.picture || '/images/member_default.png'}" alt="User picture" class="rounded-circle">
+              <img src="${
+                user.picture || "/images/member_default.png"
+              }" alt="User picture" class="rounded-circle">
             </div>
           </div>
           <div class="col-md-9">
@@ -65,7 +68,6 @@ function renderProfile(user) {
         </div>
       </div>
     `;
-  
-    profileContainer.innerHTML = profileHtml;
-  }
-  
+
+  profileContainer.innerHTML = profileHtml;
+}
