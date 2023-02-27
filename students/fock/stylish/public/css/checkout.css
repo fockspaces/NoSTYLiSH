@@ -1,4 +1,4 @@
-ul {
+ul, li {
   list-style: none;
 }
 
@@ -25,9 +25,7 @@ ul {
   justify-content: space-between;
 }
 
-#product-lists-container {
-  flex: 0 0 60%;
-}
+
 
 .col-6:last-child {
   flex: 0 0 40%;
@@ -141,6 +139,19 @@ ul {
 
   .card-price {
     font-size: 1rem;
+  }
+
+  #product-lists-container {
+    width: 100%;
+  }
+  
+  .col-8 {
+    display: none;
+  }
+  
+  #product-lists-container.col-12 {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 

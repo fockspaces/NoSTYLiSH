@@ -31,7 +31,7 @@ function displayCartList(cartList) {
     })
     .join("");
 
-  productListsContainer.innerHTML = `<ul>${productListsHtml}</ul>`;
+  productListsContainer.innerHTML = `${productListsHtml}`;
 
   // Add event listener to delete-item button
   const deleteItemBtns = document.querySelectorAll(".delete-btn");

@@ -1,22 +1,49 @@
 import { displayCartList, displayTotalPrice, cartList } from "./renderCart.js";
 import { setup } from "./paymentHandler.js";
 
-// check if login
-const jwtToken = localStorage.getItem("access_token");
-if (!jwtToken) {
-  alert("please login");
-  window.location.href = "/login";
+async function checkLogin() {
+  // check if there's auth_token
+  const access_token = localStorage.getItem("access_token");
+  const url = "api/1.0/user/profile";
+
+  try {
+    // verify token and get profile
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+    // login, return true
+    return true;
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data);
+    } else {
+      console.log(error.message);
+    }
+    // no, go to signup / login page
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }
 }
 
-// check if cart is not empty
-if (!cartList.length) {
-  alert("cart is empty");
-  window.location.href = "/index";
-}
+const checkout = async () => {
+  // check if login
+  await checkLogin();
 
-// render cart and card form
-displayCartList(cartList);
-displayTotalPrice(cartList);
+  // check if cart is not empty
+  if (!cartList.length) {
+    alert("cart is empty");
+    window.location.href = "/index";
+  }
 
-// handle click button
-setup();
+  // render cart and card form
+  displayCartList(cartList);
+  displayTotalPrice(cartList);
+
+  // handle click button
+  setup();
+};
+
+checkout();
