@@ -26,11 +26,13 @@ signupForm.addEventListener("submit", async (event) => {
     const errors = error.response.data.err;
 
     let message = "";
-    for (const key in errors) {
-      if (errors.hasOwnProperty(key)) {
-        message += `${key}: ${errors[key]}\n`;
+    if (typeof errors === "object") {
+      for (const key in errors) {
+        if (errors.hasOwnProperty(key)) {
+          message += `${key}: ${errors[key]}\n`;
+        }
       }
-    }
+    } else message = errors;
     alert(message);
   }
 });
