@@ -4,11 +4,11 @@ const upload = require("../utils/multer");
 
 const {
   createCampaignProduct,
-  renderCampaignPage,
   fetchCampaignList,
+  checkCampaignCache,
 } = require("../controllers/marketing/marketings");
 
-marketing.get("/campaigns", fetchCampaignList);
+marketing.get("/campaigns", checkCampaignCache, fetchCampaignList);
 
 marketing
   .route("/createCampaign")

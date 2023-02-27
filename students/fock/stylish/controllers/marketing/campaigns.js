@@ -4,6 +4,7 @@ const {
 } = require("../../models/Marketing/Marketing");
 const { searchProductById } = require("../../models/Product/Product");
 const { imagePath } = require("../../utils/infofilter");
+const { accessClient, client } = require("../../utils/redis");
 
 const createCampaignProduct = async (req, res) => {
   // get data from req.body
@@ -30,6 +31,10 @@ const fetchCampaignList = async (req, res) => {
     const picture = imagePath(data.picture);
     return { ...data, picture };
   });
+
+  // save to cache
+  await client.set("campaigns", JSON.stringify(dataWithPath));
+  await client.disconnect();
   return res.status(200).send({ data: dataWithPath });
 };
 
