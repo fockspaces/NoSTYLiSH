@@ -153,17 +153,14 @@ const activateBtn = (product) => {
       id: product.id,
       title: product.title,
       description: product.description,
+      image: product.main_image,
       price: product.price,
       color: { code: selectedColor },
       size: selectedSize,
       qty: quantityInput.value,
     });
-    console.log(list);
     localStorage.setItem("cart_list", JSON.stringify(list));
     localStorage.setItem("cart_number", list.length);
-    console.log("Selected color: ", selectedColor);
-    console.log("Selected size: ", selectedSize);
-    console.log("Selected Quantity:", quantityInput.value);
 
     location.reload();
   };

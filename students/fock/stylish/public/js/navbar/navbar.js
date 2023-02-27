@@ -9,7 +9,7 @@ function renderNavbar(currentUser) {
           <span class="navbar-toggler-icon"></span>
         </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="navbar-nav me-auto ">
               <a class="nav-link active" aria-current="page" href="/index?category=women" id="women-link">Women</a>
               <a class="nav-link active" aria-current="page" href="/index?category=men" id="men-link">Men</a>
               <a class="nav-link active" aria-current="page" href="/index?category=accessories" id="accessories-link">Accessories</a>

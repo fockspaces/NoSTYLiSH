@@ -1,7 +1,5 @@
 // Get cart list from local storage
 const cartList = JSON.parse(localStorage.getItem("cart_list")) || [];
-
-// Function to display products in cart list
 function displayCartList(cartList) {
   const productListsContainer = document.querySelector(
     "#product-lists-container"
@@ -10,14 +8,21 @@ function displayCartList(cartList) {
     .map((product, index) => {
       return `
         <li>
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">${product.title}</h5>
-              <p class="card-text">${product.description}</p>
-              <p class="card-text">Quantity: ${product.qty}</p>
-              <p class="card-text">Price: $${Number(product.price).toFixed(
-                2
-              )}</p>
+          <div class="card">
+          <div class="card-image">
+            <img src="${product.image}" alt="${product.title}">
+          </div>
+          <div class="card-details">
+              <h3 class="card-title">${product.title}</h3>
+              <p class="card-description">${product.description}</p>
+              <div class="card-qty-price">
+                  <div class="card-qty">
+                    Quantity: ${product.qty}
+                  </div>
+                  <div class="card-price">
+                    $${(Number(product.price) * product.qty).toFixed(2)}
+                  </div>
+              </div>
             </div>
           </div>
         </li>
@@ -36,10 +41,15 @@ function displayTotalPrice(cartList) {
 
   const orderSummaryContainer = document.querySelector("#order-summary");
   const orderSummaryHtml = `
-    <h5>Total: $${totalPrice.toFixed(2)}</h5>
+    <div class="card text-left">
+      <div class="card-body">
+        <h5>Total: $${totalPrice.toFixed(2)}</h5>
+      </div>
+    </div>
   `;
 
   orderSummaryContainer.innerHTML = orderSummaryHtml;
 }
+
 
 export { displayCartList, displayTotalPrice, cartList };

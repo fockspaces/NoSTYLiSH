@@ -5,6 +5,7 @@
 
 .navbar-nav {
   font-size: 1.25em;
+  margin-top: 15px;
 }
 
 .navbar-nav > * {
