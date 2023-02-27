@@ -3,11 +3,11 @@ extends ../layouts/boilerplates.pug
 block content
     link(rel="stylesheet" type="text/css" href="/css/checkout.css")
     .container
-        .row
+        .row.mb-3
             .col-12.col-lg-8#product-lists-container
-            .col-lg-4.d-none.d-lg-block
+            .col-lg-4
                 .row
-                    .col-12.mb-4 
+                    .col-12.mb-4.mt-3 
                         h4 Payment Information
                         form#payment-form
                             .form-group
@@ -22,24 +22,7 @@ block content
                     .col-12.mb-4 
                         #order-summary
                         btn.btn.btn-outline-success#checkout-button Place Order
-            .col-lg-12.d-lg-none
-                .row
-                    .col-12.mb-4 
-                        h4 Payment Information
-                        form#payment-form
-                            .form-group
-                                label(for="card-number") Card Number
-                                .tpfield#card-number.form-control
-                            .form-group
-                                label(for="card-expiration-date") Expiration Date
-                                .tpfield#card-expiration-date.form-control
-                            .form-group
-                                label(for="card-ccv") CCV
-                                .tpfield#card-ccv.form-control
-                    .col-12.mb-4 
-                        #order-summary
-                        btn.btn.btn-outline-success#checkout-button Place Order
-
+           
     script(src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0")
     script(src="https://unpkg.com/axios/dist/axios.min.js")     
     script(type="module" src="/js/demo/checkout/checkout.js")

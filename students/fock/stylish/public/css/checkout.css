@@ -1,4 +1,5 @@
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
@@ -24,8 +25,6 @@ ul, li {
   display: flex;
   justify-content: space-between;
 }
-
-
 
 .col-6:last-child {
   flex: 0 0 40%;
@@ -144,14 +143,19 @@ ul, li {
   #product-lists-container {
     width: 100%;
   }
-  
-  .col-8 {
-    display: none;
-  }
-  
+
   #product-lists-container.col-12 {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  #payment-form {
+    width: 100%;
+  }
+
+  /* adjust the height of the TapPay fields for mobile screens */
+  .tpfield {
+    height: 40px !important;
   }
 }
 

@@ -9,7 +9,7 @@ const fields = {
   },
   expirationDate: {
     // DOM object
-    element: document.getElementById("card-expiration-date"),
+    element: '#card-expiration-date',
     placeholder: "MM / YY",
     className: "form-control",
   },
@@ -125,5 +125,6 @@ const setup = () => {
   checkoutButton.addEventListener("click", onSubmit);
   TPDirect.card.onUpdate(errorHandler);
 };
+
 
 export { setup };
