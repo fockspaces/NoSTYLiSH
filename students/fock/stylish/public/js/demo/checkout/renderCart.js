@@ -22,7 +22,8 @@ function displayCartList(cartList) {
                   <div class="card-price">
                     $${(Number(product.price) * product.qty).toFixed(2)}
                   </div>
-              </div>
+                  <button class="delete-btn" data-index="${index}">Delete</button>
+                  </div>
             </div>
           </div>
         </li>
@@ -31,6 +32,28 @@ function displayCartList(cartList) {
     .join("");
 
   productListsContainer.innerHTML = `<ul>${productListsHtml}</ul>`;
+
+  // Add event listener to delete-item button
+  const deleteItemBtns = document.querySelectorAll(".delete-btn");
+  deleteItemBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      let cartList = JSON.parse(localStorage.getItem("cart_list"));
+      cartList.splice(index, 1);
+      localStorage.setItem("cart_list", JSON.stringify(cartList));
+      localStorage.setItem("cart_number", cartList.length);
+
+      // check if cart is not empty
+      if (!cartList.length) {
+        alert("cart is empty");
+        window.location.href = "/index";
+      }
+
+      // render cart and card form
+      displayCartList(cartList);
+      displayTotalPrice(cartList);
+    });
+  });
 }
 
 // Function to display total price of all products in cart list
@@ -51,5 +74,6 @@ function displayTotalPrice(cartList) {
   orderSummaryContainer.innerHTML = orderSummaryHtml;
 }
 
+const onClick = () => {};
 
 export { displayCartList, displayTotalPrice, cartList };

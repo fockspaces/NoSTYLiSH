@@ -143,3 +143,20 @@ ul {
     font-size: 1rem;
   }
 }
+
+.delete-btn {
+  background-color: #fff;
+  color: #f00;
+  border: 1px solid #f00;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.delete-btn:hover {
+  background-color: #f00;
+  color: #fff;
+}
