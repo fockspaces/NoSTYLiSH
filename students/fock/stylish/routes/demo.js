@@ -7,9 +7,8 @@ const {
   renderProfile,
   renderLogin,
   renderSignup,
+  renderCheckout,
 } = require("../controllers/demo/demos");
-
-const { authToken } = require("../controllers/middleware/auth");
 
 demo.get("/index", renderIndexPage);
 demo.get("/product", renderItemPage);
@@ -17,5 +16,6 @@ demo.get("/product", renderItemPage);
 demo.get("/profile", renderProfile);
 demo.get("/login", renderLogin);
 demo.get("/signup", renderSignup);
+demo.get("/checkout", renderCheckout);
 
 module.exports = demo;

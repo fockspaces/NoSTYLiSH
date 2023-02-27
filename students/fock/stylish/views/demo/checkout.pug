@@ -1,0 +1,34 @@
+extends ../layouts/boilerplates.pug
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/checkout.css")
+
+    h1 Check Out
+    #product-lists-container.row
+    .row
+        .col-12.mb-4
+            h4 Payment Information
+            form#payment-form
+                .col
+                    .form-group
+                        label(for="card-number") Card Number
+                        .tpfield#card-number.form-control
+                .col
+                    .form-group
+                        label(for="card-expiration-date") Expiration Date
+                        .tpfield#card-expiration-date.form-control
+                .col
+                    .form-group
+                        label(for="card-ccv") CCV
+                        .tpfield#card-ccv.form-control
+    .row
+        .col-9.mb-4
+            h4 Order Summary
+            #order-summary
+    .row
+        .col-4.mb-4
+            btn.btn.btn-outline-success#checkout-button Place Order
+
+    script(src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0")
+    script(src="https://unpkg.com/axios/dist/axios.min.js")     
+    script(type="module" src="/js/demo/checkout/checkout.js")  

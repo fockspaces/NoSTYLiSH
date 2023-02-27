@@ -18,10 +18,15 @@ const renderSignup = async (req, res) => {
   return res.render("./demo/signup");
 };
 
+const renderCheckout = async (req, res) => {
+  return res.render("./demo/checkout");
+};
+
 module.exports = {
   renderIndexPage,
   renderItemPage,
   renderProfile,
   renderLogin,
   renderSignup,
+  renderCheckout,
 };

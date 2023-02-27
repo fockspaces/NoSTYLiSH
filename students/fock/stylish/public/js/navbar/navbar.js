@@ -25,7 +25,7 @@ function renderNavbar(currentUser) {
                     <div class="header__link-icon-cart">                    
                     <img src="/images/cart-hover.png" alt="Cart" height="30px">
                       <div class="header__link-icon-cart-number">${
-                        localStorage.getItem("cart_number") || 11
+                        localStorage.getItem("cart_number") || 0
                       }</div>
                     </div>
                 </a>

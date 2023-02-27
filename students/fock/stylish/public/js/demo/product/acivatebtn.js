@@ -144,9 +144,28 @@ const activateBtn = (product) => {
 
     const selectedColor = selectedColorInput.value;
     const selectedSize = selectedSizeInput.value;
+
+    // add item to cart
+    const list = localStorage.getItem("cart_list")
+      ? JSON.parse(localStorage.getItem("cart_list"))
+      : [];
+    list.push({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      color: { code: selectedColor },
+      size: selectedSize,
+      qty: quantityInput.value,
+    });
+    console.log(list);
+    localStorage.setItem("cart_list", JSON.stringify(list));
+    localStorage.setItem("cart_number", list.length);
     console.log("Selected color: ", selectedColor);
     console.log("Selected size: ", selectedSize);
     console.log("Selected Quantity:", quantityInput.value);
+
+    location.reload();
   };
 
   // add event listener to the Add to Cart button
