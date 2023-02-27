@@ -1,25 +1,29 @@
 const renderIndexPage = async (req, res) => {
-  return res.render("./demo/index");
+  return res.render("demo/index");
 };
 
 const renderItemPage = async (req, res) => {
-  return res.render("./demo/product");
+  return res.render("demo/product");
 };
 
 const renderProfile = async (req, res) => {
-  return res.render("./demo/profile");
+  return res.render("demo/profile");
 };
 
 const renderLogin = async (req, res) => {
-  return res.render("./demo/signin");
+  return res.render("demo/signin");
 };
 
 const renderSignup = async (req, res) => {
-  return res.render("./demo/signup");
+  return res.render("demo/signup");
 };
 
 const renderCheckout = async (req, res) => {
-  return res.render("./demo/checkout");
+  return res.render("demo/checkout");
+};
+
+const renderThankyou = async (req, res) => {
+  return res.render("demo/thankyou");
 };
 
 module.exports = {
@@ -29,4 +33,5 @@ module.exports = {
   renderLogin,
   renderSignup,
   renderCheckout,
+  renderThankyou,
 };

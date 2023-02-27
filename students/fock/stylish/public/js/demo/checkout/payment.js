@@ -13,8 +13,13 @@ const sendPayment = async (prime) => {
     });
     console.log(result.data);
     alert("Payment successful! Thank you for your purchase.");
+
+    // clearout cart
+    localStorage.removeItem("cart_list");
+    localStorage.removeItem("cart_number");
+
     // go to thankyou page
-    
+    window.location.href = "/thankyou";
   } catch (e) {
     console.error(e.message);
     alert(
