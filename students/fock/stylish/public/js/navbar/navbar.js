@@ -85,6 +85,8 @@ function renderNavbar(currentUser) {
       // remove the access_token and currentUser items from localStorage
       localStorage.removeItem("access_token");
       localStorage.removeItem("user");
+      localStorage.removeItem("cart_list");
+      localStorage.removeItem("cart_number");
       currentUser = null;
       window.location.href = "/index";
     });
