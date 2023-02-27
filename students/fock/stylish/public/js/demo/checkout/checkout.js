@@ -24,8 +24,6 @@ async function checkLogin() {
     // no, go to signup / login page
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
-    localStorage.removeItem("cart_list");
-    localStorage.removeItem("cart_number");
     window.location.href = "/login";
   }
 }
