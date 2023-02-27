@@ -2,10 +2,10 @@ extends ../layouts/boilerplates.pug
 
 block content
     link(rel="stylesheet" type="text/css" href="/css/loginPage.css")
-    .row 
+    .row.full-width 
         h2.text-center Login
         .col-5.offset-4.mx-auto
-            form#login.validated-form(action='/user/login' method='POST')
+            form#login.validated-form.full-width(action='/user/login' method='POST')
                 // email
                 .mb-3
                     label.form-label(for='email') email

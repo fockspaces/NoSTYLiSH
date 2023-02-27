@@ -1,6 +1,8 @@
 extends ../layouts/boilerplates.pug
 
 block content
+    link(rel="stylesheet" type="text/css" href="/css/loginPage.css")
+
     .row
         .col-12.text-center
             h2 Sign Up
@@ -20,5 +22,4 @@ block content
                     input#password.form-control(type='password' name='user[password]' required='')
                 button.mt-3.btn.btn-outline-success.col-12.mt-2 Sign up
 
-
-                script(src="/js/demo/profile/signup.js")
+    script(src="/js/demo/profile/signup.js")
