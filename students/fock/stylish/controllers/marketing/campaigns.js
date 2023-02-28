@@ -4,11 +4,11 @@ const {
 } = require("../../models/Marketing/Marketing");
 const { searchProductById } = require("../../models/Product/Product");
 const { imagePath } = require("../../utils/infofilter");
-const { accessClient, client } = require("../../utils/redis");
+const { client } = require("../../utils/redis");
 
 const createCampaignProduct = async (req, res) => {
   // get data from req.body
-  const { product_id, story } = req.body;
+  const { product_id, story, start_date, end_date } = req.body;
   // validate product_id
   const product = await searchProductById(product_id);
   if (!product || product.id != product_id)
@@ -18,7 +18,18 @@ const createCampaignProduct = async (req, res) => {
   const pictureFile = req.file;
   const picture = pictureFile.filename;
   // insert data into db
-  const info = await addCampaign({ product_id, picture, story });
+  const info = await addCampaign({
+    product_id,
+    picture,
+    story,
+    start_date,
+    end_date,
+  });
+
+  // reset cache data
+  await client.connect();
+  await client.del("campaigns");
+  await client.disconnect();
 
   return res
     .status(200)

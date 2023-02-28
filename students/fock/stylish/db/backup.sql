@@ -27,8 +27,10 @@ CREATE TABLE `campaign` (
   `product_id` int NOT NULL,
   `picture` text NOT NULL,
   `story` text NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +39,7 @@ CREATE TABLE `campaign` (
 
 LOCK TABLES `campaign` WRITE;
 /*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
-INSERT INTO `campaign` VALUES (1,1,'picture-f618e58b-6be1-4464-85db-8c1d2b14c3d8.jpg','haha\r\n'),(2,2,'picture-b76aaac5-9a3b-4580-8257-de343f3a84f6.jpg','haha\r\n'),(4,3,'picture-91f81b16-d19a-4253-b1b2-3a1432cfb7f6.jpg','haha\r\n');
+INSERT INTO `campaign` VALUES (1,1,'picture-f618e58b-6be1-4464-85db-8c1d2b14c3d8.jpg','haha\r\n','2023-02-01','2023-03-31'),(2,2,'picture-b76aaac5-9a3b-4580-8257-de343f3a84f6.jpg','haha\r\n','2023-02-01','2023-04-30'),(4,3,'picture-91f81b16-d19a-4253-b1b2-3a1432cfb7f6.jpg','haha\r\n','2023-02-01','2023-05-31'),(5,1,'picture1.jpg','Campaign 1','2021-01-01','2021-01-31'),(6,2,'picture2.jpg','Campaign 2','2021-02-01','2021-02-28'),(7,3,'picture3.jpg','Campaign 3','2021-03-01','2021-03-31'),(8,2,'picture-308c6520-d19d-4deb-8a61-cf7bb4bcc16c.jpg','haha','2023-02-20','2023-03-10');
 /*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +105,7 @@ CREATE TABLE `item_lists` (
   `product_item_id` int NOT NULL,
   `qty` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +114,7 @@ CREATE TABLE `item_lists` (
 
 LOCK TABLES `item_lists` WRITE;
 /*!40000 ALTER TABLE `item_lists` DISABLE KEYS */;
-INSERT INTO `item_lists` VALUES (1,1,1,1),(2,1,5,5),(3,2,1,1),(4,2,59,5),(5,3,1,1),(6,3,59,5),(7,4,1,1),(8,4,59,5),(9,5,1,1),(10,5,59,5),(11,7,1,1),(12,7,59,5),(13,10,77,1),(14,10,78,5),(15,11,77,1),(16,11,78,5),(17,12,77,1),(18,12,78,5),(19,13,77,1),(20,13,78,5),(21,14,77,1),(22,14,78,5),(23,15,77,1),(24,15,78,5),(25,16,77,1),(26,16,78,5),(27,17,77,1),(28,17,78,5);
+INSERT INTO `item_lists` VALUES (1,1,1,1),(2,1,5,5),(3,2,1,1),(4,2,59,5),(5,3,1,1),(6,3,59,5),(7,4,1,1),(8,4,59,5),(9,5,1,1),(10,5,59,5),(11,7,1,1),(12,7,59,5),(13,10,77,1),(14,10,78,5),(15,11,77,1),(16,11,78,5),(17,12,77,1),(18,12,78,5),(19,13,77,1),(20,13,78,5),(21,14,77,1),(22,14,78,5),(23,15,77,1),(24,15,78,5),(25,16,77,1),(26,16,78,5),(27,17,77,1),(28,17,78,5),(29,18,77,3),(30,18,78,4),(31,19,77,3),(32,19,78,4),(33,20,77,3),(34,20,78,4),(35,24,79,1),(36,25,79,1),(37,25,82,2),(38,25,81,1),(39,26,87,1),(40,26,89,1),(41,26,87,1),(42,27,87,1),(43,27,89,1),(44,27,87,1);
 /*!40000 ALTER TABLE `item_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +138,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `recipient_id` (`recipient_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`recipient_id`) REFERENCES `recipients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +147,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'delivery',1234.00,14.00,1300.00,1,'2023-02-21 08:51:26','credit_card','paid'),(2,'delivery',1234.00,14.00,1300.00,2,'2023-02-21 10:22:02','credit_card','paid'),(3,'delivery',1234.00,14.00,1300.00,3,'2023-02-21 10:23:03','credit_card','paid'),(4,'delivery',1234.00,14.00,1300.00,4,'2023-02-21 10:25:59','credit_card','paid'),(5,'delivery',1234.00,14.00,1300.00,5,'2023-02-21 11:30:25','credit_card','paid'),(6,'delivery',1234.00,14.00,1300.00,6,'2023-02-21 12:07:44','credit_card','unpaid'),(7,'delivery',1234.00,14.00,1300.00,7,'2023-02-21 12:08:02','credit_card','paid'),(8,'delivery',1234.00,14.00,1300.00,8,'2023-02-23 01:21:09','credit_card','unpaid'),(9,'delivery',1234.00,14.00,1300.00,9,'2023-02-23 07:04:51','credit_card','unpaid'),(10,'delivery',1234.00,14.00,1300.00,10,'2023-02-23 07:06:41','credit_card','unpaid'),(11,'delivery',1234.00,14.00,1300.00,11,'2023-02-23 07:07:16','credit_card','paid'),(12,'delivery',1234.00,14.00,1300.00,12,'2023-02-23 07:07:45','credit_card','unpaid'),(13,'delivery',1234.00,14.00,1300.00,13,'2023-02-23 07:08:08','credit_card','paid'),(14,'delivery',1234.00,14.00,1300.00,14,'2023-02-23 07:30:36','credit_card','paid'),(15,'delivery',1234.00,14.00,1300.00,15,'2023-02-23 07:31:03','credit_card','paid'),(16,'delivery',1234.00,14.00,1300.00,16,'2023-02-23 07:31:11','credit_card','paid'),(17,'delivery',1234.00,14.00,1300.00,17,'2023-02-23 07:31:15','credit_card','paid');
+INSERT INTO `orders` VALUES (1,'delivery',1234.00,14.00,1300.00,1,'2023-02-21 08:51:26','credit_card','paid'),(2,'delivery',1234.00,14.00,1300.00,2,'2023-02-21 10:22:02','credit_card','paid'),(3,'delivery',1234.00,14.00,1300.00,3,'2023-02-21 10:23:03','credit_card','paid'),(4,'delivery',1234.00,14.00,1300.00,4,'2023-02-21 10:25:59','credit_card','paid'),(5,'delivery',1234.00,14.00,1300.00,5,'2023-02-21 11:30:25','credit_card','paid'),(6,'delivery',1234.00,14.00,1300.00,6,'2023-02-21 12:07:44','credit_card','unpaid'),(7,'delivery',1234.00,14.00,1300.00,7,'2023-02-21 12:08:02','credit_card','paid'),(8,'delivery',1234.00,14.00,1300.00,8,'2023-02-23 01:21:09','credit_card','unpaid'),(9,'delivery',1234.00,14.00,1300.00,9,'2023-02-23 07:04:51','credit_card','unpaid'),(10,'delivery',1234.00,14.00,1300.00,10,'2023-02-23 07:06:41','credit_card','unpaid'),(11,'delivery',1234.00,14.00,1300.00,11,'2023-02-23 07:07:16','credit_card','paid'),(12,'delivery',1234.00,14.00,1300.00,12,'2023-02-23 07:07:45','credit_card','unpaid'),(13,'delivery',1234.00,14.00,1300.00,13,'2023-02-23 07:08:08','credit_card','paid'),(14,'delivery',1234.00,14.00,1300.00,14,'2023-02-23 07:30:36','credit_card','paid'),(15,'delivery',1234.00,14.00,1300.00,15,'2023-02-23 07:31:03','credit_card','paid'),(16,'delivery',1234.00,14.00,1300.00,16,'2023-02-23 07:31:11','credit_card','paid'),(17,'delivery',1234.00,14.00,1300.00,17,'2023-02-23 07:31:15','credit_card','paid'),(18,'delivery',905.00,5.00,910.00,18,'2023-02-27 05:06:34','credit_card','paid'),(19,'delivery',905.00,5.00,910.00,19,'2023-02-27 05:07:10','credit_card','paid'),(20,'delivery',905.00,5.00,910.00,20,'2023-02-27 05:19:22','credit_card','paid'),(21,'delivery',-5.00,5.00,0.00,21,'2023-02-27 05:20:37','credit_card','unpaid'),(22,'delivery',-5.00,5.00,0.00,22,'2023-02-27 05:20:40','credit_card','unpaid'),(23,'delivery',-5.00,5.00,0.00,23,'2023-02-27 05:20:44','credit_card','unpaid'),(24,'delivery',145.00,5.00,150.00,24,'2023-02-27 05:23:52','credit_card','paid'),(25,'delivery',595.00,5.00,600.00,25,'2023-02-27 06:02:30','credit_card','paid'),(26,'delivery',695.00,5.00,700.00,26,'2023-02-27 08:47:54','credit_card','paid'),(27,'delivery',695.00,5.00,700.00,27,'2023-02-27 08:47:54','credit_card','paid');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +230,7 @@ CREATE TABLE `recipients` (
   `address` varchar(255) NOT NULL,
   `delivery_time` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,8 +239,32 @@ CREATE TABLE `recipients` (
 
 LOCK TABLES `recipients` WRITE;
 /*!40000 ALTER TABLE `recipients` DISABLE KEYS */;
-INSERT INTO `recipients` VALUES (1,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(2,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(3,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(4,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(5,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(6,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(7,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(8,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(9,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(10,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(11,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(12,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(13,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(14,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(15,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(16,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(17,'Luke','0987654321','luke@gmail.com','市政府站','morning');
+INSERT INTO `recipients` VALUES (1,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(2,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(3,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(4,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(5,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(6,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(7,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(8,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(9,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(10,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(11,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(12,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(13,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(14,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(15,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(16,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(17,'Luke','0987654321','luke@gmail.com','市政府站','morning'),(18,'002','','002@gmail.com','',''),(19,'002','','002@gmail.com','',''),(20,'002','','002@gmail.com','',''),(21,'002','','002@gmail.com','',''),(22,'002','','002@gmail.com','',''),(23,'002','','002@gmail.com','',''),(24,'002','','002@gmail.com','',''),(25,'002','','002@gmail.com','',''),(26,'002','','002@gmail.com','',''),(27,'002','','002@gmail.com','','');
 /*!40000 ALTER TABLE `recipients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'admin'),(2,'user');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -283,8 +309,11 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `provider` varchar(255) NOT NULL,
   `picture` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `role_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +322,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'001','001@gmail.com','$2b$10$jj.yzAuqSnEoEhoA2r3xwuBGeF5JxhdS5DdRKsLGNj4ar4GHqsgOS','native',''),(2,'002','002@gmail.com','$2b$10$.Bx5U6H5n3gmTvqj5f0wOO3aAx1dYC4rcG.hYBFt32WH9a5FuagES','native',''),(3,'張峰銘','a86gj387@yahoo.com.tw','$2b$10$wSbX87HlWU/95JGqHocD8.DLbJ5NKLLslPcI32qGlePUIoIcOexjC','facebook','https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=5957823294307991&height=50&width=50&ext=1679976588&hash=AeR4lw-2iUu6VAR6WAc');
+INSERT INTO `user` VALUES (3,'admin','admin@gmail.com','$2b$10$d2ebDaDA8nHvEQAfOW29qe6Wmj60mNEtjrFmk8q/LS3ANxiu8xwni','native','',1),(4,'user','user@gmail.com','$2b$10$/G.pZQ6BUYaaRQhAUaGACeX7PA5GyLgVkiex.XYp33ZaK2N7BJnWK','native','',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -306,4 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-26 12:15:29
+-- Dump completed on 2023-02-28 20:38:45

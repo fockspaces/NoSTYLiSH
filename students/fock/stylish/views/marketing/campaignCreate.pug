@@ -19,5 +19,13 @@ block content
           label(for='story') Story:
           textarea#story.form-control(name='story', required)
 
+        .form-group.mb-3 
+          label(for='start_date') Start Date:
+          input#start_date.form-control(type='date' name='start_date', required)
+
+        .form-group.mb-3 
+          label(for='end_date') End Date:
+          input#end_date.form-control(type='date' name='end_date', required)
+
         .mt-2.mb-5 
           button.btn.btn-primary#submit-button(type='submit') Create Campaign
