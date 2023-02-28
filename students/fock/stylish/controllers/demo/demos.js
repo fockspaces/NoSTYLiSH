@@ -7,6 +7,7 @@ const renderItemPage = async (req, res) => {
 };
 
 const renderProfile = async (req, res) => {
+  
   return res.render("demo/profile");
 };
 
