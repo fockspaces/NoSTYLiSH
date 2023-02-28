@@ -88,7 +88,8 @@ function renderNavbar(currentUser) {
       localStorage.removeItem("cart_list");
       localStorage.removeItem("cart_number");
       currentUser = null;
-      window.location.href = "/index";
+
+      window.location.href = "/api/1.0/user/logout";
     });
   }
 }

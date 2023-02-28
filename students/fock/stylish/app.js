@@ -4,6 +4,7 @@ const domain_name = process.env.DOMAIN_NAME;
 const { renderHomePage } = require("./controllers/products/products");
 
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 const path = require("path");
 const cors = require("cors");
@@ -11,6 +12,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+app.use(cookieParser());
 
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies

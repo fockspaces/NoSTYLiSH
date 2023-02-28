@@ -34,13 +34,15 @@ const OAuthSignIn = async (req, res) => {
       picture,
       provider: "facebook",
     });
-    newUser = { id: userId, email };
+    newUser = { id: userId, email, role_id: 2 };
   }
 
   // get JWT token
-  newUser = newUser ? newUser : { id: user.id, email };
+  newUser = newUser ? newUser : { id: user.id, email, role_id: 2 };
   const access_expired = process.env.JWT_EXPIRED;
   const JWT_token = getJwtToken(newUser);
+  res.cookie("access_token", `Bearer ${JWT_token}`, { httpOnly: true });
+
 
   const sendUser = user
     ? passwordFilter(user)

@@ -7,7 +7,7 @@ const { validateSignup } = require("../../utils/inputValidation");
 
 const nativeSignUp = async (req, res) => {
   // check required fields exists
-  const { name, email, password } = req.body;
+  const { name, email, password, role_id } = req.body;
   const requiredMeet = hasRequiredField({ name, email, password });
   if (!requiredMeet)
     return res.status(400).send({ err: "missing required fields" });
@@ -26,12 +26,14 @@ const nativeSignUp = async (req, res) => {
     email,
     password,
     provider: "native",
+    role_id,
   });
-  const newUser = { id: userId, email };
+  const newUser = { id: userId, email, role_id };
 
   // get JWT token
   const access_expired = process.env.JWT_EXPIRED;
   const access_token = getJwtToken(newUser);
+  res.cookie("access_token", `Bearer ${access_token}`, { httpOnly: true });
 
   const user = await searchUserByEmail(email);
 
@@ -53,7 +55,12 @@ const nativeSignIn = async (req, res) => {
 
   // get JWT token
   const access_expired = process.env.JWT_EXPIRED;
-  const access_token = getJwtToken({ id: findUser.id, email: findUser.email });
+  const access_token = getJwtToken({
+    id: findUser.id,
+    email: findUser.email,
+    role_id: findUser.role_id,
+  });
+  res.cookie("access_token", `Bearer ${access_token}`, { httpOnly: true });
 
   // sending response
   const sendUser = passwordFilter(findUser);

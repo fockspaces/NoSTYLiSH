@@ -10,6 +10,7 @@ async function getUserProfile() {
         Authorization: `Bearer ${access_token}`,
       },
     });
+    console.log(response.data.data);
     renderProfile(response.data.data);
     // yes, render profile
   } catch (error) {

@@ -6,7 +6,6 @@ const { searchUserByEmail, createUser } = require("../../models/User/User");
 const { hasRequiredField, checkContentType } = require("./userError");
 const { getJwtToken } = require("../../utils/jwt");
 
-
 const signupHandler = async (req, res) => {
   // content type validation
   checkContentType(req, res);
@@ -28,4 +27,16 @@ const signInHandler = (req, res) => {
   return res.status(400).send({ err: "wrong provider name" });
 };
 
-module.exports = { signupHandler, signInHandler, profileHandler };
+const logoutHandler = (req, res) => {
+  // clear cookies
+  res.clearCookie('access_token');
+  console.log("logout");
+  return res.redirect("/index");
+};
+
+module.exports = {
+  signupHandler,
+  signInHandler,
+  profileHandler,
+  logoutHandler,
+};

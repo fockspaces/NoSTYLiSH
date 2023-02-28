@@ -16,17 +16,25 @@ const searchUserById = async (id) => {
 };
 
 const createUser = async (user) => {
-  const { name, email, password, picture, provider } = user;
+  const { name, email, password, picture, provider, role_id } = user;
   const pictureCheck = picture || "";
   const passwordCheck = password ? password : `${name}_${email}_${picture}`;
   const providerCheck = provider;
+  const roleCheck = role_id || 2;
   const create =
-    "INSERT INTO user (name, email, password, provider, picture) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO user (name, email, password, provider, picture, role_id) VALUES (?, ?, ?, ? ,? ,?)";
 
   // hash password
   const hashPassword = await hash(passwordCheck);
 
-  const values = [name, email, hashPassword, providerCheck, pictureCheck];
+  const values = [
+    name,
+    email,
+    hashPassword,
+    providerCheck,
+    pictureCheck,
+    roleCheck,
+  ];
   const [result] = await pool.query(create, values);
   return result.insertId;
 };
