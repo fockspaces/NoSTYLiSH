@@ -27,7 +27,6 @@ const getAllCampaigns = async () => {
   const searchCampaigns = `SELECT * FROM campaign WHERE start_date <= NOW() AND end_date >= NOW()`;
 
   const [result] = await pool.query(searchCampaigns);
-  console.log(result);
   // return data
   return result;
 };

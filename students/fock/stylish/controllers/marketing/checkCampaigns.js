@@ -27,7 +27,6 @@ const checkCampaignCache = async (req, res, next) => {
         await client.disconnect();
       }
 
-      console.log("hit: ", cachedata);
       return res.status(200).send({ data: cachedata });
     }
 

@@ -1,5 +1,5 @@
 const { verifyToken } = require("../../utils/jwt");
-const { searchUserById } = require("../../models/User/UserNative");
+const { checkUser } = require("../users/checkUser");
 const roles = require("../../utils/roles");
 
 const authToken = async (req, res, next) => {
@@ -19,7 +19,7 @@ const authToken = async (req, res, next) => {
   const { id, email, role_id } = decodedToken;
 
   // check whether user exists
-  const user = await searchUserById(id);
+  const user = await checkUser(id);
   if (!user || email !== user.email)
     return res.status(403).send({ err: "wrong token provided, please check" });
 
@@ -42,11 +42,9 @@ const authorize = (permissions) => {
     });
 
     if (!authorized) {
-      return res
-        .status(403)
-        .send({
-          err: "Forbidden: User not authorized to access this resource",
-        });
+      return res.status(403).send({
+        err: "Forbidden: User not authorized to access this resource",
+      });
     }
 
     next();
