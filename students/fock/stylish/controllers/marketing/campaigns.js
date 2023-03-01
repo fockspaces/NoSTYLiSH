@@ -27,9 +27,7 @@ const createCampaignProduct = async (req, res) => {
   });
 
   // reset cache data
-  await client.connect();
   await client.del("campaigns");
-  await client.disconnect();
 
   return res
     .status(200)
@@ -46,9 +44,7 @@ const fetchCampaignList = async (req, res) => {
 
     // save to cache if cache on
     if (req.redisConnection) {
-      await client.connect();
       await client.set("campaigns", JSON.stringify(dataWithPath));
-      await client.disconnect();
     }
     return res.status(200).send({ data: dataWithPath });
   } catch (err) {

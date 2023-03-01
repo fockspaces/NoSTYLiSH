@@ -28,11 +28,13 @@ const user = require("./routes/user");
 const marketing = require("./routes/marketing");
 const order = require("./routes/order");
 const demo = require("./routes/demo");
+const { client } = require("./utils/redis");
 
 const {
   errorHandler,
   notFoundHandler,
 } = require("./controllers/middleware/error");
+const { connect } = require("http2");
 
 app.use("/admin", admin);
 app.use("/", demo);
@@ -48,10 +50,19 @@ app.use("/images/", express.static("./uploads/"));
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(port, () => {
+client.on("connect", () => {
+  console.log("Connected to Redis server");
+});
+
+client.on("error", (err) => {
+  console.error("Failed to connect to Redis server: ", err);
+});
+
+app.listen(port, async () => {
   console.log(`listening at http://localhost:${port}`);
   console.log(
     `you can access the server with the link: http://${domain_name}/`
   );
   console.log(`kill this process with:$ kill ${process.pid}`);
+  await client.connect();
 });
