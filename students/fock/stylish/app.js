@@ -33,10 +33,11 @@ const {
   errorHandler,
   notFoundHandler,
 } = require("./controllers/middleware/error");
+const { limiter } = require("./utils/rateLimit");
 
 app.use("/admin", admin);
 app.use("/", demo);
-app.use("/api/1.0/products", product);
+app.use("/api/1.0/products", limiter, product);
 app.use("/api/1.0/user", user);
 app.use("/api/1.0/marketing", marketing);
 app.use("/api/1.0/order", order);
