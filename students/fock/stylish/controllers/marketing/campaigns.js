@@ -37,16 +37,24 @@ const createCampaignProduct = async (req, res) => {
 };
 
 const fetchCampaignList = async (req, res) => {
-  const data = await getAllCampaigns();
-  const dataWithPath = data.map((data) => {
-    const picture = imagePath(data.picture);
-    return { ...data, picture };
-  });
+  try {
+    const data = await getAllCampaigns();
+    const dataWithPath = data.map((data) => {
+      const picture = imagePath(data.picture);
+      return { ...data, picture };
+    });
 
-  // save to cache
-  await client.set("campaigns", JSON.stringify(dataWithPath));
-  await client.disconnect();
-  return res.status(200).send({ data: dataWithPath });
+    // save to cache if cache on
+    if (req.redisConnection) {
+      await client.connect();
+      await client.set("campaigns", JSON.stringify(dataWithPath));
+      await client.disconnect();
+    }
+    return res.status(200).send({ data: dataWithPath });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).send({ error: "Unable to fetch data" });
+  }
 };
 
 const renderCampaignPage = async (req, res) => {
