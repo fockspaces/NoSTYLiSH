@@ -5,10 +5,8 @@ const checkCampaignCache = async (req, res, next) => {
   try {
     // use redis cache
     await client.connect();
-    req.redisConnection = true;
     const cacheData = await client.get(key);
     await client.disconnect();
-
 
     // if cachData exists
     if (cacheData) {
@@ -35,7 +33,10 @@ const checkCampaignCache = async (req, res, next) => {
   } catch (e) {
     console.log(e.message);
     // cache access failed
-    if (!req.redisConnection) await client.disconnect();
+    if (e.port === 6379) {
+      console.log("disconnect redis");
+      await client.disconnect();
+    }
     // If Redis is down, just continue to the next middleware
     next();
   }
