@@ -30,7 +30,7 @@ const checkCampaignCache = async (req, res, next) => {
     console.log(e.message);
     // cache access failed
     if (e.port === 6379) {
-      console.log("disconnect redis");
+      console.log("redis not connected");
     }
     // If Redis is down, just continue to the next middleware
     next();
