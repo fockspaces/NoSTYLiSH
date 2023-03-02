@@ -74,7 +74,8 @@ const rateLimit2 = (capacity, limitTime) => {
 
 const rateLimit3 = (capacity, window) => {
   return async (req, res, next) => {
-    const ip = req.socket.remoteAddress || req.ip;
+    const ip =
+      req.headers["x-forwarded-for"] || req.socket.remoteAddress || req.ip;
     console.log(ip);
     const key = `rateLimit:${ip}`;
 

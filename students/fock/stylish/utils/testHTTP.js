@@ -1,10 +1,10 @@
 const axios = require("axios");
 
-const endpoint = "http://localhost/api/1.0/products/all";
+const endpoint = "http://52.194.142.24/api/1.0/products/all";
 
 let hit = 0;
 let miss = 0;
-const delay = 100;
+const delay = 0;
 
 const test = async () => {
   console.time("Total time");
