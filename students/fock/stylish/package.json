@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app",
     "build": "concurrently 'nodemon app' 'cd client && npm start'",
-    "test": "mocha utils/testHTTP.js"
+    "test": "node utils/testHTTP.js"
   },
   "keywords": [],
   "author": "",
