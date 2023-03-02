@@ -50,19 +50,10 @@ app.use("/images/", express.static("./uploads/"));
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-client.on("connect", () => {
-  console.log("Connected to Redis server");
-});
-
-client.on("error", (err) => {
-  console.error("Failed to connect to Redis server: ", err);
-});
-
 app.listen(port, async () => {
   console.log(`listening at http://localhost:${port}`);
   console.log(
     `you can access the server with the link: http://${domain_name}/`
   );
   console.log(`kill this process with:$ kill ${process.pid}`);
-  await client.connect();
 });
