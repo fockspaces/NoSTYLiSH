@@ -14,6 +14,8 @@ const renderCheckoutPage = (req, res) => {
 const checkoutHandler = async (req, res) => {
   // todo :
   // fetch each item in list
+  const { order } = req.body;
+  if (!order) return res.status(400).send({ err: "missing order details" });
 
   // check the item is enough in the inventory
 
@@ -22,7 +24,6 @@ const checkoutHandler = async (req, res) => {
   // fetch order from body and check
 
   // fetch recipient
-  const { order } = req.body;
   const recipient = await recipientHandler(order.recipient);
   const recipientID = recipient.id;
   if (!recipient) return res.status(404).send({ err: "recipient not found" });
@@ -43,7 +44,9 @@ const checkoutHandler = async (req, res) => {
   if (!listResult)
     return res
       .status(400)
-      .send({ err: "items inserting failed : item not found" });
+      .send({
+        err: "The order cannot be placed due to insufficient inventory or unmatched product items",
+      });
 
   // prime error handling
   const { prime } = req.body;

@@ -5,6 +5,13 @@ const ItemListCreate = async (orderId, list) => {
   try {
     await connection.beginTransaction();
     for (const { product_item_id, qty } of list) {
+      // check Inventory qty and update
+      const updateInventory =
+        "UPDATE product_item SET stock_qty = stock_qty - ? WHERE id = ?";
+      const values_ = [qty, product_item_id];
+      await pool.query(updateInventory, values_);
+      
+      // add to ItemList
       const addItemList =
         "INSERT INTO item_lists (order_id, product_item_id, qty) VALUES (?,?,?)";
       const values = [orderId, product_item_id, qty];
