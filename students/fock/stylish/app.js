@@ -36,12 +36,12 @@ const {
 } = require("./controllers/middleware/error");
 const { limiter } = require("./utils/rateLimit");
 
+app.use("/" , demo);
 app.use("/admin", admin);
-app.use("/", demo);
 app.use("/api/1.0/products", limiter, product);
-app.use("/api/1.0/user", user);
-app.use("/api/1.0/marketing", marketing);
-app.use("/api/1.0/order", order);
+app.use("/api/1.0/user", limiter, user);
+app.use("/api/1.0/marketing", limiter, marketing);
+app.use("/api/1.0/order", limiter, order);
 
 app.use(express.static("public"));
 app.use("/images/", express.static("./uploads/"));
