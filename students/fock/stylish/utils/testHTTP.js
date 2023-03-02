@@ -4,9 +4,10 @@ const endpoint = "http://localhost/api/1.0/products/all";
 
 let hit = 0;
 let miss = 0;
+const delay = 100;
 
-// way 1
-test = async () => {
+const test = async () => {
+  console.time("Total time");
   for (let i = 0; i < 100; i++) {
     try {
       const res = await axios.get(endpoint);
@@ -14,11 +15,12 @@ test = async () => {
       console.log(`Request ${i} succeeded with status ${res.status}`);
     } catch (e) {
       miss++;
-      console.error(`Request ${i} failed with status ${e.response.status}`);
+      console.error(e.message);
     }
+    await new Promise((resolve) => setTimeout(resolve, delay));
   }
   console.log(`hit rate : ${hit} / ${hit + miss}`);
+  console.timeEnd("Total time");
 };
-
 
 test();

@@ -72,57 +72,49 @@ const rateLimit2 = (capacity, limitTime) => {
   };
 };
 
-const rateLimit3 = (limit, interval) => {
+const rateLimit3 = (capacity, window) => {
   return async (req, res, next) => {
-    const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-    const key = `rate-limiter:${ip}`;
+    const ip = req.socket.remoteAddress || req.ip;
+    console.log(ip);
+    const key = `rateLimit:${ip}`;
 
-    try {
-      // Acquire lock
-      const lock = await client.acquire(key, { timeout: 1000 });
-      if (!lock) {
-        return res.status(429).send("Too Many Requests");
-      }
+    const exists = await client.exists(key);
 
-      // Get current count and reset time
-      const [count, resetTime] = await Promise.all([
-        client.get(key),
-        client.pttl(`${key}:reset`),
-      ]);
-
-      const now = Date.now();
-
-      // If count is null, set it to zero
-      let currentCount = count ? parseInt(count, 10) : 0;
-
-      // If reset time is in the future, wait until then
-      if (resetTime > 0) {
-        await new Promise((resolve) => setTimeout(resolve, resetTime));
-      }
-
-      // Increment count and set reset time if count is zero
-      currentCount++;
-      if (currentCount === 1) {
-        await Promise.all([
-          client.set(key, currentCount, "EX", interval),
-          client.psetex(`${key}:reset`, interval, now + interval),
-        ]);
-      } else {
-        await client.set(key, currentCount);
-      }
-
-      // Release lock and call next middleware
-      await client.release(lock);
-      next();
-    } catch (err) {
-      console.error(err);
+    // If the key doesn't exist, set it and continue
+    if (!exists) {
+      await client.setex(key, window, 1);
       return next();
     }
+
+    const [currentCount, lastSuccess] = await Promise.all([
+      client.incr(key),
+      client.get(`${key}:lastSuccess`),
+    ]);
+
+    // If the last successful request was more than `window` seconds ago,
+    // reset the count and last success time
+    if (lastSuccess && Date.now() - lastSuccess > window * 1000) {
+      await Promise.all([
+        client.set(key, 1),
+        client.set(`${key}:lastSuccess`, Date.now()),
+      ]);
+      return next();
+    }
+
+    // If the current count is greater than the capacity, expire the key and return a 429
+    if (currentCount > capacity) {
+      await client.expire(key, window);
+      return res.status(429).send("Too Many Requests");
+    }
+
+    // Otherwise, set the last success time and continue
+    await client.set(`${key}:lastSuccess`, Date.now());
+    next();
   };
 };
 
-const limiter = rateLimit1(10, 1);
+// const limiter = rateLimit1(10, 1);
 // const limiter = rateLimit2(10, 1);
-// const limiter = rateLimit3(10, 1000);
+const limiter = rateLimit3(10, 1);
 
 module.exports = { limiter };
