@@ -42,10 +42,13 @@ const fetchCampaignList = async (req, res) => {
       return { ...data, picture };
     });
 
-    // save to cache if cache on
-    if (req.redisConnection) {
+    // check if cache turn on
+    if (client.status === "ready") {
+      // save to cache if cache on
       await client.set("campaigns", JSON.stringify(dataWithPath));
     }
+
+    console.log("db hit");
     return res.status(200).send({ data: dataWithPath });
   } catch (err) {
     console.log(err.message);

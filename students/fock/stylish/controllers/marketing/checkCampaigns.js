@@ -3,6 +3,12 @@ const { client } = require("../../utils/redis");
 const checkCampaignCache = async (req, res, next) => {
   const key = "campaigns";
   try {
+    // if cache shutdown, try reconnect
+    if (client.status !== "ready") {
+      console.log("reconnect");
+      await client.connect();
+    }
+
     // use redis cache
     const cacheData = await client.get(key);
 
@@ -20,7 +26,7 @@ const checkCampaignCache = async (req, res, next) => {
       if (validData.length != cachedata.length) {
         await client.set("campaigns", JSON.stringify(validData));
       }
-
+      console.log('cache hit');
       return res.status(200).send({ data: cachedata });
     }
 

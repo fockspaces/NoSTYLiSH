@@ -79,38 +79,54 @@ const rateLimit3 = (capacity, window) => {
     console.log(ip);
     const key = `rateLimit:${ip}`;
 
-    const exists = await client.exists(key);
+    try {
+      // if cache shutdown, try reconnect
+      if (client.status !== "ready") {
+        console.log("reconnect");
+        await client.connect();
+      }
 
-    // If the key doesn't exist, set it and continue
-    if (!exists) {
-      await client.setex(key, window, 1);
-      return next();
-    }
+      const exists = await client.exists(key);
 
-    const [currentCount, lastSuccess] = await Promise.all([
-      client.incr(key),
-      client.get(`${key}:lastSuccess`),
-    ]);
+      // If the key doesn't exist, set it and continue
+      if (!exists) {
+        await client.setex(key, window, 1);
+        return next();
+      }
 
-    // If the last successful request was more than `window` seconds ago,
-    // reset the count and last success time
-    if (lastSuccess && Date.now() - lastSuccess > window * 1000) {
-      await Promise.all([
-        client.set(key, 1),
-        client.set(`${key}:lastSuccess`, Date.now()),
+      const [currentCount, lastSuccess] = await Promise.all([
+        client.incr(key),
+        client.get(`${key}:lastSuccess`),
       ]);
-      return next();
-    }
 
-    // If the current count is greater than the capacity, expire the key and return a 429
-    if (currentCount > capacity) {
-      await client.expire(key, window);
-      return res.status(429).send("Too Many Requests");
-    }
+      // If the last successful request was more than `window` seconds ago,
+      // reset the count and last success time
+      if (lastSuccess && Date.now() - lastSuccess > window * 1000) {
+        await Promise.all([
+          client.set(key, 1),
+          client.set(`${key}:lastSuccess`, Date.now()),
+        ]);
+        return next();
+      }
 
-    // Otherwise, set the last success time and continue
-    await client.set(`${key}:lastSuccess`, Date.now());
-    next();
+      // If the current count is greater than the capacity, expire the key and return a 429
+      if (currentCount > capacity) {
+        await client.expire(key, window);
+        return res.status(429).send("Too Many Requests");
+      }
+
+      // Otherwise, set the last success time and continue
+      await client.set(`${key}:lastSuccess`, Date.now());
+      next();
+    } catch (e) {
+      console.log(e.message);
+      // cache access failed
+      if (e.port === 6379) {
+        console.log("redis not connected");
+      }
+      // If Redis is down, just continue to the next middleware
+      next();
+    }
   };
 };
 

@@ -28,7 +28,8 @@ const user = require("./routes/user");
 const marketing = require("./routes/marketing");
 const order = require("./routes/order");
 const demo = require("./routes/demo");
-const { client } = require("./utils/redis");
+const report = require("./routes/report");
+const reportV2 = require("./routes/reportV2");
 
 const {
   errorHandler,
@@ -36,12 +37,14 @@ const {
 } = require("./controllers/middleware/error");
 const { limiter } = require("./utils/rateLimit");
 
-app.use("/" , demo);
+app.use("/", demo);
 app.use("/admin", admin);
 app.use("/api/1.0/products", limiter, product);
 app.use("/api/1.0/user", limiter, user);
 app.use("/api/1.0/marketing", limiter, marketing);
 app.use("/api/1.0/order", limiter, order);
+app.use("/api/1.0/report", limiter, report);
+app.use("/api/2.0/report", limiter, reportV2);
 
 app.use(express.static("public"));
 app.use("/images/", express.static("./uploads/"));
