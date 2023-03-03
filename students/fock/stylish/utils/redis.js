@@ -5,6 +5,7 @@ const client = new redis({
   retryStrategy() {
     return null;
   },
+  username: process.env.REDIS_NAME,
   password: process.env.REDIS_PASSWORD,
 });
 
