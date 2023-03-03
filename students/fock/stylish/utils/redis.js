@@ -5,6 +5,7 @@ const client = new redis({
   retryStrategy() {
     return null;
   },
+  password: process.env.REDIS_PASSWORD,
 });
 
 module.exports = { client };
