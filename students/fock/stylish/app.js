@@ -1,7 +1,7 @@
 require("dotenv").config();
 const port = process.env.PORT;
 const domain_name = process.env.DOMAIN_NAME;
-const { renderHomePage } = require("./controllers/products/products");
+const { renderIndexPage } = require("./controllers/products/products");
 
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 
-app.get("/", renderHomePage);
+app.get("/", renderIndexPage);
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));

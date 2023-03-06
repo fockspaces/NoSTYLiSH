@@ -8,6 +8,8 @@ const renderHomePage = async (req, res) => {
   return res.render("products/homepage", { products });
 };
 
+const { renderIndexPage } = require("../demo/demos");
+
 module.exports = {
   createProduct,
   createProductItem,
@@ -15,4 +17,5 @@ module.exports = {
   searchCategory,
   searchId,
   searchKeyword,
+  renderIndexPage,
 };
