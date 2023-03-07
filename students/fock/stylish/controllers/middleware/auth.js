@@ -20,6 +20,7 @@ const authToken = async (req, res, next) => {
 
   // check whether user exists
   const user = await checkUser(id);
+  console.log(user);
   if (!user || email !== user.email)
     return res.status(403).send({ err: "wrong token provided, please check" });
 

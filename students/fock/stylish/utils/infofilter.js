@@ -23,7 +23,10 @@ const imagePathConverter = (dataset) => {
 };
 
 const imagePath = (filename) => {
-  return filename ? `https://${process.env.DOMAIN_NAME}/images/${filename}` : "";
+  const prefix = process.env.DOMAIN_NAME === "localhost" ? "http" : "https";
+  return filename
+    ? `${prefix}://${process.env.DOMAIN_NAME}/images/${filename}`
+    : "";
 };
 
 module.exports = {
