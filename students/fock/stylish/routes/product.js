@@ -8,7 +8,8 @@ const {
   searchId,
 } = require("../controllers/products/products");
 
-const upload = require("../utils/multer");
+// const upload = require("../utils/multer");
+const upload = require("../utils/multerS3");
 
 // search by category
 product.get("/all", (req, res) => {
