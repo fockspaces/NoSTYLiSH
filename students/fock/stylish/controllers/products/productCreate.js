@@ -2,18 +2,22 @@ const { insertProduct, insertItem } = require("../../models/Product/Product");
 const { imagePath } = require("../../utils/infofilter");
 
 const createProduct = async (req, res) => {
-  const data = req.body;
-  const { main_image, other_images } = req.files;
-  const main_path = main_image ? main_image[0].filename : "";
-  const other_paths = other_images
-    ? JSON.stringify(other_images.map((image) => image.filename))
-    : "";
-  await insertProduct({
-    ...data,
-    main_path,
-    other_paths,
-  });
-  return res.status(200).redirect("/");
+  try {
+    const data = req.body;
+    const { main_image, other_images } = req.files;
+    const main_path = main_image ? main_image[0].filename : "";
+    const other_paths = other_images
+      ? JSON.stringify(other_images.map((image) => image.filename))
+      : "";
+    await insertProduct({
+      ...data,
+      main_path,
+      other_paths,
+    });
+    return res.status(200).redirect("/");
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const createProductItem = async (req, res) => {

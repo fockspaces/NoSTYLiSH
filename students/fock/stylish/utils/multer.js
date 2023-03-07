@@ -36,13 +36,10 @@ const multerS3Config = multerS3({
   },
 });
 
-// const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
-const upload = multer({
-  storage: multerS3Config,
-  limits: {
-    fileSize: 1024 * 1024 * 5, // we are allowing only 5 MB files
-  },
-});
+// const upload = multer({
+//   storage: multerS3Config,
+// });
 
 module.exports = upload;
