@@ -10,6 +10,7 @@ const client = new redis({
   },
   username: process.env.REDIS_NAME,
   password: process.env.REDIS_PASSWORD,
+  host: process.env.REDIS_HOST,
   tls,
 });
 
