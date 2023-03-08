@@ -3,19 +3,17 @@ const AWS = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const { v4: uuidv4 } = require("uuid");
-const {S3Client} = require('@aws-sdk/client-s3')
 
 // store in s3
-const s3 = new S3Client({
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-  },
+const s3Config = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  Bucket: process.env.AWS_BUCKET_NAME,
   region: process.env.AWS_BUCKET_REGION,
 });
 
 const multerS3Config = multerS3({
-  s3,
+  s3: s3Config,
   bucket: process.env.AWS_BUCKET_NAME,
   metadata: function (req, file, cb) {
     cb(null, { fieldName: file.fieldname });
