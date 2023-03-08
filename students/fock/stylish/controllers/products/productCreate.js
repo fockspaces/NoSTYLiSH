@@ -5,10 +5,21 @@ const createProduct = async (req, res) => {
   try {
     const data = req.body;
     const { main_image, other_images } = req.files;
-    const main_path = main_image ? main_image[0].filename : "";
-    const other_paths = other_images
-      ? JSON.stringify(other_images.map((image) => image.filename))
+    console.log(req.files);
+    let main_path;
+    let other_paths;
+
+    // set to key
+    // todo : differntiate local and aws method
+    main_path = main_image ? main_image[0].key.split("/").pop() : "";
+    other_paths = other_images
+      ? JSON.stringify(other_images.map((image) => image.key.split("/").pop()))
       : "";
+
+    // ignore directory
+    console.log(main_path);
+    console.log(other_paths);
+
     await insertProduct({
       ...data,
       main_path,

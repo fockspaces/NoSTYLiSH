@@ -21,7 +21,7 @@ const multerS3Config = multerS3({
   key: function (req, file, cb) {
     console.log(file);
     const ext = file.originalname.split(".").pop();
-    const filename = `${file.fieldname}-${uuidv4()}.${ext}`;
+    const filename = `images/${file.fieldname}-${uuidv4()}.${ext}`;
     cb(null, filename);
   },
 });

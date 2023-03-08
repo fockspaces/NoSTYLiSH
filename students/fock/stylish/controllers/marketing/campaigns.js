@@ -16,7 +16,10 @@ const createCampaignProduct = async (req, res) => {
 
   // process image file
   const pictureFile = req.file;
-  const picture = pictureFile.filename;
+  // const picture = pictureFile.filename;
+  console.log(pictureFile);
+  const picture = pictureFile.key.split("/").pop();
+
   // insert data into db
   const info = await addCampaign({
     product_id,

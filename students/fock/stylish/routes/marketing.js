@@ -1,6 +1,7 @@
 const express = require("express");
 const marketing = express.Router();
-const upload = require("../utils/multer");
+// const upload = require("../utils/multer");
+const upload = require("../utils/multerS3");
 
 const {
   createCampaignProduct,
