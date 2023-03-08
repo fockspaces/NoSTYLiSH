@@ -36,7 +36,7 @@ const {
   notFoundHandler,
 } = require("./controllers/middleware/error");
 const { limiter } = require("./utils/rateLimit");
-app.use(limiter);
+// app.use(limiter);
 app.use("/", demo);
 app.use("/admin", admin);
 app.use("/api/1.0/products", product);
