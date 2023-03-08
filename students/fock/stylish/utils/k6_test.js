@@ -1,15 +1,15 @@
 // k6 run script.js
 
-import http from 'k6/http';
-import { check, sleep } from 'k6';
+import http from "k6/http";
+import { check, sleep } from "k6";
 export const options = {
   discardResponseBodies: true,
   scenarios: {
     contacts: {
-      executor: 'constant-arrival-rate',
+      executor: "constant-arrival-rate",
       rate: 40,
-      timeUnit: '1s',
-      duration: '20s',
+      timeUnit: "1s",
+      duration: "20s",
       preAllocatedVUs: 50,
       maxVUs: 100,
     },
@@ -17,7 +17,7 @@ export const options = {
 };
 // test HTTP
 export default function () {
-  const res = http.get('https://fastnote.space/api/1.0/report/payments');
-  check(res, { 'status was 200': (r) => r.status == 200 });
+  const res = http.get("https://www.fastnote.space/api/1.0/report/payments");
+  check(res, { "status was 200": (r) => r.status == 200 });
   sleep(1);
 }
