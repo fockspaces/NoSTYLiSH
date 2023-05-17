@@ -33,7 +33,8 @@
 - Relational Database Service (RDS)
 
 ## Architecture
-<img src="https://github.com/fockspaces/fastnote/assets/63909491/4179e9da-962f-434e-b2d3-262a8c99c579" alt="image" width="60%" height="auto" />
+<img src="https://github.com/fockspaces/NoSTYLiSH/assets/63909491/dc460792-224f-40df-a8a0-f3a4ab008dd9" alt="image" width="60%" height="auto" />
+
 
 
 
